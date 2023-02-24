@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_0" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="NunitoSans-Black.ttf">
+            <string>NunitoSans-Black</string>
+        </array>
+        <array key="NunitoSans-SemiBold.ttf">
+            <string>NunitoSans-SemiBold</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="WarningAlert" customModule="SCVideo" customModuleProvider="target">
+            <connections>
+                <outlet property="closeButton" destination="kGc-yX-pnv" id="wYl-EI-YzA"/>
+                <outlet property="descriptionLabel" destination="f4f-xO-hpX" id="4iF-3Y-fn1"/>
+                <outlet property="headerLabel" destination="oeM-yy-Hma" id="qQo-AM-pDk"/>
+                <outlet property="rootView" destination="ufD-Sm-wkC" id="ppU-4q-Zjy"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ufD-Sm-wkC">
+                    <rect key="frame" x="35" y="284.33333333333326" width="320" height="275.66666666666674"/>
+                    <subviews>
+                        <stackView opaque="NO" contentMode="center" axis="vertical" distribution="equalSpacing" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="xVZ-Au-vfL">
+                            <rect key="frame" x="0.0" y="19.999999999999986" width="320" height="235.66666666666663"/>
+                            <subviews>
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Warning Triangle" translatesAutoresizingMaskIntoConstraints="NO" id="TDh-Pw-JMW">
+                                    <rect key="frame" x="124.66666666666666" y="0.0" width="71" height="58"/>
+                                </imageView>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pozor" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oeM-yy-Hma">
+                                    <rect key="frame" x="127" y="78" width="66.333333333333314" height="33"/>
+                                    <fontDescription key="fontDescription" name="NunitoSans-Black" family="Nunito Sans" pointSize="24"/>
+                                    <color key="textColor" name="HeadingTextLabel"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nekaj se je zgodilo" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f4f-xO-hpX">
+                                    <rect key="frame" x="15" y="131" width="290" height="24.666666666666657"/>
+                                    <fontDescription key="fontDescription" name="NunitoSans-SemiBold" family="Nunito Sans" pointSize="18"/>
+                                    <color key="textColor" name="HeadingTextLabel"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="R52-Ll-XVi" userLabel="CloseButtonView">
+                                    <rect key="frame" x="0.0" y="175.66666666666669" width="320" height="60"/>
+                                    <subviews>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ButtonNarrowFlat" translatesAutoresizingMaskIntoConstraints="NO" id="eHT-AI-XoT">
+                                            <rect key="frame" x="81" y="-3" width="158" height="66"/>
+                                        </imageView>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kGc-yX-pnv">
+                                            <rect key="frame" x="134.66666666666666" y="10" width="51" height="40"/>
+                                            <fontDescription key="fontDescription" name="NunitoSans-Black" family="Nunito Sans" pointSize="20"/>
+                                            <state key="normal" title="Zapri">
+                                                <color key="titleColor" name="HeadingTextLabel"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="closePressed:" destination="-1" eventType="touchUpInside" id="Ofe-7G-JEm"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="60" id="Hr6-ja-6Ye"/>
+                                        <constraint firstItem="eHT-AI-XoT" firstAttribute="centerY" secondItem="R52-Ll-XVi" secondAttribute="centerY" id="L22-kT-BDI"/>
+                                        <constraint firstItem="kGc-yX-pnv" firstAttribute="centerX" secondItem="R52-Ll-XVi" secondAttribute="centerX" id="UF3-9p-l9X"/>
+                                        <constraint firstItem="eHT-AI-XoT" firstAttribute="centerX" secondItem="R52-Ll-XVi" secondAttribute="centerX" id="q4z-82-bJk"/>
+                                        <constraint firstItem="kGc-yX-pnv" firstAttribute="centerY" secondItem="R52-Ll-XVi" secondAttribute="centerY" id="tmB-sU-uYL"/>
+                                    </constraints>
+                                </view>
+                            </subviews>
+                            <constraints>
+                                <constraint firstItem="R52-Ll-XVi" firstAttribute="leading" secondItem="xVZ-Au-vfL" secondAttribute="leadingMargin" id="18p-9H-gC9"/>
+                                <constraint firstAttribute="trailing" secondItem="f4f-xO-hpX" secondAttribute="trailing" constant="15" id="3UX-DB-ZWX"/>
+                                <constraint firstItem="TDh-Pw-JMW" firstAttribute="top" secondItem="xVZ-Au-vfL" secondAttribute="top" id="7ld-vI-NUo"/>
+                                <constraint firstItem="f4f-xO-hpX" firstAttribute="leading" secondItem="xVZ-Au-vfL" secondAttribute="leading" constant="15" id="ehT-ce-h0g"/>
+                                <constraint firstAttribute="bottom" secondItem="R52-Ll-XVi" secondAttribute="bottom" id="ol5-Yr-tZ5"/>
+                            </constraints>
+                        </stackView>
+                    </subviews>
+                    <color key="backgroundColor" name="PostBackgroundColor"/>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="xVZ-Au-vfL" secondAttribute="bottom" constant="20" id="5P7-Wo-xXg"/>
+                        <constraint firstItem="xVZ-Au-vfL" firstAttribute="centerY" secondItem="ufD-Sm-wkC" secondAttribute="centerY" id="6tY-Qf-3Kf"/>
+                        <constraint firstAttribute="trailing" secondItem="xVZ-Au-vfL" secondAttribute="trailing" id="GnD-HM-lYz"/>
+                        <constraint firstItem="xVZ-Au-vfL" firstAttribute="top" secondItem="ufD-Sm-wkC" secondAttribute="top" constant="20" id="bvf-Ek-T0E"/>
+                        <constraint firstItem="xVZ-Au-vfL" firstAttribute="centerX" secondItem="ufD-Sm-wkC" secondAttribute="centerX" id="nxO-xX-lK0"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" name="AlertBackground"/>
+            <constraints>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="ufD-Sm-wkC" secondAttribute="trailing" constant="35" id="Bzz-Tk-wkT"/>
+                <constraint firstItem="ufD-Sm-wkC" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="MHB-H6-8Wq"/>
+                <constraint firstItem="ufD-Sm-wkC" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="ksU-rg-XJT"/>
+                <constraint firstItem="ufD-Sm-wkC" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="35" id="sVm-T6-YfO"/>
+            </constraints>
+            <point key="canvasLocation" x="137.68115942028987" y="107.8125"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="ButtonNarrowFlat" width="158" height="66"/>
+        <image name="Warning Triangle" width="71" height="58"/>
+        <namedColor name="AlertBackground">
+            <color red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="HeadingTextLabel">
+            <color red="1" green="0.99599999189376831" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="PostBackgroundColor">
+            <color red="0.14499999582767487" green="0.16099999845027924" blue="0.22699999809265137" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>
