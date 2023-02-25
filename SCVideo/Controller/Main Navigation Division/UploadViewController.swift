@@ -23,7 +23,7 @@ class UploadViewController: UIViewController, UINavigationControllerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         videoPreviewBox.layer.borderWidth = 2
-        videoPreviewBox.layer.borderColor = UIColor.black.cgColor
+        videoPreviewBox.layer.borderColor = UIColor.white.cgColor
         videoPreviewBox.layer.cornerRadius = 10
         
         if let tabBarController = self.tabBarController {

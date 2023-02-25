@@ -23,7 +23,7 @@ class UserProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         userBio.layer.borderWidth = 3
-        userBio.layer.borderColor = UIColor.black.cgColor
+        userBio.layer.borderColor = UIColor.white.cgColor
         userBio.layer.cornerRadius = 8
         userPhoto.layer.cornerRadius = userPhoto.layer.frame.height / 2
 

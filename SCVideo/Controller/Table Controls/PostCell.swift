@@ -28,11 +28,11 @@ class PostCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         /*postView.layer.borderWidth = 3
-        postView.layer.borderColor = UIColor.black.cgColor
+        postView.layer.borderColor = UIColor.white.cgColor
         postView.layer.cornerRadius = 20
         postImage.layer.cornerRadius = 20
         postImageContainer.layer.borderWidth = 3
-        postImageContainer.layer.borderColor = UIColor.black.cgColor
+        postImageContainer.layer.borderColor = UIColor.white.cgColor
         postImageContainer.layer.cornerRadius = 20*/
         userProfileImage.layer.cornerRadius = userProfileImage.layer.frame.height / 2
     }

@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "AddFriendButton.png",
+      "filename" : "AddFriend.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "AddFriendButton@2x.png",
+      "filename" : "AddFriend@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "AddFriendButton@3x.png",
+      "filename" : "AddFriend@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "MultilineTextField.png",
+      "filename" : "TextBox.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "MultilineTextField@2x.png",
+      "filename" : "TextBox@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "MultilineTextField@3x.png",
+      "filename" : "TextBox@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

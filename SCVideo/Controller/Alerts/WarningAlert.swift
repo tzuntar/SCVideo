@@ -18,7 +18,7 @@ class WarningAlert: UIViewController {
         super.viewDidLoad()
 
         rootView.layer.borderWidth = 2
-        rootView.layer.borderColor = UIColor.black.cgColor
+        rootView.layer.borderColor = UIColor.white.cgColor
         rootView.layer.cornerRadius = 12
     }
     

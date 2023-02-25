@@ -31,34 +31,34 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ufD-Sm-wkC">
-                    <rect key="frame" x="35" y="284.33333333333326" width="320" height="275.66666666666674"/>
+                    <rect key="frame" x="35" y="288.66666666666669" width="320" height="267.00000000000006"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="center" axis="vertical" distribution="equalSpacing" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="xVZ-Au-vfL">
-                            <rect key="frame" x="0.0" y="19.999999999999986" width="320" height="235.66666666666663"/>
+                            <rect key="frame" x="0.0" y="20" width="320" height="227"/>
                             <subviews>
                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Warning Triangle" translatesAutoresizingMaskIntoConstraints="NO" id="TDh-Pw-JMW">
                                     <rect key="frame" x="124.66666666666666" y="0.0" width="71" height="58"/>
                                 </imageView>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pozor" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oeM-yy-Hma">
-                                    <rect key="frame" x="127" y="78" width="66.333333333333314" height="33"/>
+                                    <rect key="frame" x="128.66666666666666" y="78" width="62.666666666666657" height="28"/>
                                     <fontDescription key="fontDescription" name="NunitoSans-Black" family="Nunito Sans" pointSize="24"/>
                                     <color key="textColor" name="HeadingTextLabel"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nekaj se je zgodilo" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f4f-xO-hpX">
-                                    <rect key="frame" x="15" y="131" width="290" height="24.666666666666657"/>
+                                    <rect key="frame" x="15" y="126" width="290" height="21"/>
                                     <fontDescription key="fontDescription" name="NunitoSans-SemiBold" family="Nunito Sans" pointSize="18"/>
                                     <color key="textColor" name="HeadingTextLabel"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="R52-Ll-XVi" userLabel="CloseButtonView">
-                                    <rect key="frame" x="0.0" y="175.66666666666669" width="320" height="60"/>
+                                    <rect key="frame" x="0.0" y="167" width="320" height="60"/>
                                     <subviews>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ButtonNarrowFlat" translatesAutoresizingMaskIntoConstraints="NO" id="eHT-AI-XoT">
                                             <rect key="frame" x="81" y="-3" width="158" height="66"/>
                                         </imageView>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kGc-yX-pnv">
-                                            <rect key="frame" x="134.66666666666666" y="10" width="51" height="40"/>
+                                            <rect key="frame" x="137" y="12" width="46" height="36"/>
                                             <fontDescription key="fontDescription" name="NunitoSans-Black" family="Nunito Sans" pointSize="20"/>
                                             <state key="normal" title="Zapri">
                                                 <color key="titleColor" name="HeadingTextLabel"/>
