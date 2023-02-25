@@ -27,6 +27,7 @@
 		271DAFAF290D0BBF00E7346B /* CommentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271DAFAE290D0BBF00E7346B /* CommentsViewController.swift */; };
 		272F0F4E28F69FB800D6A943 /* DataModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 272F0F4D28F69FB800D6A943 /* DataModels.swift */; };
 		272F0F5928F6A0A300D6A943 /* LoginLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 272F0F5828F6A0A300D6A943 /* LoginLogic.swift */; };
+		276B382429AA9519005F51E7 /* VideoCompositionWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276B382329AA9519005F51E7 /* VideoCompositionWriter.swift */; };
 		276EB4AF290FB1E200CB6C77 /* MyAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276EB4AE290FB1E200CB6C77 /* MyAccountViewController.swift */; };
 		276EB4B4290FB20100CB6C77 /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276EB4B3290FB20100CB6C77 /* UserProfileViewController.swift */; };
 		276EB4B9290FB20A00CB6C77 /* UserPostsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276EB4B8290FB20A00CB6C77 /* UserPostsViewController.swift */; };
@@ -109,6 +110,7 @@
 		271DAFAE290D0BBF00E7346B /* CommentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsViewController.swift; sourceTree = "<group>"; };
 		272F0F4D28F69FB800D6A943 /* DataModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModels.swift; sourceTree = "<group>"; };
 		272F0F5828F6A0A300D6A943 /* LoginLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginLogic.swift; sourceTree = "<group>"; };
+		276B382329AA9519005F51E7 /* VideoCompositionWriter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCompositionWriter.swift; sourceTree = "<group>"; };
 		276EB4AE290FB1E200CB6C77 /* MyAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAccountViewController.swift; sourceTree = "<group>"; };
 		276EB4B3290FB20100CB6C77 /* UserProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
 		276EB4B8290FB20A00CB6C77 /* UserPostsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPostsViewController.swift; sourceTree = "<group>"; };
@@ -210,6 +212,7 @@
 		27160A2B28E57860008739C3 /* SCVideo */ = {
 			isa = PBXGroup;
 			children = (
+				276B382229AA950B005F51E7 /* Utilities */,
 				27160A7428E57F2D008739C3 /* Fonts */,
 				27160A2C28E57860008739C3 /* AppDelegate.swift */,
 				27160A2E28E57860008739C3 /* SceneDelegate.swift */,
@@ -344,6 +347,14 @@
 				2710580C2927F8C20002F66E /* UserLogic.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		276B382229AA950B005F51E7 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				276B382329AA9519005F51E7 /* VideoCompositionWriter.swift */,
+			);
+			path = Utilities;
 			sourceTree = "<group>";
 		};
 		27A6150B2913077E0017FC87 /* Alerts */ = {
@@ -669,6 +680,7 @@
 				1BCE049F72991AE7A0BE8F9B /* CommonExtensions.swift in Sources */,
 				276EB4DD291039CA00CB6C77 /* UserCell.swift in Sources */,
 				1BCE0C6615D23387560DB363 /* CommentsLogic.swift in Sources */,
+				276B382429AA9519005F51E7 /* VideoCompositionWriter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

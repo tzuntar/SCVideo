@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "Kamera Copy.png",
+      "filename" : "Record Button.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "Kamera Copy@2x.png",
+      "filename" : "Record Button@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "Kamera Copy@3x.png",
+      "filename" : "Record Button@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

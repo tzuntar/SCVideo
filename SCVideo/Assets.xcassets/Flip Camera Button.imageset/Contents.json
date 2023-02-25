@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "Kamera Copy.png",
+      "filename" : "Flip Camera Button.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "Kamera Copy@2x.png",
+      "filename" : "Flip Camera Button@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "Kamera Copy@3x.png",
+      "filename" : "Flip Camera Button@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
