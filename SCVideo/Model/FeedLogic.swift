@@ -31,34 +31,38 @@ class FeedLogic {
     
     let session: UserSession
     
-    let delegate: FeedDelegate
-    
-    init(session: UserSession, withDelegate delegate: FeedDelegate) {
+    init(withSession session: UserSession) {
         self.session = session
-        self.delegate = delegate
     }
     
     func retrieveFeedPosts() {
-        AF.request(APIURL + "/posts/feed",
-                   headers: [.authorization(bearerToken: self.session.token)]).validate()
-            .responseDecodable(of: [Post].self) { response in
-                if let safeResponse = response.value {
-                    self.delegate.didFetchPosts(safeResponse)
-                    return
-                }
-                
-                if let safeResponse = response.response {
-                    self.handleError(forCode: safeResponse.statusCode)
-                }
-            }
+        debugPrint("retrieveFeedPosts IS DEPRECATED!")
+        return
     }
     
-    private func handleError(forCode responseCode: Int) {
-        switch responseCode {
-        case 500:
-            delegate.didFetchingFailWithError(FeedError.noData)
-        default:
-            delegate.didFetchingFailWithError(FeedError.unexpected(code: responseCode))
+    func loadPostBatch(limit: Int, leftOffAtPostId lastId: Int?, completion: @escaping ([Post]?, _ errorCode: Int?) -> Void) {
+        if let id = lastId {
+            AF.request("\(APIURL)/posts/feed/\(id)",
+                       parameters: ["limit": limit],
+                       headers: [.authorization(bearerToken: self.session.token)])
+                .validate()
+                .responseDecodable(of: [Post].self) { response in
+                    if let safeResponse = response.value {
+                        return completion(safeResponse, nil)
+                    } else if let safeResponse = response.response {
+                        return completion(nil, safeResponse.statusCode)
+                    }
+                }
+        } else {
+            AF.request("\(APIURL)/posts/feed/",
+                       headers: [.authorization(bearerToken: self.session.token)]).validate()
+                .responseDecodable(of: [Post].self) { response in
+                    if let safeResponse = response.value {
+                        return completion(safeResponse, nil)
+                    } else if let safeResponse = response.response {
+                        return completion(nil, safeResponse.statusCode)
+                    }
+                }
         }
     }
     

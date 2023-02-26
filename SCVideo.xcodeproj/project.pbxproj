@@ -32,6 +32,7 @@
 		271DAF82290C742300E7346B /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271DAF80290C742300E7346B /* CommentCell.swift */; };
 		271DAF83290C742300E7346B /* CommentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 271DAF81290C742300E7346B /* CommentCell.xib */; };
 		271DAFAF290D0BBF00E7346B /* CommentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271DAFAE290D0BBF00E7346B /* CommentsViewController.swift */; };
+		272521B029ABC0AB00219572 /* PostControls.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2701A1C329AB602E00FEA390 /* PostControls.xib */; };
 		272F0F4E28F69FB800D6A943 /* DataModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 272F0F4D28F69FB800D6A943 /* DataModels.swift */; };
 		272F0F5928F6A0A300D6A943 /* LoginLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 272F0F5828F6A0A300D6A943 /* LoginLogic.swift */; };
 		276B382429AA9519005F51E7 /* VideoCompositionWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276B382329AA9519005F51E7 /* VideoCompositionWriter.swift */; };
@@ -560,6 +561,7 @@
 				27BBA0BE29A6A17E004CB7BD /* NunitoSans-ExtraLightItalic.ttf in Resources */,
 				2701A1B529AB5F5900FEA390 /* PostDetails.xib in Resources */,
 				27BBA0C529A6A17E004CB7BD /* NunitoSans-LightItalic.ttf in Resources */,
+				272521B029ABC0AB00219572 /* PostControls.xib in Resources */,
 				27BBA0C329A6A17E004CB7BD /* NunitoSans-BlackItalic.ttf in Resources */,
 				27160A6B28E57942008739C3 /* Main.storyboard in Resources */,
 				27BBA0C729A6A17E004CB7BD /* NunitoSans-ExtraBoldItalic.ttf in Resources */,

@@ -64,7 +64,7 @@ extension LoginController: LoginDelegate {
 
     func didLogInUser(_ session: UserSession) {
         self.session = session
-        self.performSegue(withIdentifier: "loginToMain", sender: self)
+        self.performSegue(withIdentifier: "loginToFeed", sender: self)
     }
 
     func didLoginFailWithError(_ error: Error) {

@@ -72,7 +72,7 @@ class PostCell: UITableViewCell {
         guard let post = currentPost else { return }
         let frame = self.postImage.frame
         
-        player = AVPlayer(url: URL(string: post.content_uri!)!)
+        player = AVPlayer(url: URL(string: post.content_uri)!)
         playerLayer = AVPlayerLayer(player: player)
         let audioSession = AVAudioSession.sharedInstance()
         playerLayer!.frame = frame
@@ -89,14 +89,12 @@ class PostCell: UITableViewCell {
         
         usernameButton.setTitle(post.user.full_name, for: .normal)
         contentLabel.text = post.description
-        if let contentURL = post.content_uri {
-            if post.type == PostType.photo.rawValue {
-                postImage.loadFrom(URLAddress: contentURL)
-            } else if post.type == PostType.video.rawValue {
-                DispatchQueue.global(qos: .background).async {
-                    let loader = PostLoaderLogic(delegate: self)
-                    loader.loadVideoPostThumbnail(forPost: post)
-                }
+        if post.type == PostType.photo.rawValue {
+            postImage.loadFrom(URLAddress: post.content_uri)
+        } else if post.type == PostType.video.rawValue {
+            DispatchQueue.global(qos: .background).async {
+                let loader = PostLoaderLogic(delegate: self)
+                loader.loadVideoPostThumbnail(forPost: post)
             }
         }
         if let avatarURL = post.user.photo_uri {

@@ -13,6 +13,7 @@ class FeedViewController: UIViewController, UIScrollViewDelegate {
     var tableNode: ASTableNode!
     var posts: [Post] = []
     var currentSession: UserSession?
+    var feedLogic: FeedLogic?
     var lastNode: PostNode?
     
     required init?(coder: NSCoder) {
@@ -29,6 +30,7 @@ class FeedViewController: UIViewController, UIScrollViewDelegate {
         self.view.insertSubview(tableNode.view, at: 0)
         self.applyStyles()
         self.tableNode.leadingScreensForBatching = 1.0  // overriding the default of 2.0
+        self.feedLogic = FeedLogic(withSession: self.currentSession!)
     }
     
     override func viewWillLayoutSubviews() {
@@ -83,24 +85,15 @@ extension FeedViewController: ASTableDelegate {
 // MARK: - Batched Fetching Operations
 extension FeedViewController {
     func retrieveNextPageWithCompletion(block: @escaping ([Post]) -> Void) {
-        /*
-         let query = PFQuery(className: "Post")
-         query.order(byAscending: "createdAt")
-         query.includeKey("asset")
-         query.whereKey("status", equalTo: "ready")
-         query.limit = 2
-         query.skip = posts.count
-         query.findObjectsInBackground { (objects: [PFObject]?, error: Error?) in
-         if let error = error {
-         print(error.localizedDescription)
-         } else if let objects = objects {
-         print("Successfully retrieved \(objects.count) posts.")
-         DispatchQueue.main.async {
-         block(objects)
-         }
-         }
-         }
-         */
+        feedLogic?.loadPostBatch(limit: 2, leftOffAtPostId: 10, completion: { (posts: [Post]?, errorCode: Int?) in
+            if let error = errorCode {
+                return debugPrint("Loading post batch failed with code \(error)")
+            }
+            guard let safePosts = posts else { return }
+            DispatchQueue.main.async {
+                block(safePosts)
+            }
+        })
     }
     
     func insertNewRowsInTableNode(_ newPosts: [Post]) {

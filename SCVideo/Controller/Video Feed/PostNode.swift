@@ -20,8 +20,16 @@ class PostNode: ASCellNode {
         videoNode = ASVideoNode()
         gradientNode = GradientNode()
         super.init()
-        
-        //thumbnailNode.url = post.thumbnail_url
+
+        PostLoaderLogic.fetchVideoThumbnail(forPost: post) { (image: CGImage?, error: Error?) in
+            guard let img = image else {
+                if let e = error {
+                    debugPrint("Fetching thumbnail for post \(post.id_post) failed: \(e.localizedDescription)")
+                }
+                return
+            }
+            self.thumbnailNode.image = UIImage(cgImage: img)
+        }
         thumbnailNode.contentMode = .scaleAspectFill
         
         // ASD recommends enabling layer-backing in any custom node
@@ -36,7 +44,7 @@ class PostNode: ASCellNode {
 
         // set the asset on the main thread since the nodes aren't on it
         DispatchQueue.main.async {
-            self.videoNode.asset = AVAsset(url: URL(string: post.content_uri!)!) // null handling?
+            self.videoNode.asset = AVAsset(url: URL(string: post.content_uri)!)
         }
         
         addSubnode(videoNode)

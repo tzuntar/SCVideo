@@ -39,7 +39,7 @@ struct Town: Codable {
 }
 
 enum PostType: String {
-    case text = "text", photo = "photo", video = "video"
+    case photo = "photo", video = "video"
 }
 
 class Post: Codable {
@@ -48,7 +48,7 @@ class Post: Codable {
     let type: String
     let title: String?
     let description: String?
-    let content_uri: String?
+    let content_uri: String
     let user: User
     //let added_on: Date
     let added_on: String

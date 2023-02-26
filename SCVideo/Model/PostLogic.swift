@@ -63,16 +63,26 @@ class PostLoaderLogic {
     }
     
     func loadVideoPostThumbnail(forPost post: Post) {
-        guard let url = post.content_uri else { return }
         if post.type != PostType.video.rawValue { return }
         
-        let asset = AVURLAsset(url: URL(string: url)!)
+        let asset = AVURLAsset(url: URL(string: post.content_uri)!)
         let imgGenerator = AVAssetImageGenerator(asset: asset)
         do {
             let cgImage = try imgGenerator.copyCGImage(at: CMTimeMake(value: 0, timescale: 1), actualTime: nil)
             delegate.didLoadVideoThumbnail(cgImage)
         } catch let error {
             delegate.didLoadingFailWithError(error)
+        }
+    }
+    
+    static func fetchVideoThumbnail(forPost post: Post, completion: @escaping (CGImage?, Error?) -> Void) {
+        let asset = AVURLAsset(url: URL(string: post.content_uri)!)
+        let imgGenerator = AVAssetImageGenerator(asset: asset)
+        do {
+            let cgImage = try imgGenerator.copyCGImage(at: CMTimeMake(value: 0, timescale: 1), actualTime: nil)
+            completion(cgImage, nil)
+        } catch let error {
+            completion(nil, error)
         }
     }
     

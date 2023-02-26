@@ -26,7 +26,7 @@ class HomeViewController: UIViewController {
             guard let parentController = tabBarController as? MainTabBarController else { return }
             guard let session = parentController.session else { return }
             currentSession = session
-            feed = FeedLogic(session: session, withDelegate: self)
+//            feed = FeedLogic(session: session, withDelegate: self)
             DispatchQueue.main.async {
                 self.feed!.retrieveFeedPosts()
             }
