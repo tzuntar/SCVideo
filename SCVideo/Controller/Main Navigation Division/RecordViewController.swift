@@ -28,10 +28,11 @@ class RecordViewController: UIViewController {
     private var _filename = ""
     private var _finalAsset: AVURLAsset?
     private var _time: Double = 0
+    private var _usingFrontCamera: Bool = false
     var clips: [String] = []
     var audioPlayer: AVAudioPlayer?
     
-    private final var _RECORD_THREAD_NAME: String = "eu.tobija-zuntar.SCVideo.record"
+    private var _sessionQueue: DispatchQueue!
     
     private enum _CaptureState {
         case idle, start, capturing, end
@@ -41,13 +42,30 @@ class RecordViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        _sessionQueue = DispatchQueue(label: "eu.tobija-zuntar.SCVideo.record")
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         captureSession = AVCaptureSession()
+        setUpInputs()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        captureSession.stopRunning()
+    }
+    
+    private func setUpInputs(usingFrontCamera: Bool = false) {
+        captureSession.beginConfiguration()
+        // remove the inputs if they're already present
+        if captureSession.isRunning {
+            if let inputs = captureSession.inputs as? [AVCaptureDeviceInput] {
+                for input in inputs {
+                    captureSession.removeInput(input)
+                }
+            }
+        }
         
         // make sure the rear camera and microphone are available
         guard let rearCamera = AVCaptureDevice.default(for: AVMediaType.video),
@@ -58,31 +76,40 @@ class RecordViewController: UIViewController {
         }
         
         do {
-            let cameraInput = try AVCaptureDeviceInput(device: rearCamera)
+            var cameraInput: AVCaptureDeviceInput?
+            if usingFrontCamera {
+                // this is necessary because the front camera isn't a default video capture device
+                let deviceDiscoverySession = AVCaptureDevice.DiscoverySession(
+                    deviceTypes: [.builtInWideAngleCamera],
+                    mediaType: .video,
+                    position: .front)
+                if deviceDiscoverySession.devices.count > 0 {
+                    let frontCamera = deviceDiscoverySession.devices[0]
+                    cameraInput = try AVCaptureDeviceInput(device: frontCamera)
+                }
+            } else {
+                cameraInput = try AVCaptureDeviceInput(device: rearCamera)
+            }
+
             let audioInput = try AVCaptureDeviceInput(device: microphone)
             let output = AVCaptureVideoDataOutput()
             
-            if captureSession.canAddInput(cameraInput),
+            if captureSession.canAddInput(cameraInput!),
                captureSession.canAddInput(audioInput),
                captureSession.canAddOutput(output) {
-                captureSession.addInput(cameraInput)
+                captureSession.addInput(cameraInput!)
                 captureSession.addInput(audioInput)
                 captureSession.addOutput(output)
-                videoDeviceInput = cameraInput
+                videoDeviceInput = cameraInput!
                 _videoOutput = output
-
-                _videoOutput.setSampleBufferDelegate(self, queue: DispatchQueue(label: _RECORD_THREAD_NAME))
+                
+                _videoOutput.setSampleBufferDelegate(self, queue: _sessionQueue)
                 setUpLivePreview()
             }
-            
         } catch {
-            debugPrint("Unable to initialize inputes: \(error.localizedDescription)")
+            debugPrint("Unable to initialize inputs: \(error.localizedDescription)")
         }
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        captureSession.stopRunning()
+        captureSession.commitConfiguration()
     }
     
     private func setUpLivePreview() {
@@ -136,6 +163,8 @@ class RecordViewController: UIViewController {
     }
     
     @IBAction func flipCameraPressed(_ sender: UIButton) {
+        _usingFrontCamera = !_usingFrontCamera
+        setUpInputs(usingFrontCamera: _usingFrontCamera)
     }
     
     @IBAction func deleteClipPressed(_ sender: UIButton) {
@@ -146,9 +175,11 @@ class RecordViewController: UIViewController {
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let uploadVC = segue.destination as? UploadViewController,
-           let asset = _finalAsset {
-            uploadVC.selectedAsset = asset
+        if segue.identifier == "UploadRecorded" {
+            let uploadVC = segue.destination as! UploadViewController
+            if let asset = _finalAsset {
+                uploadVC.selectedAsset = asset
+            }
         }
     }
 }

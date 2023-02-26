@@ -7,9 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1953684D948A36F26D1EF654 /* Pods_SCVideo_SCVideoUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E054E39AC7D1244EEF14261 /* Pods_SCVideo_SCVideoUITests.framework */; };
 		1BCE049F72991AE7A0BE8F9B /* CommonExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BCE007066848E27210E8034 /* CommonExtensions.swift */; };
 		1BCE052D820F2307011FDE01 /* AuthLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BCE036319BB2AFFE03A84A3 /* AuthLogic.swift */; };
 		1BCE0C6615D23387560DB363 /* CommentsLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BCE07C1B8BF1B61A28BE6BD /* CommentsLogic.swift */; };
+		2701A19829AB4D4800FEA390 /* PostNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2701A19729AB4D4800FEA390 /* PostNode.swift */; };
 		2710580D2927F8C20002F66E /* UserLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2710580C2927F8C20002F66E /* UserLogic.swift */; };
 		27160A2D28E57860008739C3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27160A2C28E57860008739C3 /* AppDelegate.swift */; };
 		27160A2F28E57860008739C3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27160A2E28E57860008739C3 /* SceneDelegate.swift */; };
@@ -59,9 +61,8 @@
 		27BBA0CA29A6A17E004CB7BD /* NunitoSans-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 27BBA0BC29A6A17E004CB7BD /* NunitoSans-Italic.ttf */; };
 		27BDB1FD2904643B0034E1CD /* RegistrationLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27BDB1FC2904643B0034E1CD /* RegistrationLogic.swift */; };
 		27C79C2F29103E72006FDBC3 /* FriendsLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27C79C2E29103E72006FDBC3 /* FriendsLogic.swift */; };
-		5E8A2B91E30B71B687533C10 /* Pods_SavinjskaVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0494A6D1DBA4319FB624D0A2 /* Pods_SavinjskaVideo.framework */; };
-		7493110785E727B424FF29B5 /* Pods_SavinjskaVideo_SavinjskaVideoUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BC901A2AAA1CDCBFDBBEFDA /* Pods_SavinjskaVideo_SavinjskaVideoUITests.framework */; };
-		8466219B9528548634E1DC37 /* Pods_SavinjskaVideoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 383B30E291501094A0FDD47A /* Pods_SavinjskaVideoTests.framework */; };
+		5E7D8825544BDFEDE9357093 /* Pods_SCVideoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F02BBFEE829B41B4E40B61F /* Pods_SCVideoTests.framework */; };
+		F274DE2339A81D2C93066435 /* Pods_SCVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 081C4F1C21E37384C582B8D1 /* Pods_SCVideo.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -82,11 +83,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0494A6D1DBA4319FB624D0A2 /* Pods_SavinjskaVideo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SavinjskaVideo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		1BC901A2AAA1CDCBFDBBEFDA /* Pods_SavinjskaVideo_SavinjskaVideoUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SavinjskaVideo_SavinjskaVideoUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		063B2C28337D2B208087EF5B /* Pods-SCVideo-SCVideoUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SCVideo-SCVideoUITests.debug.xcconfig"; path = "Target Support Files/Pods-SCVideo-SCVideoUITests/Pods-SCVideo-SCVideoUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		081C4F1C21E37384C582B8D1 /* Pods_SCVideo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SCVideo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1BCE007066848E27210E8034 /* CommonExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommonExtensions.swift; sourceTree = "<group>"; };
 		1BCE036319BB2AFFE03A84A3 /* AuthLogic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthLogic.swift; sourceTree = "<group>"; };
 		1BCE07C1B8BF1B61A28BE6BD /* CommentsLogic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentsLogic.swift; sourceTree = "<group>"; };
+		26D066E3E72BEECB68158CF6 /* Pods-SCVideo-SCVideoUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SCVideo-SCVideoUITests.release.xcconfig"; path = "Target Support Files/Pods-SCVideo-SCVideoUITests/Pods-SCVideo-SCVideoUITests.release.xcconfig"; sourceTree = "<group>"; };
+		2701A19729AB4D4800FEA390 /* PostNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostNode.swift; sourceTree = "<group>"; };
 		2710580C2927F8C20002F66E /* UserLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLogic.swift; sourceTree = "<group>"; };
 		27160A2928E57860008739C3 /* SCVideo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SCVideo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		27160A2C28E57860008739C3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -143,10 +146,15 @@
 		27BDB1FC2904643B0034E1CD /* RegistrationLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationLogic.swift; sourceTree = "<group>"; };
 		27C79C2E29103E72006FDBC3 /* FriendsLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsLogic.swift; sourceTree = "<group>"; };
 		2B15168AFCF9F212A2B7DCF4 /* Pods-SavinjskaVideo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SavinjskaVideo.debug.xcconfig"; path = "Target Support Files/Pods-SavinjskaVideo/Pods-SavinjskaVideo.debug.xcconfig"; sourceTree = "<group>"; };
-		383B30E291501094A0FDD47A /* Pods_SavinjskaVideoTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SavinjskaVideoTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4E054E39AC7D1244EEF14261 /* Pods_SCVideo_SCVideoUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SCVideo_SCVideoUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		88956E39D9F688B6DE7B00AD /* Pods-SavinjskaVideo-SavinjskaVideoUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SavinjskaVideo-SavinjskaVideoUITests.debug.xcconfig"; path = "Target Support Files/Pods-SavinjskaVideo-SavinjskaVideoUITests/Pods-SavinjskaVideo-SavinjskaVideoUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		9F02BBFEE829B41B4E40B61F /* Pods_SCVideoTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SCVideoTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9FC2A3CED1F4BC76052881F3 /* Pods-SavinjskaVideoTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SavinjskaVideoTests.release.xcconfig"; path = "Target Support Files/Pods-SavinjskaVideoTests/Pods-SavinjskaVideoTests.release.xcconfig"; sourceTree = "<group>"; };
+		ADF8E4DFFB3F540A16E6C1CA /* Pods-SCVideoTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SCVideoTests.debug.xcconfig"; path = "Target Support Files/Pods-SCVideoTests/Pods-SCVideoTests.debug.xcconfig"; sourceTree = "<group>"; };
 		C7AE4971B799DC72E9F52FE2 /* Pods-SavinjskaVideo-SavinjskaVideoUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SavinjskaVideo-SavinjskaVideoUITests.release.xcconfig"; path = "Target Support Files/Pods-SavinjskaVideo-SavinjskaVideoUITests/Pods-SavinjskaVideo-SavinjskaVideoUITests.release.xcconfig"; sourceTree = "<group>"; };
+		C9C209341ECFF7F4DAC2B808 /* Pods-SCVideoTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SCVideoTests.release.xcconfig"; path = "Target Support Files/Pods-SCVideoTests/Pods-SCVideoTests.release.xcconfig"; sourceTree = "<group>"; };
+		D824D3D7976B044BB3B38BA8 /* Pods-SCVideo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SCVideo.release.xcconfig"; path = "Target Support Files/Pods-SCVideo/Pods-SCVideo.release.xcconfig"; sourceTree = "<group>"; };
+		E06B14E7D3AE924A60F1C62D /* Pods-SCVideo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SCVideo.debug.xcconfig"; path = "Target Support Files/Pods-SCVideo/Pods-SCVideo.debug.xcconfig"; sourceTree = "<group>"; };
 		E0EAF442A21E1E1907B36017 /* Pods-SavinjskaVideoTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SavinjskaVideoTests.debug.xcconfig"; path = "Target Support Files/Pods-SavinjskaVideoTests/Pods-SavinjskaVideoTests.debug.xcconfig"; sourceTree = "<group>"; };
 		F099CF276D4896DCCD295F52 /* Pods-SavinjskaVideo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SavinjskaVideo.release.xcconfig"; path = "Target Support Files/Pods-SavinjskaVideo/Pods-SavinjskaVideo.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -156,7 +164,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5E8A2B91E30B71B687533C10 /* Pods_SavinjskaVideo.framework in Frameworks */,
+				F274DE2339A81D2C93066435 /* Pods_SCVideo.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -164,7 +172,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8466219B9528548634E1DC37 /* Pods_SavinjskaVideoTests.framework in Frameworks */,
+				5E7D8825544BDFEDE9357093 /* Pods_SCVideoTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -172,7 +180,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7493110785E727B424FF29B5 /* Pods_SavinjskaVideo_SavinjskaVideoUITests.framework in Frameworks */,
+				1953684D948A36F26D1EF654 /* Pods_SCVideo_SCVideoUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -185,6 +193,14 @@
 				1BCE007066848E27210E8034 /* CommonExtensions.swift */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		2701A19629AB4D3600FEA390 /* Video Feed */ = {
+			isa = PBXGroup;
+			children = (
+				2701A19729AB4D4800FEA390 /* PostNode.swift */,
+			);
+			path = "Video Feed";
 			sourceTree = "<group>";
 		};
 		27160A2028E57860008739C3 = {
@@ -268,6 +284,7 @@
 		27160AA528E789B1008739C3 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				2701A19629AB4D3600FEA390 /* Video Feed */,
 				27A6150B2913077E0017FC87 /* Alerts */,
 				27160A3728E57862008739C3 /* LaunchScreen.storyboard */,
 				27160A6A28E57942008739C3 /* Main.storyboard */,
@@ -382,6 +399,12 @@
 				C7AE4971B799DC72E9F52FE2 /* Pods-SavinjskaVideo-SavinjskaVideoUITests.release.xcconfig */,
 				E0EAF442A21E1E1907B36017 /* Pods-SavinjskaVideoTests.debug.xcconfig */,
 				9FC2A3CED1F4BC76052881F3 /* Pods-SavinjskaVideoTests.release.xcconfig */,
+				E06B14E7D3AE924A60F1C62D /* Pods-SCVideo.debug.xcconfig */,
+				D824D3D7976B044BB3B38BA8 /* Pods-SCVideo.release.xcconfig */,
+				063B2C28337D2B208087EF5B /* Pods-SCVideo-SCVideoUITests.debug.xcconfig */,
+				26D066E3E72BEECB68158CF6 /* Pods-SCVideo-SCVideoUITests.release.xcconfig */,
+				ADF8E4DFFB3F540A16E6C1CA /* Pods-SCVideoTests.debug.xcconfig */,
+				C9C209341ECFF7F4DAC2B808 /* Pods-SCVideoTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -389,9 +412,9 @@
 		E8F339F33CDB00007639699B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				0494A6D1DBA4319FB624D0A2 /* Pods_SavinjskaVideo.framework */,
-				1BC901A2AAA1CDCBFDBBEFDA /* Pods_SavinjskaVideo_SavinjskaVideoUITests.framework */,
-				383B30E291501094A0FDD47A /* Pods_SavinjskaVideoTests.framework */,
+				081C4F1C21E37384C582B8D1 /* Pods_SCVideo.framework */,
+				4E054E39AC7D1244EEF14261 /* Pods_SCVideo_SCVideoUITests.framework */,
+				9F02BBFEE829B41B4E40B61F /* Pods_SCVideoTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -552,15 +575,15 @@
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-SavinjskaVideo/Pods-SavinjskaVideo-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-SCVideo/Pods-SCVideo-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-SavinjskaVideo/Pods-SavinjskaVideo-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-SCVideo/Pods-SCVideo-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SavinjskaVideo/Pods-SavinjskaVideo-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SCVideo/Pods-SCVideo-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		8D1B1381428157E0683795F9 /* [CP] Check Pods Manifest.lock */ = {
@@ -578,7 +601,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-SavinjskaVideo-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-SCVideo-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -600,7 +623,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-SavinjskaVideoTests-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-SCVideoTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -613,15 +636,15 @@
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-SavinjskaVideo-SavinjskaVideoUITests/Pods-SavinjskaVideo-SavinjskaVideoUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-SCVideo-SCVideoUITests/Pods-SCVideo-SCVideoUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-SavinjskaVideo-SavinjskaVideoUITests/Pods-SavinjskaVideo-SavinjskaVideoUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-SCVideo-SCVideoUITests/Pods-SCVideo-SCVideoUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SavinjskaVideo-SavinjskaVideoUITests/Pods-SavinjskaVideo-SavinjskaVideoUITests-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SCVideo-SCVideoUITests/Pods-SCVideo-SCVideoUITests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		E510104C1F9DF1986874C66C /* [CP] Check Pods Manifest.lock */ = {
@@ -639,7 +662,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-SavinjskaVideo-SavinjskaVideoUITests-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-SCVideo-SCVideoUITests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -680,6 +703,7 @@
 				1BCE049F72991AE7A0BE8F9B /* CommonExtensions.swift in Sources */,
 				276EB4DD291039CA00CB6C77 /* UserCell.swift in Sources */,
 				1BCE0C6615D23387560DB363 /* CommentsLogic.swift in Sources */,
+				2701A19829AB4D4800FEA390 /* PostNode.swift in Sources */,
 				276B382429AA9519005F51E7 /* VideoCompositionWriter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -845,7 +869,7 @@
 		};
 		27160A5428E57862008739C3 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2B15168AFCF9F212A2B7DCF4 /* Pods-SavinjskaVideo.debug.xcconfig */;
+			baseConfigurationReference = E06B14E7D3AE924A60F1C62D /* Pods-SCVideo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -865,7 +889,7 @@
 		};
 		27160A5528E57862008739C3 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F099CF276D4896DCCD295F52 /* Pods-SavinjskaVideo.release.xcconfig */;
+			baseConfigurationReference = D824D3D7976B044BB3B38BA8 /* Pods-SCVideo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -885,7 +909,7 @@
 		};
 		27160A5728E57862008739C3 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E0EAF442A21E1E1907B36017 /* Pods-SavinjskaVideoTests.debug.xcconfig */;
+			baseConfigurationReference = ADF8E4DFFB3F540A16E6C1CA /* Pods-SCVideoTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -907,7 +931,7 @@
 		};
 		27160A5828E57862008739C3 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9FC2A3CED1F4BC76052881F3 /* Pods-SavinjskaVideoTests.release.xcconfig */;
+			baseConfigurationReference = C9C209341ECFF7F4DAC2B808 /* Pods-SCVideoTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -929,7 +953,7 @@
 		};
 		27160A5A28E57862008739C3 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 88956E39D9F688B6DE7B00AD /* Pods-SavinjskaVideo-SavinjskaVideoUITests.debug.xcconfig */;
+			baseConfigurationReference = 063B2C28337D2B208087EF5B /* Pods-SCVideo-SCVideoUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -949,7 +973,7 @@
 		};
 		27160A5B28E57862008739C3 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C7AE4971B799DC72E9F52FE2 /* Pods-SavinjskaVideo-SavinjskaVideoUITests.release.xcconfig */;
+			baseConfigurationReference = 26D066E3E72BEECB68158CF6 /* Pods-SCVideo-SCVideoUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;

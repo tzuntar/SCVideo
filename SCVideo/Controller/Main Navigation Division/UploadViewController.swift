@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import SCRecorder
+import AVFoundation
 
 class UploadViewController: UIViewController, UINavigationControllerDelegate {
 
