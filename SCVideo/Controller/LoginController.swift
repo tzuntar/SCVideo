@@ -39,18 +39,22 @@ class LoginController: UIViewController {
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "showRegisterSheet" {
+        switch segue.identifier {
+        case "showRegisterSheet":
             guard let registerVc = segue.destination as? RegisterController else {
                 return
             }
             registerVc.username = usernameField.text
-        } else if segue.identifier == "loginToMain" {
+        case "loginToMain":
             if let safeSession = session {
-                guard let mainTabVC = segue.destination as? MainTabBarController else {
-                    return
-                }
+                guard let mainTabVC = segue.destination as? MainTabBarController else { return }
                 mainTabVC.session = safeSession
             }
+        case "loginToFeed":
+            guard let feedVC = segue.destination as? FeedViewController else { return }
+            feedVC.currentSession = session
+        default:
+            return
         }
     }
 

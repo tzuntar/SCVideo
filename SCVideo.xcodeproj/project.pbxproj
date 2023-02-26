@@ -12,6 +12,11 @@
 		1BCE052D820F2307011FDE01 /* AuthLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BCE036319BB2AFFE03A84A3 /* AuthLogic.swift */; };
 		1BCE0C6615D23387560DB363 /* CommentsLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BCE07C1B8BF1B61A28BE6BD /* CommentsLogic.swift */; };
 		2701A19829AB4D4800FEA390 /* PostNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2701A19729AB4D4800FEA390 /* PostNode.swift */; };
+		2701A1A029AB547500FEA390 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2701A19F29AB547500FEA390 /* FeedViewController.swift */; };
+		2701A1A629AB5E6E00FEA390 /* GradientNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 2701A1A529AB5E6E00FEA390 /* GradientNode.m */; };
+		2701A1B329AB5F5900FEA390 /* PostDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2701A1AE29AB5F5900FEA390 /* PostDetails.swift */; };
+		2701A1B529AB5F5900FEA390 /* PostDetails.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2701A1B029AB5F5900FEA390 /* PostDetails.xib */; };
+		2701A1BF29AB5F9D00FEA390 /* PostControlsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2701A1BE29AB5F9D00FEA390 /* PostControlsView.swift */; };
 		2710580D2927F8C20002F66E /* UserLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2710580C2927F8C20002F66E /* UserLogic.swift */; };
 		27160A2D28E57860008739C3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27160A2C28E57860008739C3 /* AppDelegate.swift */; };
 		27160A2F28E57860008739C3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27160A2E28E57860008739C3 /* SceneDelegate.swift */; };
@@ -90,6 +95,14 @@
 		1BCE07C1B8BF1B61A28BE6BD /* CommentsLogic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentsLogic.swift; sourceTree = "<group>"; };
 		26D066E3E72BEECB68158CF6 /* Pods-SCVideo-SCVideoUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SCVideo-SCVideoUITests.release.xcconfig"; path = "Target Support Files/Pods-SCVideo-SCVideoUITests/Pods-SCVideo-SCVideoUITests.release.xcconfig"; sourceTree = "<group>"; };
 		2701A19729AB4D4800FEA390 /* PostNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostNode.swift; sourceTree = "<group>"; };
+		2701A19F29AB547500FEA390 /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
+		2701A1A429AB5E6E00FEA390 /* SCVideo-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SCVideo-Bridging-Header.h"; sourceTree = "<group>"; };
+		2701A1A529AB5E6E00FEA390 /* GradientNode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GradientNode.m; sourceTree = "<group>"; };
+		2701A1AA29AB5E7D00FEA390 /* GradientNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GradientNode.h; sourceTree = "<group>"; };
+		2701A1AE29AB5F5900FEA390 /* PostDetails.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostDetails.swift; sourceTree = "<group>"; };
+		2701A1B029AB5F5900FEA390 /* PostDetails.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PostDetails.xib; sourceTree = "<group>"; };
+		2701A1BE29AB5F9D00FEA390 /* PostControlsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostControlsView.swift; sourceTree = "<group>"; };
+		2701A1C329AB602E00FEA390 /* PostControls.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostControls.xib; sourceTree = "<group>"; };
 		2710580C2927F8C20002F66E /* UserLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLogic.swift; sourceTree = "<group>"; };
 		27160A2928E57860008739C3 /* SCVideo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SCVideo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		27160A2C28E57860008739C3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -198,7 +211,18 @@
 		2701A19629AB4D3600FEA390 /* Video Feed */ = {
 			isa = PBXGroup;
 			children = (
+				2701A1C329AB602E00FEA390 /* PostControls.xib */,
+				2701A1B029AB5F5900FEA390 /* PostDetails.xib */,
+			);
+			path = "Video Feed";
+			sourceTree = "<group>";
+		};
+		2701A1CA29AB616F00FEA390 /* Video Feed */ = {
+			isa = PBXGroup;
+			children = (
+				2701A1AE29AB5F5900FEA390 /* PostDetails.swift */,
 				2701A19729AB4D4800FEA390 /* PostNode.swift */,
+				2701A1BE29AB5F9D00FEA390 /* PostControlsView.swift */,
 			);
 			path = "Video Feed";
 			sourceTree = "<group>";
@@ -296,6 +320,7 @@
 		27160AA628E789C7008739C3 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				2701A1CA29AB616F00FEA390 /* Video Feed */,
 				27A61519291308260017FC87 /* Alerts */,
 				1BCE0CE57A30C13CF02F4E11 /* Utils */,
 				27160A6F28E5797F008739C3 /* LoginController.swift */,
@@ -338,6 +363,7 @@
 				276EB4B8290FB20A00CB6C77 /* UserPostsViewController.swift */,
 				27A6150129114CCB0017FC87 /* RecordViewController.swift */,
 				271DAFAE290D0BBF00E7346B /* CommentsViewController.swift */,
+				2701A19F29AB547500FEA390 /* FeedViewController.swift */,
 			);
 			path = "Main Navigation Division";
 			sourceTree = "<group>";
@@ -370,6 +396,9 @@
 			isa = PBXGroup;
 			children = (
 				276B382329AA9519005F51E7 /* VideoCompositionWriter.swift */,
+				2701A1A529AB5E6E00FEA390 /* GradientNode.m */,
+				2701A1AA29AB5E7D00FEA390 /* GradientNode.h */,
+				2701A1A429AB5E6E00FEA390 /* SCVideo-Bridging-Header.h */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -491,6 +520,7 @@
 				TargetAttributes = {
 					27160A2828E57860008739C3 = {
 						CreatedOnToolsVersion = 12.4;
+						LastSwiftMigration = 1240;
 					};
 					27160A3E28E57862008739C3 = {
 						CreatedOnToolsVersion = 12.4;
@@ -528,6 +558,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				27BBA0BE29A6A17E004CB7BD /* NunitoSans-ExtraLightItalic.ttf in Resources */,
+				2701A1B529AB5F5900FEA390 /* PostDetails.xib in Resources */,
 				27BBA0C529A6A17E004CB7BD /* NunitoSans-LightItalic.ttf in Resources */,
 				27BBA0C329A6A17E004CB7BD /* NunitoSans-BlackItalic.ttf in Resources */,
 				27160A6B28E57942008739C3 /* Main.storyboard in Resources */,
@@ -682,6 +713,7 @@
 				27A61507291159BA0017FC87 /* PostLogic.swift in Sources */,
 				27A6150229114CCB0017FC87 /* RecordViewController.swift in Sources */,
 				27750DA1290822D7005FA599 /* UploadViewController.swift in Sources */,
+				2701A1BF29AB5F9D00FEA390 /* PostControlsView.swift in Sources */,
 				276EB4AF290FB1E200CB6C77 /* MyAccountViewController.swift in Sources */,
 				272F0F5928F6A0A300D6A943 /* LoginLogic.swift in Sources */,
 				2710580D2927F8C20002F66E /* UserLogic.swift in Sources */,
@@ -692,12 +724,15 @@
 				27160A7028E5797F008739C3 /* LoginController.swift in Sources */,
 				27750DA6290822DD005FA599 /* FriendsViewController.swift in Sources */,
 				271DAF75290AFE5900E7346B /* PostCell.swift in Sources */,
+				2701A1A629AB5E6E00FEA390 /* GradientNode.m in Sources */,
 				27C79C2F29103E72006FDBC3 /* FriendsLogic.swift in Sources */,
 				27750DC1290A63D7005FA599 /* MainTabBarController.swift in Sources */,
 				27750D9C290822CC005FA599 /* HomeViewController.swift in Sources */,
 				27A6150E2913079C0017FC87 /* WarningAlert.swift in Sources */,
 				27160A2D28E57860008739C3 /* AppDelegate.swift in Sources */,
 				27160A2F28E57860008739C3 /* SceneDelegate.swift in Sources */,
+				2701A1A029AB547500FEA390 /* FeedViewController.swift in Sources */,
+				2701A1B329AB5F5900FEA390 /* PostDetails.swift in Sources */,
 				1BCE052D820F2307011FDE01 /* AuthLogic.swift in Sources */,
 				27750DC6290A9DEF005FA599 /* FeedLogic.swift in Sources */,
 				1BCE049F72991AE7A0BE8F9B /* CommonExtensions.swift in Sources */,
@@ -873,6 +908,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6H7ZBTZ9NS;
 				INFOPLIST_FILE = SCVideo/Info.plist;
@@ -882,6 +918,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "eu.tobija-zuntar.SCVideo";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "SCVideo/Utilities/SCVideo-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -893,6 +931,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6H7ZBTZ9NS;
 				INFOPLIST_FILE = SCVideo/Info.plist;
@@ -902,6 +941,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "eu.tobija-zuntar.SCVideo";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "SCVideo/Utilities/SCVideo-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
