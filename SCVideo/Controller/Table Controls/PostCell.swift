@@ -54,18 +54,18 @@ class PostCell: UITableViewCell {
     }
     
     @IBAction func commentButtonPressed(_ sender: UIButton) {
-        if let parentVC = self.parentViewController as? HomeViewController {
+        /*if let parentVC = self.parentViewController as? HomeViewController {
             parentVC.selectedPost = currentPost
             parentVC.performSegue(withIdentifier: "showPostComments", sender: parentVC)
-        }
+        }*/
     }
     
     @IBAction func userButtonPressed(_ sender: Any) {
-        guard let post = currentPost else { return }
+        /*guard let post = currentPost else { return }
         if let parentVC = self.parentViewController as? HomeViewController {
             parentVC.selectedPostUser = post.user
             parentVC.performSegue(withIdentifier: "showPostAccount", sender: parentVC)
-        }
+        }*/
     }
     
     @objc func playButtonPressed(_ sender: UIImageView) {

@@ -27,6 +27,8 @@
 		27160A6B28E57942008739C3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 27160A6A28E57942008739C3 /* Main.storyboard */; };
 		27160A7028E5797F008739C3 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27160A6F28E5797F008739C3 /* LoginController.swift */; };
 		27160A8F28E5B17D008739C3 /* RegisterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27160A8E28E5B17D008739C3 /* RegisterController.swift */; };
+		271CAAD229B67C3D00BA9242 /* MainSwipeNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271CAAD129B67C3D00BA9242 /* MainSwipeNavigationViewController.swift */; };
+		271CAAD729B67C8400BA9242 /* EZSwipeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271CAAD629B67C8400BA9242 /* EZSwipeController.swift */; };
 		271DAF75290AFE5900E7346B /* PostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271DAF73290AFE5900E7346B /* PostCell.swift */; };
 		271DAF76290AFE5900E7346B /* PostCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 271DAF74290AFE5900E7346B /* PostCell.xib */; };
 		271DAF82290C742300E7346B /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271DAF80290C742300E7346B /* CommentCell.swift */; };
@@ -41,10 +43,8 @@
 		276EB4B9290FB20A00CB6C77 /* UserPostsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276EB4B8290FB20A00CB6C77 /* UserPostsViewController.swift */; };
 		276EB4DD291039CA00CB6C77 /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276EB4DB291039CA00CB6C77 /* UserCell.swift */; };
 		276EB4DE291039CA00CB6C77 /* UserCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 276EB4DC291039CA00CB6C77 /* UserCell.xib */; };
-		27750D9C290822CC005FA599 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27750D9B290822CC005FA599 /* HomeViewController.swift */; };
 		27750DA1290822D7005FA599 /* UploadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27750DA0290822D7005FA599 /* UploadViewController.swift */; };
 		27750DA6290822DD005FA599 /* FriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27750DA5290822DD005FA599 /* FriendsViewController.swift */; };
-		27750DC1290A63D7005FA599 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27750DC0290A63D7005FA599 /* MainTabBarController.swift */; };
 		27750DC6290A9DEF005FA599 /* FeedLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27750DC5290A9DEE005FA599 /* FeedLogic.swift */; };
 		27A6150229114CCB0017FC87 /* RecordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A6150129114CCB0017FC87 /* RecordViewController.swift */; };
 		27A61507291159BA0017FC87 /* PostLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A61506291159BA0017FC87 /* PostLogic.swift */; };
@@ -120,6 +120,8 @@
 		27160A6A28E57942008739C3 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		27160A6F28E5797F008739C3 /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		27160A8E28E5B17D008739C3 /* RegisterController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterController.swift; sourceTree = "<group>"; };
+		271CAAD129B67C3D00BA9242 /* MainSwipeNavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainSwipeNavigationViewController.swift; sourceTree = "<group>"; };
+		271CAAD629B67C8400BA9242 /* EZSwipeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EZSwipeController.swift; sourceTree = "<group>"; };
 		271DAF73290AFE5900E7346B /* PostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCell.swift; sourceTree = "<group>"; };
 		271DAF74290AFE5900E7346B /* PostCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostCell.xib; sourceTree = "<group>"; };
 		271DAF80290C742300E7346B /* CommentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentCell.swift; sourceTree = "<group>"; };
@@ -133,10 +135,8 @@
 		276EB4B8290FB20A00CB6C77 /* UserPostsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPostsViewController.swift; sourceTree = "<group>"; };
 		276EB4DB291039CA00CB6C77 /* UserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
 		276EB4DC291039CA00CB6C77 /* UserCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserCell.xib; sourceTree = "<group>"; };
-		27750D9B290822CC005FA599 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		27750DA0290822D7005FA599 /* UploadViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadViewController.swift; sourceTree = "<group>"; };
 		27750DA5290822DD005FA599 /* FriendsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsViewController.swift; sourceTree = "<group>"; };
-		27750DC0290A63D7005FA599 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		27750DC5290A9DEE005FA599 /* FeedLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedLogic.swift; sourceTree = "<group>"; };
 		27A6150129114CCB0017FC87 /* RecordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordViewController.swift; sourceTree = "<group>"; };
 		27A61506291159BA0017FC87 /* PostLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostLogic.swift; sourceTree = "<group>"; };
@@ -355,16 +355,15 @@
 		271DAFC0290D28EE00E7346B /* Main Navigation Division */ = {
 			isa = PBXGroup;
 			children = (
-				27750D9B290822CC005FA599 /* HomeViewController.swift */,
 				27750DA0290822D7005FA599 /* UploadViewController.swift */,
 				27750DA5290822DD005FA599 /* FriendsViewController.swift */,
-				27750DC0290A63D7005FA599 /* MainTabBarController.swift */,
 				276EB4AE290FB1E200CB6C77 /* MyAccountViewController.swift */,
 				276EB4B3290FB20100CB6C77 /* UserProfileViewController.swift */,
 				276EB4B8290FB20A00CB6C77 /* UserPostsViewController.swift */,
 				27A6150129114CCB0017FC87 /* RecordViewController.swift */,
 				271DAFAE290D0BBF00E7346B /* CommentsViewController.swift */,
 				2701A19F29AB547500FEA390 /* FeedViewController.swift */,
+				271CAAD129B67C3D00BA9242 /* MainSwipeNavigationViewController.swift */,
 			);
 			path = "Main Navigation Division";
 			sourceTree = "<group>";
@@ -400,6 +399,7 @@
 				2701A1A529AB5E6E00FEA390 /* GradientNode.m */,
 				2701A1AA29AB5E7D00FEA390 /* GradientNode.h */,
 				2701A1A429AB5E6E00FEA390 /* SCVideo-Bridging-Header.h */,
+				271CAAD629B67C8400BA9242 /* EZSwipeController.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -715,6 +715,7 @@
 				27A61507291159BA0017FC87 /* PostLogic.swift in Sources */,
 				27A6150229114CCB0017FC87 /* RecordViewController.swift in Sources */,
 				27750DA1290822D7005FA599 /* UploadViewController.swift in Sources */,
+				271CAAD729B67C8400BA9242 /* EZSwipeController.swift in Sources */,
 				2701A1BF29AB5F9D00FEA390 /* PostControlsView.swift in Sources */,
 				276EB4AF290FB1E200CB6C77 /* MyAccountViewController.swift in Sources */,
 				272F0F5928F6A0A300D6A943 /* LoginLogic.swift in Sources */,
@@ -728,8 +729,6 @@
 				271DAF75290AFE5900E7346B /* PostCell.swift in Sources */,
 				2701A1A629AB5E6E00FEA390 /* GradientNode.m in Sources */,
 				27C79C2F29103E72006FDBC3 /* FriendsLogic.swift in Sources */,
-				27750DC1290A63D7005FA599 /* MainTabBarController.swift in Sources */,
-				27750D9C290822CC005FA599 /* HomeViewController.swift in Sources */,
 				27A6150E2913079C0017FC87 /* WarningAlert.swift in Sources */,
 				27160A2D28E57860008739C3 /* AppDelegate.swift in Sources */,
 				27160A2F28E57860008739C3 /* SceneDelegate.swift in Sources */,
@@ -740,6 +739,7 @@
 				1BCE049F72991AE7A0BE8F9B /* CommonExtensions.swift in Sources */,
 				276EB4DD291039CA00CB6C77 /* UserCell.swift in Sources */,
 				1BCE0C6615D23387560DB363 /* CommentsLogic.swift in Sources */,
+				271CAAD229B67C3D00BA9242 /* MainSwipeNavigationViewController.swift in Sources */,
 				2701A19829AB4D4800FEA390 /* PostNode.swift in Sources */,
 				276B382429AA9519005F51E7 /* VideoCompositionWriter.swift in Sources */,
 			);

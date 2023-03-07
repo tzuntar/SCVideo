@@ -26,11 +26,8 @@ class UploadViewController: UIViewController, UINavigationControllerDelegate {
         videoPreviewBox.layer.borderColor = UIColor.white.cgColor
         videoPreviewBox.layer.cornerRadius = 10
         
-        if let tabBarController = self.tabBarController {
-            guard let parentController = tabBarController as? MainTabBarController else { return }
-            guard let session = parentController.session else { return }
-            currentSession = session
-            postLogic = PostLogic(session: session, withDelegate: self)
+        if let safeSession = currentSession {
+            postLogic = PostLogic(session: safeSession, withDelegate: self)
         }
     }
 

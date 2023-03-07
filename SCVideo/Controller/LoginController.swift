@@ -46,13 +46,8 @@ class LoginController: UIViewController {
             }
             registerVc.username = usernameField.text
         case "loginToMain":
-            if let safeSession = session {
-                guard let mainTabVC = segue.destination as? MainTabBarController else { return }
-                mainTabVC.session = safeSession
-            }
-        case "loginToFeed":
-            guard let feedVC = segue.destination as? FeedViewController else { return }
-            feedVC.currentSession = session
+            guard let swipeVC = segue.destination as? MainSwipeNavigationViewController else { return }
+            swipeVC.currentSession = session
         default:
             return
         }
@@ -64,7 +59,7 @@ extension LoginController: LoginDelegate {
 
     func didLogInUser(_ session: UserSession) {
         self.session = session
-        self.performSegue(withIdentifier: "loginToFeed", sender: self)
+        self.performSegue(withIdentifier: "loginToMain", sender: self)
     }
 
     func didLoginFailWithError(_ error: Error) {

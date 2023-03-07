@@ -52,12 +52,9 @@ class RegisterController: UIViewController {
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "registrationToMain" {
-            if let safeSession = session {
-                guard let mainTabVC = segue.destination as? MainTabBarController else {
-                    return
-                }
-                mainTabVC.session = safeSession
-            }
+            guard let safeSession = session,
+                  let swipeVC = segue.destination as? MainSwipeNavigationViewController else { return }
+            swipeVC.currentSession = safeSession
         }
     }
 }

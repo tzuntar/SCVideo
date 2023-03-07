@@ -22,11 +22,8 @@ class FriendsViewController: UIViewController {
         friendsTableView.register(UINib(nibName: "UserCell", bundle: nil),
                                   forCellReuseIdentifier: "UserCell")
 
-        if let tabBarController = self.tabBarController {
-            guard let parentController = tabBarController as? MainTabBarController else { return }
-            guard let session = parentController.session else { return }
-            currentSession = session
-            friendsLogic = FriendsLogic(session: session, withDelegate: self)
+        if let safeSession = currentSession {
+            friendsLogic = FriendsLogic(session: safeSession, withDelegate: self)
             friendsLogic!.retrieveFriends()
         }
     }

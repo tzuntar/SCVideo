@@ -16,17 +16,13 @@ class FeedViewController: UIViewController, UIScrollViewDelegate {
     var feedLogic: FeedLogic?
     var lastNode: PostNode?
     
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
-        navigationItem.title = "Objave"
-        self.tableNode = ASTableNode(style: .plain)
-        
-        self.tableNode.delegate = self
-        self.tableNode.dataSource = self
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.title = "Objave"
+        self.tableNode = ASTableNode(style: .plain)
+        self.tableNode.delegate = self
+        self.tableNode.dataSource = self
+
         self.view.insertSubview(tableNode.view, at: 0)
         self.applyStyles()
         self.tableNode.leadingScreensForBatching = 1.0  // overriding the default of 2.0
