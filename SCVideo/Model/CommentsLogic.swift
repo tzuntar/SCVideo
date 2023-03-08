@@ -78,9 +78,9 @@ class CommentsLogic {
         case 200:
             delegate.didPostCommentSuccessfully()
         case 500:
-            delegate.didFetchingFailWithError(FeedError.noData)
+            delegate.didFetchingFailWithError(CommentsError.noData)
         default:
-            delegate.didFetchingFailWithError(FeedError.unexpected(code: responseCode))
+            delegate.didFetchingFailWithError(CommentsError.unexpected(code: responseCode))
         }
     }
 

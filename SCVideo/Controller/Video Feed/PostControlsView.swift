@@ -10,8 +10,12 @@ import UIKit
 class PostControlsView: UIView {
     
     @IBOutlet var contentView: UIView!
+    @IBOutlet weak var likeCountLabel: UILabel!
+    @IBOutlet weak var commentCountLabel: UILabel!
+    @IBOutlet weak var shareCountLabel: UILabel!
     
     private let _CONTENT_XIB_NAME = "PostControls"
+    private var _post: Post?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -26,6 +30,24 @@ class PostControlsView: UIView {
     private func initialize() {
         Bundle.main.loadNibNamed(_CONTENT_XIB_NAME, owner: self, options: nil)
         contentView.fixInView(self)
+    }
+    
+    public func setPost(post: Post) {
+        self._post = post
+        //likeCountLabel.text = 1
+    }
+
+}
+
+// MARK: - Post Actions
+extension PostControlsView {
+    @IBAction func likePost(_ sender: UIButton) {
+    }
+    
+    @IBAction func commentPost(_ sender: UIButton) {
+    }
+    
+    @IBAction func sharePost(_ sender: UIButton) {
     }
     
 }

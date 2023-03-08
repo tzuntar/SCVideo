@@ -76,6 +76,7 @@ class PostLoaderLogic {
     }
     
     static func fetchVideoThumbnail(forPost post: Post, completion: @escaping (CGImage?, Error?) -> Void) {
+        // ToDo: display the No File image on errors
         let asset = AVURLAsset(url: URL(string: post.content_uri)!)
         let imgGenerator = AVAssetImageGenerator(asset: asset)
         do {

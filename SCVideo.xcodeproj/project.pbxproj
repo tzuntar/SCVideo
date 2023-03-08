@@ -40,7 +40,6 @@
 		276B382429AA9519005F51E7 /* VideoCompositionWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276B382329AA9519005F51E7 /* VideoCompositionWriter.swift */; };
 		276EB4AF290FB1E200CB6C77 /* MyAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276EB4AE290FB1E200CB6C77 /* MyAccountViewController.swift */; };
 		276EB4B4290FB20100CB6C77 /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276EB4B3290FB20100CB6C77 /* UserProfileViewController.swift */; };
-		276EB4B9290FB20A00CB6C77 /* UserPostsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276EB4B8290FB20A00CB6C77 /* UserPostsViewController.swift */; };
 		276EB4DD291039CA00CB6C77 /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276EB4DB291039CA00CB6C77 /* UserCell.swift */; };
 		276EB4DE291039CA00CB6C77 /* UserCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 276EB4DC291039CA00CB6C77 /* UserCell.xib */; };
 		27750DA1290822D7005FA599 /* UploadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27750DA0290822D7005FA599 /* UploadViewController.swift */; };
@@ -132,7 +131,6 @@
 		276B382329AA9519005F51E7 /* VideoCompositionWriter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCompositionWriter.swift; sourceTree = "<group>"; };
 		276EB4AE290FB1E200CB6C77 /* MyAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAccountViewController.swift; sourceTree = "<group>"; };
 		276EB4B3290FB20100CB6C77 /* UserProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
-		276EB4B8290FB20A00CB6C77 /* UserPostsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPostsViewController.swift; sourceTree = "<group>"; };
 		276EB4DB291039CA00CB6C77 /* UserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
 		276EB4DC291039CA00CB6C77 /* UserCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserCell.xib; sourceTree = "<group>"; };
 		27750DA0290822D7005FA599 /* UploadViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadViewController.swift; sourceTree = "<group>"; };
@@ -359,7 +357,6 @@
 				27750DA5290822DD005FA599 /* FriendsViewController.swift */,
 				276EB4AE290FB1E200CB6C77 /* MyAccountViewController.swift */,
 				276EB4B3290FB20100CB6C77 /* UserProfileViewController.swift */,
-				276EB4B8290FB20A00CB6C77 /* UserPostsViewController.swift */,
 				27A6150129114CCB0017FC87 /* RecordViewController.swift */,
 				271DAFAE290D0BBF00E7346B /* CommentsViewController.swift */,
 				2701A19F29AB547500FEA390 /* FeedViewController.swift */,
@@ -711,7 +708,6 @@
 			files = (
 				27160A8F28E5B17D008739C3 /* RegisterController.swift in Sources */,
 				276EB4B4290FB20100CB6C77 /* UserProfileViewController.swift in Sources */,
-				276EB4B9290FB20A00CB6C77 /* UserPostsViewController.swift in Sources */,
 				27A61507291159BA0017FC87 /* PostLogic.swift in Sources */,
 				27A6150229114CCB0017FC87 /* RecordViewController.swift in Sources */,
 				27750DA1290822D7005FA599 /* UploadViewController.swift in Sources */,

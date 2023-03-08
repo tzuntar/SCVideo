@@ -24,7 +24,7 @@ class PostNode: ASCellNode {
         PostLoaderLogic.fetchVideoThumbnail(forPost: post) { (image: CGImage?, error: Error?) in
             guard let img = image else {
                 if let e = error {
-                    debugPrint("Fetching thumbnail for post \(post.id_post) failed: \(e.localizedDescription)")
+                    print("Fetching thumbnail for post \(post.id_post) failed: \(e.localizedDescription)")
                 }
                 return
             }
@@ -55,11 +55,13 @@ class PostNode: ASCellNode {
             let postControlsView = PostControlsView()
             postControlsView.frame = CGRect(origin: CGPoint(x: 300, y: 280),
                                             size: CGSize(width: 83, height: 320))
+            postControlsView.setPost(post: post)
             self.view.addSubview(postControlsView)
             
             let postDetailsView = PostDetails()
-            postDetailsView.frame = CGRect(origin: CGPoint(x: 0, y: 600),
-                                           size: CGSize(width: 414, height: 120))
+            postDetailsView.frame = CGRect(origin: CGPoint(x: 0, y: UIScreen.main.bounds.height - 170),
+                                           size: CGSize(width: 414, height: 141))
+            postDetailsView.setPost(post: post)
             self.view.addSubview(postDetailsView)
         }
     }

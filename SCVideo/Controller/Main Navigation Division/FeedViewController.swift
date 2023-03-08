@@ -81,9 +81,10 @@ extension FeedViewController: ASTableDelegate {
 // MARK: - Batched Fetching Operations
 extension FeedViewController {
     func retrieveNextPageWithCompletion(block: @escaping ([Post]) -> Void) {
-        feedLogic?.loadPostBatch(limit: 2, leftOffAtPostId: 10, completion: { (posts: [Post]?, errorCode: Int?) in
+        print("-- POST COUNT: \(posts.count) --")
+        feedLogic?.loadPostBatch(limit: 2, offset: posts.count, completion: { (posts: [Post]?, errorCode: Int?) in
             if let error = errorCode {
-                return debugPrint("Loading post batch failed with code \(error)")
+                return print("Loading post batch failed with code \(error)")
             }
             guard let safePosts = posts else { return }
             DispatchQueue.main.async {
