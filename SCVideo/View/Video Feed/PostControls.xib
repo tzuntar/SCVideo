@@ -11,6 +11,7 @@
             <connections>
                 <outlet property="commentCountLabel" destination="Gbg-Ke-UKT" id="Lua-eO-aBe"/>
                 <outlet property="contentView" destination="Zuw-Nd-rwh" id="xQq-nt-StE"/>
+                <outlet property="likeButton" destination="RBa-Y0-6J9" id="sup-Ej-7Hd"/>
                 <outlet property="likeCountLabel" destination="Hi3-sY-34F" id="3Iw-hc-wlq"/>
                 <outlet property="shareCountLabel" destination="hCG-JZ-WPd" id="QY5-tY-PGK"/>
             </connections>

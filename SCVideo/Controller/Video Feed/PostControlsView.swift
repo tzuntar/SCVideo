@@ -10,11 +10,13 @@ import UIKit
 class PostControlsView: UIView {
     
     @IBOutlet var contentView: UIView!
+    @IBOutlet weak var likeButton: UIButton!
     @IBOutlet weak var likeCountLabel: UILabel!
     @IBOutlet weak var commentCountLabel: UILabel!
     @IBOutlet weak var shareCountLabel: UILabel!
     
     private let _CONTENT_XIB_NAME = "PostControls"
+    private var _delegate: PostNodeActionDelegate?
     private var _post: Post?
     
     override init(frame: CGRect) {
@@ -35,6 +37,12 @@ class PostControlsView: UIView {
     public func setPost(post: Post) {
         self._post = post
         //likeCountLabel.text = 1
+        likeButton.setImage(UIImage.init(named: (post.is_liked == 0) ? "Like" : "Liked"),
+                            for: .normal)
+    }
+    
+    public func setDelegate(delegate: PostNodeActionDelegate) {
+        self._delegate = delegate
     }
 
 }
@@ -42,12 +50,20 @@ class PostControlsView: UIView {
 // MARK: - Post Actions
 extension PostControlsView {
     @IBAction func likePost(_ sender: UIButton) {
+        guard let safePost = _post else { return }
+        let isLiked = !(safePost.is_liked == 1)
+        likeButton.setImage(UIImage.init(named: isLiked ? "Liked" : "Like"), for: .normal)
+        _delegate?.didTapLikePost(safePost, isLiked: isLiked)
     }
     
     @IBAction func commentPost(_ sender: UIButton) {
+        guard let safePost = _post else { return }
+        _delegate?.didTapCommentPost(safePost)
     }
     
     @IBAction func sharePost(_ sender: UIButton) {
+        guard let safePost = _post else { return }
+        _delegate?.didTapSharePost(safePost)
     }
     
 }

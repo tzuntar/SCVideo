@@ -16,9 +16,10 @@ class FeedViewController: UIViewController, UIScrollViewDelegate {
     var feedLogic: FeedLogic?
     var lastNode: PostNode?
     
+    private var _selectedPost: Post?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.title = "Objave"
         self.tableNode = ASTableNode(style: .plain)
         self.tableNode.delegate = self
         self.tableNode.dataSource = self
@@ -39,6 +40,25 @@ class FeedViewController: UIViewController, UIScrollViewDelegate {
         self.tableNode.view.separatorStyle = .singleLine
         self.tableNode.view.isPagingEnabled = true
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        switch segue.identifier {
+        case "showPostComments":
+            guard let destination = segue.destination as? CommentsViewController,
+                  let safePost = self._selectedPost else { return }
+            destination.currentPost = safePost
+            destination.currentSession = currentSession
+            break
+        case "showPosterProfile":
+            guard let destination = segue.destination as? UserProfileViewController,
+                  let safePost = self._selectedPost else { return }
+            destination.currentUser = safePost.user
+            destination.currentSession = currentSession
+            break
+        default:
+            return
+        }
+    }
 }
 
 // MARK: - Video Feed Data Source
@@ -50,7 +70,7 @@ extension FeedViewController: ASTableDataSource {
     func tableNode(_ tableNode: ASTableNode, nodeBlockForRowAt indexPath: IndexPath) -> ASCellNodeBlock {
         let post = posts[indexPath.row]
         return {
-            let node = PostNode(with: post)
+            let node = PostNode(with: post, delegatingActionsTo: self)
             return node
         }
     }
@@ -81,7 +101,6 @@ extension FeedViewController: ASTableDelegate {
 // MARK: - Batched Fetching Operations
 extension FeedViewController {
     func retrieveNextPageWithCompletion(block: @escaping ([Post]) -> Void) {
-        print("-- POST COUNT: \(posts.count) --")
         feedLogic?.loadPostBatch(limit: 2, offset: posts.count, completion: { (posts: [Post]?, errorCode: Int?) in
             if let error = errorCode {
                 return print("Loading post batch failed with code \(error)")
@@ -104,5 +123,26 @@ extension FeedViewController {
         }
         posts.append(contentsOf: newPosts)
         tableNode.insertRows(at: indexPaths, with: .none)
+    }
+}
+
+// MARK: - Post Actions Delegate
+extension FeedViewController: PostNodeActionDelegate {
+    func didTapLikePost(_ post: Post, isLiked: Bool) {
+        self._selectedPost = post
+    }
+
+    func didTapCommentPost(_ post: Post) {
+        self._selectedPost = post
+        self.performSegue(withIdentifier: "showPostComments", sender: self)
+    }
+
+    func didTapSharePost(_ post: Post) {
+        self._selectedPost = post
+    }
+    
+    func didTapUserProfile(_ post: Post) {
+        self._selectedPost = post
+        self.performSegue(withIdentifier: "showPosterProfile", sender: self)
     }
 }

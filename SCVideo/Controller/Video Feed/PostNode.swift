@@ -10,12 +10,14 @@ import AsyncDisplayKit
 
 class PostNode: ASCellNode {
     var post: Post
+    private var nodeActionsDelegate: PostNodeActionDelegate
     var thumbnailNode: ASNetworkImageNode   // the thumbnail before a video starts playing
     var videoNode: ASVideoNode
     var gradientNode: GradientNode  // used to provide better contrast for the controls
-    
-    init(with post: Post) {
+
+    init(with post: Post, delegatingActionsTo nodeActionsDelegate: PostNodeActionDelegate) {
         self.post = post
+        self.nodeActionsDelegate = nodeActionsDelegate
         thumbnailNode = ASNetworkImageNode()
         videoNode = ASVideoNode()
         gradientNode = GradientNode()
@@ -42,28 +44,29 @@ class PostNode: ASCellNode {
         videoNode.shouldAutorepeat = false
         videoNode.gravity = AVLayerVideoGravity.resizeAspectFill.rawValue
 
-        // set the asset on the main thread since the nodes aren't on it
-        DispatchQueue.main.async {
-            self.videoNode.asset = AVAsset(url: URL(string: post.content_uri)!)
-        }
-        
         addSubnode(videoNode)
         addSubnode(gradientNode)
-        
+    }
+    
+    override func didLoad() {
+        super.didLoad()
+        // set the asset on the main thread since the nodes aren't on it
+        self.videoNode.asset = AVAsset(url: URL(string: post.content_uri)!)
+
         // all UIView calls _must_ be done on the main thread
-        DispatchQueue.main.async {
-            let postControlsView = PostControlsView()
-            postControlsView.frame = CGRect(origin: CGPoint(x: 300, y: 280),
-                                            size: CGSize(width: 83, height: 320))
-            postControlsView.setPost(post: post)
-            self.view.addSubview(postControlsView)
-            
-            let postDetailsView = PostDetails()
-            postDetailsView.frame = CGRect(origin: CGPoint(x: 0, y: UIScreen.main.bounds.height - 170),
-                                           size: CGSize(width: 414, height: 141))
-            postDetailsView.setPost(post: post)
-            self.view.addSubview(postDetailsView)
-        }
+        let postControlsView = PostControlsView()
+        postControlsView.frame = CGRect(origin: CGPoint(x: 300, y: 280),
+                                        size: CGSize(width: 83, height: 320))
+        postControlsView.setPost(post: post)
+        postControlsView.setDelegate(delegate: nodeActionsDelegate)
+        self.view.addSubview(postControlsView)
+
+        let postDetailsView = PostDetails()
+        postDetailsView.frame = CGRect(origin: CGPoint(x: 0, y: UIScreen.main.bounds.height - 170),
+                                       size: CGSize(width: 414, height: 141))
+        postDetailsView.setPost(post: post)
+        postDetailsView.setDelegate(delegate: nodeActionsDelegate)
+        self.view.addSubview(postDetailsView)
     }
     
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {

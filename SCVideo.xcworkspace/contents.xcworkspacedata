@@ -2,12 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:/Users/sk8/School/Mobilne/SCVideo/SCVideo.xcodeproj">
+      location = "group:SCVideo.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:Pods/Pods.xcodeproj">
-   </FileRef>
-   <FileRef
-      location = "group:SCVideo.xcodeproj">
    </FileRef>
 </Workspace>

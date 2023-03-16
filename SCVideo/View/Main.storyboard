@@ -34,7 +34,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BackgroundPinkGradient" translatesAutoresizingMaskIntoConstraints="NO" id="Rfy-zx-e4H">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BackgroundBuildingPhoto" translatesAutoresizingMaskIntoConstraints="NO" id="Rfy-zx-e4H">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="y98-cg-Yfk">
@@ -655,13 +655,13 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SUU-Ie-JOc" userLabel="WriteCommentView">
-                                        <rect key="frame" x="0.0" y="0.0" width="336" height="44"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="340" height="44"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Text Field" translatesAutoresizingMaskIntoConstraints="NO" id="cjH-at-2WY">
-                                                <rect key="frame" x="0.0" y="0.0" width="336" height="44"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="340" height="44"/>
                                             </imageView>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Komentiraj..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nfG-di-PC4">
-                                                <rect key="frame" x="20" y="0.0" width="296" height="44"/>
+                                                <rect key="frame" x="20" y="0.0" width="300" height="44"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <color key="textColor" name="HeadingTextLabel"/>
                                                 <fontDescription key="fontDescription" name="NunitoSans-SemiBold" family="Nunito Sans" pointSize="18"/>
@@ -686,7 +686,7 @@
                                         </constraints>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rZc-RQ-61h">
-                                        <rect key="frame" x="336" y="4" width="38" height="36"/>
+                                        <rect key="frame" x="340" y="7.5" width="34" height="29"/>
                                         <state key="normal" image="Send"/>
                                         <connections>
                                             <action selector="sendCommentPressed:" destination="saG-fb-KAD" eventType="touchUpInside" id="BqR-dN-n3J"/>
@@ -1176,7 +1176,7 @@
                                         <rect key="frame" x="357" y="0.0" width="37" height="50"/>
                                         <state key="normal" image="AccountButton"/>
                                         <connections>
-                                            <segue destination="9Cz-wH-Qas" kind="show" identifier="showMyAccount" id="PG5-zV-GeQ"/>
+                                            <segue destination="9Cz-wH-Qas" kind="presentation" identifier="showMyAccount" modalPresentationStyle="formSheet" id="PG5-zV-GeQ"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -1232,7 +1232,8 @@
             <objects>
                 <viewController storyboardIdentifier="feed-vc" interfaceStyle="dark" id="Lx0-Fg-haM" customClass="FeedViewController" customModule="SCVideo" customModuleProvider="target" sceneMemberID="viewController">
                     <connections>
-                        <segue destination="saG-fb-KAD" kind="show" identifier="showPostComments" id="79m-TT-hP8"/>
+                        <segue destination="saG-fb-KAD" kind="presentation" identifier="showPostComments" modalPresentationStyle="formSheet" id="79m-TT-hP8"/>
+                        <segue destination="0KU-Nm-Y2v" kind="presentation" identifier="showPosterProfile" modalPresentationStyle="formSheet" id="vrK-Vd-CYs"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eAt-7E-4cZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1267,7 +1268,7 @@
         <image name="AccountButton" width="37" height="36"/>
         <image name="Avatar" width="32" height="32"/>
         <image name="BackArrow" width="14" height="23"/>
-        <image name="BackgroundPinkGradient" width="1125" height="2436"/>
+        <image name="BackgroundBuildingPhoto" width="1800" height="3620"/>
         <image name="Backspace Button" width="28" height="18"/>
         <image name="ButtonForward" width="158" height="66"/>
         <image name="ButtonNarrow" width="158" height="66"/>
@@ -1281,7 +1282,7 @@
         <image name="MultilineTextField" width="346" height="139"/>
         <image name="Record Button" width="63" height="63"/>
         <image name="SearchButton" width="37" height="36"/>
-        <image name="Send" width="38" height="36"/>
+        <image name="Send" width="34" height="29"/>
         <image name="Text Field" width="393" height="62"/>
         <image name="Upload" width="26" height="26"/>
         <namedColor name="Background">

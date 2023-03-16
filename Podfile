@@ -1,4 +1,3 @@
-# Uncomment the next line to define a global platform for your project
 platform :ios, '14.4'
 
 target 'SCVideo' do
@@ -8,7 +7,7 @@ target 'SCVideo' do
   # Pods for SavinjskaVideo
   pod 'Alamofire'
 
-  pod 'KeychainSwift', '~> 20.0'
+  #pod 'KeychainSwift', '~> 20.0', :binary => true
 
   #pod 'SCRecorder'
 

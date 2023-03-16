@@ -53,7 +53,9 @@ class RecordViewController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        captureSession.stopRunning()
+        if captureSession.isRunning {
+            captureSession.stopRunning()
+        }
     }
     
     private func setUpInputs(usingFrontCamera: Bool = false) {
@@ -71,7 +73,7 @@ class RecordViewController: UIViewController {
         guard let rearCamera = AVCaptureDevice.default(for: AVMediaType.video),
               let microphone = AVCaptureDevice.default(for: AVMediaType.audio)
         else {
-            debugPrint("Unable to access capture devices")
+            print("Unable to access capture devices")
             return
         }
         
@@ -107,7 +109,7 @@ class RecordViewController: UIViewController {
                 setUpLivePreview()
             }
         } catch {
-            debugPrint("Unable to initialize inputs: \(error.localizedDescription)")
+            print("Unable to initialize inputs: \(error.localizedDescription)")
         }
         captureSession.commitConfiguration()
     }

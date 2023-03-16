@@ -79,24 +79,24 @@
                                                                 </subviews>
                                                             </stackView>
                                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="eWJ-1a-Hde">
-                                                                <rect key="frame" x="183" y="2" width="130" height="36"/>
+                                                                <rect key="frame" x="183" y="3" width="130" height="34"/>
                                                                 <subviews>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hQ1-Ex-PGN" userLabel="LikeButton">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="37" height="36"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="35" height="34"/>
                                                                         <state key="normal" image="Like"/>
                                                                         <connections>
                                                                             <action selector="likeButtonPressed:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="MrU-Zw-WM1"/>
                                                                         </connections>
                                                                     </button>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bOv-pI-6iL" userLabel="ShareButton">
-                                                                        <rect key="frame" x="46" y="0.0" width="38" height="36"/>
+                                                                        <rect key="frame" x="47.5" y="0.0" width="34" height="34"/>
                                                                         <state key="normal" image="Send"/>
                                                                         <connections>
                                                                             <action selector="shareButtonPressed:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="EOh-nF-rs8"/>
                                                                         </connections>
                                                                     </button>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WDN-gP-jIm" userLabel="CommentButton">
-                                                                        <rect key="frame" x="93" y="0.0" width="37" height="36"/>
+                                                                        <rect key="frame" x="94" y="0.0" width="36" height="34"/>
                                                                         <state key="normal" image="Comment"/>
                                                                         <connections>
                                                                             <action selector="commentButtonPressed:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="k9b-EH-nuz"/>
@@ -180,10 +180,10 @@
     </objects>
     <resources>
         <image name="Avatar" width="32" height="32"/>
-        <image name="Comment" width="37" height="36"/>
+        <image name="Comment" width="36" height="34"/>
         <image name="File Pending" width="237" height="176"/>
-        <image name="Like" width="37" height="36"/>
-        <image name="Send" width="38" height="36"/>
+        <image name="Like" width="35" height="33"/>
+        <image name="Send" width="34" height="29"/>
         <namedColor name="Background">
             <color red="0.059000000357627869" green="0.082000002264976501" blue="0.10999999940395355" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
