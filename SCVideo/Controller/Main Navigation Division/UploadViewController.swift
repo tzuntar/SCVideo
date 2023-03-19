@@ -49,7 +49,11 @@ class UploadViewController: UIViewController, UINavigationControllerDelegate {
             }
             picker.mediaTypes = ["public.movie"]
             picker.allowsEditing = true
-            present(picker, animated: true)
+            if let asset = selectedAsset {
+                self.loadAssetDetails(forAsset: asset)
+            } else {
+                present(picker, animated: true)
+            }
         }
     }
     
@@ -71,8 +75,34 @@ class UploadViewController: UIViewController, UINavigationControllerDelegate {
     }
     
     private func goBack() {
-        if let tabBarController = self.tabBarController {
-            tabBarController.selectedIndex = 1
+        if let nav = navigationController {
+            nav.popViewController(animated: true)
+        }
+    }
+    
+    private func loadAssetDetails(forAsset asset: AVURLAsset) {
+        let imgGenerator = AVAssetImageGenerator(asset: asset)
+        do {
+            self.selectedAsset = asset
+            let previewCgImage = try imgGenerator
+                .copyCGImage(at: CMTimeMake(value: 0, timescale: 1), actualTime: nil)
+            videoPreviewBox.image = UIImage(cgImage: previewCgImage)
+            
+            filenameLabel.text = asset.url.lastPathComponent
+            let minutes = Int(asset.duration.seconds) / 60
+            let seconds = Int(asset.duration.seconds) % 60
+            
+            if let fileSize = PostLogic.getAssetSize(forLocalUrl: asset.url) {  // 0 MB, 00:00
+                let size = String(format: "%.2f", Double(fileSize) / 1024 / 1024)
+                fileSizeLabel.text = size + " MB, " +
+                    String(format: "%02i:%02i", minutes, seconds)
+            } else {    // No file size available, use format 00:00
+                fileSizeLabel.text = String(format: "%02i:%02i", minutes, seconds)
+            }
+        } catch let error {
+            print(error)
+            goBack()
+            return
         }
     }
 
@@ -106,29 +136,7 @@ extension UploadViewController: UIImagePickerControllerDelegate {
         picker.dismiss(animated: true, completion: nil)
         if let url = info[.mediaURL] as? NSURL {
             let asset = AVURLAsset(url: url.absoluteURL!)
-            let imgGenerator = AVAssetImageGenerator(asset: asset)
-            do {
-                self.selectedAsset = asset
-                let previewCgImage = try imgGenerator
-                    .copyCGImage(at: CMTimeMake(value: 0, timescale: 1), actualTime: nil)
-                videoPreviewBox.image = UIImage(cgImage: previewCgImage)
-                
-                filenameLabel.text = url.lastPathComponent
-                let minutes = Int(asset.duration.seconds) / 60
-                let seconds = Int(asset.duration.seconds) % 60
-                
-                if let fileSize = PostLogic.getAssetSize(forLocalUrl: asset.url) {  // 0 MB, 00:00
-                    let size = String(format: "%.2f", Double(fileSize) / 1024 / 1024)
-                    fileSizeLabel.text = size + " MB, " +
-                        String(format: "%02i:%02i", minutes, seconds)
-                } else {    // No file size available, use format 00:00
-                    fileSizeLabel.text = String(format: "%02i:%02i", minutes, seconds)
-                }
-            } catch let error {
-                print(error)
-                goBack()
-                return
-            }
+            self.loadAssetDetails(forAsset: asset)
         }
     }
 }
