@@ -29,7 +29,7 @@ class UserCell: UITableViewCell {
         self.currentUser = user
         usernameButton.setTitle(user.full_name, for: .normal)
         if let avatarURL = user.photo_uri {
-            userProfileImage.loadFrom(URLAddress: avatarURL)
+            userProfileImage.loadFrom(URLAddress: "\(APIURL)/images/profile/\(avatarURL)")
         }
     }
     

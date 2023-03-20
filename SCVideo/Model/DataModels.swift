@@ -7,7 +7,7 @@
 
 import Foundation
 
-public let APIURL = "http://localhost:3000"
+public let APIURL = "http://192.168.64.108:3000"
 
 struct UserSession: Codable {
     let token: String

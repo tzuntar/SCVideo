@@ -30,7 +30,7 @@ class CommentCell: UITableViewCell {
         self.currentUser = comment.user
         usernameButton.setTitle(comment.user.full_name, for: .normal)
         if let avatarURL = comment.user.photo_uri {
-            userProfileImage.loadFrom(URLAddress: avatarURL)
+            userProfileImage.loadFrom(URLAddress: "\(APIURL)/images/profile/\(avatarURL)")
         }
         contentLabel.text = comment.content
     }

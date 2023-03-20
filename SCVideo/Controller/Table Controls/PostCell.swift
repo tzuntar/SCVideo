@@ -98,7 +98,7 @@ class PostCell: UITableViewCell {
             }
         }
         if let avatarURL = post.user.photo_uri {
-            userProfileImage.loadFrom(URLAddress: avatarURL)
+            userProfileImage.loadFrom(URLAddress: "\(APIURL)/images/profile/\(avatarURL)")
         }
         refreshPostLikeStatus(isPostLiked: post.is_liked == 1)
     }

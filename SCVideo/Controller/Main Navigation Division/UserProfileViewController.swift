@@ -35,7 +35,7 @@ class UserProfileViewController: UIViewController {
             userBio.text = user.bio
             
             if let photo = user.photo_uri {
-                userPhoto.loadFrom(URLAddress: photo)
+                userPhoto.loadFrom(URLAddress: "\(APIURL)/images/profile/\(photo)")
             }
             
             toggleAddFriendButton(userIsFriend: false)  // ToDo: this

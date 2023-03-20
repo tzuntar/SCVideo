@@ -20,7 +20,7 @@ struct LoginEntry: Encodable {
 
 enum LoginError: Error, CustomStringConvertible {
     case invalidCredentials
-    case databaseSaveFailed
+    case serverSideError
     case dataMissing
     case unexpected(code: Int)
 
@@ -28,12 +28,12 @@ enum LoginError: Error, CustomStringConvertible {
         switch self {
         case .invalidCredentials:
             return "Neveljavno uporabniško ime ali geslo"
-        case .databaseSaveFailed:
-            return "Shranjevanje podatkov spodletelo"
+        case .serverSideError:
+            return "Prijava spodletela"
         case .dataMissing:
             return "Prosimo, vnesite vse podatke"
         case .unexpected(_):
-            return "Napaka"
+            return "Neznana napaka"
         }
     }
 }
@@ -63,7 +63,7 @@ class LoginLogic {
     private func handleError(forCode responseCode: Int) {
         switch responseCode {
         case 500:
-            self.delegate?.didLoginFailWithError(LoginError.databaseSaveFailed)
+            self.delegate?.didLoginFailWithError(LoginError.serverSideError)
         case 400:
             self.delegate?.didLoginFailWithError(LoginError.invalidCredentials)
         default:

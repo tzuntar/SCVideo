@@ -51,7 +51,7 @@ class PostNode: ASCellNode {
     override func didLoad() {
         super.didLoad()
         // set the asset on the main thread since the nodes aren't on it
-        self.videoNode.asset = AVAsset(url: URL(string: post.content_uri)!)
+        self.videoNode.assetURL = URL(string: "\(APIURL)/posts/videos/\(post.content_uri)")!
 
         // all UIView calls _must_ be done on the main thread
         let postControlsView = PostControlsView()
