@@ -35,6 +35,8 @@
 		271DAF83290C742300E7346B /* CommentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 271DAF81290C742300E7346B /* CommentCell.xib */; };
 		271DAFAF290D0BBF00E7346B /* CommentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271DAFAE290D0BBF00E7346B /* CommentsViewController.swift */; };
 		272521B029ABC0AB00219572 /* PostControls.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2701A1C329AB602E00FEA390 /* PostControls.xib */; };
+		2728656C29C99409002F747A /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 2728656B29C99409002F747A /* Settings.bundle */; };
+		2728657129C994B1002F747A /* SettingsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2728657029C994B1002F747A /* SettingsHelper.swift */; };
 		272F0F4E28F69FB800D6A943 /* DataModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 272F0F4D28F69FB800D6A943 /* DataModels.swift */; };
 		272F0F5928F6A0A300D6A943 /* LoginLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 272F0F5828F6A0A300D6A943 /* LoginLogic.swift */; };
 		276B382429AA9519005F51E7 /* VideoCompositionWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276B382329AA9519005F51E7 /* VideoCompositionWriter.swift */; };
@@ -127,6 +129,8 @@
 		271DAF80290C742300E7346B /* CommentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentCell.swift; sourceTree = "<group>"; };
 		271DAF81290C742300E7346B /* CommentCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommentCell.xib; sourceTree = "<group>"; };
 		271DAFAE290D0BBF00E7346B /* CommentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsViewController.swift; sourceTree = "<group>"; };
+		2728656B29C99409002F747A /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
+		2728657029C994B1002F747A /* SettingsHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsHelper.swift; sourceTree = "<group>"; };
 		272F0F4D28F69FB800D6A943 /* DataModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModels.swift; sourceTree = "<group>"; };
 		272F0F5828F6A0A300D6A943 /* LoginLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginLogic.swift; sourceTree = "<group>"; };
 		276B382329AA9519005F51E7 /* VideoCompositionWriter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCompositionWriter.swift; sourceTree = "<group>"; };
@@ -263,6 +267,7 @@
 				27160AA528E789B1008739C3 /* View */,
 				27160AA628E789C7008739C3 /* Controller */,
 				27160A3A28E57862008739C3 /* Info.plist */,
+				2728656B29C99409002F747A /* Settings.bundle */,
 			);
 			path = SCVideo;
 			sourceTree = "<group>";
@@ -400,6 +405,7 @@
 				2701A1AA29AB5E7D00FEA390 /* GradientNode.h */,
 				2701A1A429AB5E6E00FEA390 /* SCVideo-Bridging-Header.h */,
 				271CAAD629B67C8400BA9242 /* EZSwipeController.swift */,
+				2728657029C994B1002F747A /* SettingsHelper.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -580,6 +586,7 @@
 				27160A3928E57862008739C3 /* LaunchScreen.storyboard in Resources */,
 				27160A3628E57862008739C3 /* Assets.xcassets in Resources */,
 				27BBA0C929A6A17E004CB7BD /* NunitoSans-ExtraLight.ttf in Resources */,
+				2728656C29C99409002F747A /* Settings.bundle in Resources */,
 				27BBA0C229A6A17E004CB7BD /* NunitoSans-Bold.ttf in Resources */,
 				271DAF83290C742300E7346B /* CommentCell.xib in Resources */,
 			);
@@ -725,6 +732,7 @@
 				271DAF82290C742300E7346B /* CommentCell.swift in Sources */,
 				27160A7028E5797F008739C3 /* LoginController.swift in Sources */,
 				27750DA6290822DD005FA599 /* FriendsViewController.swift in Sources */,
+				2728657129C994B1002F747A /* SettingsHelper.swift in Sources */,
 				271DAF75290AFE5900E7346B /* PostCell.swift in Sources */,
 				2701A1A629AB5E6E00FEA390 /* GradientNode.m in Sources */,
 				27C79C2F29103E72006FDBC3 /* FriendsLogic.swift in Sources */,

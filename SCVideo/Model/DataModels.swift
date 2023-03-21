@@ -7,7 +7,8 @@
 
 import Foundation
 
-public let APIURL = "http://192.168.64.108:3000"
+//public let APIURL = "http://192.168.64.108:3000"
+public let APIURL = SettingsHelper.getApiUrl()
 
 struct UserSession: Codable {
     let token: String
