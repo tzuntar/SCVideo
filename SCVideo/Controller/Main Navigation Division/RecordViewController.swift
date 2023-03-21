@@ -34,21 +34,23 @@ class RecordViewController: UIViewController {
     
     private var _sessionQueue: DispatchQueue!
     
-    private enum _CaptureState {
+    private enum CaptureState {
         case idle, start, capturing, end
     }
     
-    private var _captureState = _CaptureState.idle
+    private var captureState = CaptureState.idle
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        _sessionQueue = DispatchQueue(label: "eu.tobija-zuntar.SCVideo.record")
+        _sessionQueue = DispatchQueue(label: "com.tzuntar.SCVideo.record")
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         captureSession = AVCaptureSession()
         setUpInputs()
+        setUpLivePreview()
+        startCameraPreview()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -59,6 +61,10 @@ class RecordViewController: UIViewController {
     }
     
     private func setUpInputs(usingFrontCamera: Bool = false) {
+        if captureSession.isRunning {
+            captureSession.stopRunning()
+        }
+
         captureSession.beginConfiguration()
         // remove the inputs if they're already present
         if captureSession.isRunning {
@@ -106,7 +112,6 @@ class RecordViewController: UIViewController {
                 _videoOutput = output
                 
                 _videoOutput.setSampleBufferDelegate(self, queue: _sessionQueue)
-                setUpLivePreview()
             }
         } catch {
             print("Unable to initialize inputs: \(error.localizedDescription)")
@@ -118,19 +123,17 @@ class RecordViewController: UIViewController {
         videoPreviewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
         videoPreviewLayer.videoGravity = .resizeAspectFill
         videoPreviewLayer.connection?.videoOrientation = .portrait
-        
         previewView.layer.insertSublayer(videoPreviewLayer, at: 0)
-        
-        // start the capture session in the background
+        videoPreviewLayer.frame = previewView.bounds
+    }
+    
+    /**
+     Starts the capture session in the background
+     */
+    private func startCameraPreview() {
         DispatchQueue.global(qos: .userInitiated).async { [weak self] in
             guard let self = self else { return }
             self.captureSession?.startRunning()
-            
-            // set the frame of the preview layer on the main thread
-            DispatchQueue.main.async { [weak self] in
-                guard let self = self else { return }
-                self.videoPreviewLayer.frame = self.previewView.bounds
-            }
         }
     }
     
@@ -154,11 +157,11 @@ class RecordViewController: UIViewController {
 // MARK: - Control Actions
 
     @IBAction func recordPressed(_ sender: UIButton) {
-        switch _captureState {
+        switch captureState {
         case .idle:
-            _captureState = .start
+            captureState = .start
         case .capturing:
-            _captureState = .end
+            captureState = .end
         default:
             break
         }
@@ -167,6 +170,7 @@ class RecordViewController: UIViewController {
     @IBAction func flipCameraPressed(_ sender: UIButton) {
         _usingFrontCamera = !_usingFrontCamera
         setUpInputs(usingFrontCamera: _usingFrontCamera)
+        startCameraPreview()
     }
     
     @IBAction func deleteClipPressed(_ sender: UIButton) {
@@ -190,7 +194,7 @@ class RecordViewController: UIViewController {
 extension RecordViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
     func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
         let timestamp = CMSampleBufferGetPresentationTimeStamp(sampleBuffer).seconds
-        switch _captureState {
+        switch captureState {
         case .start:
             // ToDo: animate the record button
             // self.animateRecordButton()
@@ -223,7 +227,7 @@ extension RecordViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
             _assetWriter = writer
             _assetWriterInput = input
             _adapter = adapter
-            _captureState = .capturing
+            captureState = .capturing
             _time = timestamp
         case .capturing:
             // ToDo: UI changes
@@ -240,7 +244,7 @@ extension RecordViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
                   _assetWriter!.status != .failed else { break }
             _assetWriterInput?.markAsFinished()
             _assetWriter?.finishWriting { [weak self] in
-                self?._captureState = .idle
+                self?.captureState = .idle
                 self?._assetWriter = nil
                 self?._assetWriterInput = nil
                 // ToDo: stop animating the record button
