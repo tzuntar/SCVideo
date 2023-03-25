@@ -9,8 +9,13 @@ import Foundation
 
 public let APIURL = SettingsHelper.getApiUrl()
 
+struct Token: Codable {
+    let accessToken: String
+    let refreshToken: String
+}
+
 struct UserSession: Codable {
-    let token: String
+    let token: Token
     let user: User
 }
 

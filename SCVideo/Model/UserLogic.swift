@@ -28,18 +28,17 @@ enum UserAccountError: Error, CustomStringConvertible {
 }
 
 class UserLogic {
-    
-    let session: UserSession
+
     let delegate: UserAccountDelegate
     
-    init(session: UserSession, withDelegate delegate: UserAccountDelegate) {
-        self.session = session
+    init(delegatingActionsTo delegate: UserAccountDelegate) {
         self.delegate = delegate
     }
     
     func retrieveData(forUser user: User) {
+        guard let authHeaders = AuthManager.shared.getAuthHeaders() else { return }
         AF.request(APIURL + "/users/" + String(user.id_user) + "/account",
-                   headers: [.authorization(bearerToken: session.token)])
+                   headers: authHeaders)
             .validate()
             .responseDecodable(of: User.self) { response in
                 if let safeResponse = response.value {

@@ -10,7 +10,7 @@ import AVFoundation
 
 class VideoCompositionWriter {
     
-    private static func merge(videos: [AVAsset]) -> AVMutableComposition {
+    /*private static func merge(videos: [AVAsset]) -> AVMutableComposition {
         let mainComposition = AVMutableComposition()
         let compositionVideoTrack = mainComposition.addMutableTrack(withMediaType: .video,
                                                                     preferredTrackID: kCMPersistentTrackID_Invalid)
@@ -20,13 +20,29 @@ class VideoCompositionWriter {
         var insertTime = CMTime.zero
         for videoAsset in videos {
             try! compositionVideoTrack?.insertTimeRange(
-                CMTimeRangeMake(start: CMTime.zero,
+                CMTimeRangeMake(start: .zero,
                                 duration: videoAsset.duration),
                 of: videoAsset.tracks(withMediaType: .video)[0],
                 at: insertTime)
             insertTime = CMTimeAdd(insertTime, videoAsset.duration)
         }
+        
         return mainComposition
+    }*/
+    
+    private static func merge(clips: [AVAsset]) -> AVMutableComposition {
+        let composition = AVMutableComposition()
+        var currentTime = CMTime.zero
+        for clip in clips {
+            let timeRange = CMTimeRangeMake(start: .zero, duration: clip.duration)
+            do {
+                try composition.insertTimeRange(timeRange, of: clip, at: currentTime)
+            } catch {
+                print("Failed to insert time range: \(error)")
+            }
+            currentTime = CMTimeAdd(currentTime, clip.duration)
+        }
+        return composition
     }
 
     /**
@@ -43,9 +59,9 @@ class VideoCompositionWriter {
             assets.append(asset)
             totalDuration = CMTimeAdd(totalDuration, asset.duration)
         }
-        
-        let mixComposition = merge(videos: assets)
-        let url = directory.appendingPathComponent("out_\(filename)")
+
+        let mixComposition = merge(clips: assets)
+        let url = directory.appendingPathComponent("Out").appendingPathComponent(filename)
         guard let exporter = AVAssetExportSession(asset: mixComposition,
                                                   presetName: AVAssetExportPresetHighestQuality) else { return }
         exporter.outputURL = url
@@ -62,4 +78,5 @@ class VideoCompositionWriter {
             }
         }
     }
+
 }

@@ -10,7 +10,6 @@ import UIKit
 class CommentsViewController: UIViewController {
 
     var currentPost: Post?
-    var currentSession: UserSession?
     var comments: [Comment]?
     var commentsLogic: CommentsLogic?
     var selectedCommenter: User?
@@ -24,9 +23,8 @@ class CommentsViewController: UIViewController {
         commentsTableView.register(UINib(nibName: "CommentCell", bundle: nil),
                                    forCellReuseIdentifier: "CommentCell")
 
-        if let session = currentSession,
-           let post = currentPost {
-            commentsLogic = CommentsLogic(session: session, withDelegate: self)
+        if let post = currentPost {
+            commentsLogic = CommentsLogic(delegatingActionsTo: self)
             commentsLogic!.retrieveComments(forPost: post)
         }
     }
@@ -37,13 +35,12 @@ class CommentsViewController: UIViewController {
     
     @IBAction func sendCommentPressed(_ sender: UIButton) {
         if let body = writeCommentField.text,
-           let post = currentPost,
-           let session = currentSession {
+           let post = currentPost {
             writeCommentField.endEditing(true)
             commentsLogic!.postComment(with: CommentEntry(
-                                        id_post: post.id_post,
-                                        id_user: session.user.id_user,
-                                        content: body))
+                                    id_post: post.id_post,
+                                    id_user: AuthManager.shared.session!.user.id_user,
+                                    content: body))
         }
     }
     
@@ -51,7 +48,6 @@ class CommentsViewController: UIViewController {
         if segue.identifier == "showCommenterAccount" {
             guard let commenterProfileVC = segue.destination as? UserProfileViewController,
                   let commenter = selectedCommenter else { return }
-            commenterProfileVC.currentSession = currentSession
             commenterProfileVC.currentUser = commenter
         }
     }

@@ -35,18 +35,16 @@ enum FriendsError: Error, CustomStringConvertible {
 }
 
 class FriendsLogic {
-    
-    let session: UserSession
+
     let delegate: FriendDelegate
     
-    init(session: UserSession, withDelegate delegate: FriendDelegate) {
-        self.session = session
+    init(delegatingActionsTo delegate: FriendDelegate) {
         self.delegate = delegate
     }
     
     func retrieveFriends() {
-        AF.request(APIURL + "/users/friends",
-                   headers: [.authorization(bearerToken: self.session.token)])
+        guard let authHeaders = AuthManager.shared.getAuthHeaders() else { return }
+        AF.request(APIURL + "/users/friends", headers: authHeaders)
             .validate()
             .responseDecodable(of: [User].self) { response in
                 if let safeResponse = response.value,
@@ -62,8 +60,9 @@ class FriendsLogic {
     }
     
     func addFriend(user: User) {
-        AF.request(APIURL + "/users/" + String(user.id_user) + "/add_friend",
-                   headers: [.authorization(bearerToken: self.session.token)])
+        guard let authHeaders = AuthManager.shared.getAuthHeaders() else { return }
+        AF.request("\(APIURL)/users/\(user.id_user)/add_friend",
+                   headers: authHeaders)
             .validate()
             .response() { response in
                 if let d = self.delegate as? AddFriendDelegate {

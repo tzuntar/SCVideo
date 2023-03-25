@@ -91,12 +91,10 @@ class PostLoaderLogic {
 }
 
 class PostActionsLogic {
-    
-    let session: UserSession
+
     let delegate: PostActionsDelegate
     
-    init(session: UserSession, withDelegate delegate: PostActionsDelegate) {
-        self.session = session
+    init(delegatingActionsTo delegate: PostActionsDelegate) {
         self.delegate = delegate
     }
     
@@ -109,9 +107,10 @@ class PostActionsLogic {
     }
     
     func like(_ post: Post) {
+        guard let authHeaders = AuthManager.shared.getAuthHeaders() else { return }
         AF.request(APIURL + "/posts/" + String(post.id_post) + "/like",
                    method: .post,
-                   headers: [.authorization(bearerToken: session.token)])
+                   headers: authHeaders)
             .validate()
             .response() { response in
                 if let safeResponse = response.response {
@@ -126,9 +125,10 @@ class PostActionsLogic {
     }
     
     func unlike(_ post: Post) {
+        guard let authHeaders = AuthManager.shared.getAuthHeaders() else { return }
         AF.request(APIURL + "/posts/" + String(post.id_post) + "/unlike",
                    method: .post,
-                   headers: [.authorization(bearerToken: session.token)])
+                   headers: authHeaders)
             .validate()
             .response() { response in
                 if let safeResponse = response.response {
@@ -152,17 +152,16 @@ class PostActionsLogic {
 }
 
 class PostLogic {
-    
-    let session: UserSession
+
     let delegate: PostingDelegate
     
-    init(session: UserSession, withDelegate delegate: PostingDelegate) {
-        self.session = session
+    init(delegatingActionsTo delegate: PostingDelegate) {
         self.delegate = delegate
     }
     
     func postVideo(with newPostEntry: NewPostEntry) {
         guard let safeData = try? Data(contentsOf: newPostEntry.videoFile.url) else { return }
+        guard let authHeaders = AuthManager.shared.getAuthHeaders() else { return }
         AF.upload(multipartFormData: { multiPart in
             multiPart.append(safeData, withName: "video",
                              fileName: newPostEntry.videoFile.url.lastPathComponent)
@@ -175,7 +174,7 @@ class PostLogic {
             }
         }, to: APIURL + "/posts/video",
            method: .post,
-           headers: [.authorization(bearerToken: self.session.token)])
+           headers: authHeaders)
         .uploadProgress(queue: .main) { progress in
             print("Upload Progress: \(progress.fractionCompleted)")
         }

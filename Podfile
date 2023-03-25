@@ -6,12 +6,8 @@ target 'SCVideo' do
 
   # Pods for SavinjskaVideo
   pod 'Alamofire'
-
-  #pod 'KeychainSwift', '~> 20.0', :binary => true
-
-  #pod 'SCRecorder'
-
   pod 'Texture' # a.k.a. AsyncDisplayKit
+  pod 'JWTDecode'
 
   target 'SCVideoTests' do
     inherit! :search_paths

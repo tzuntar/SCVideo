@@ -36,35 +36,36 @@ enum CommentsError: Error, CustomStringConvertible {
 
 class CommentsLogic {
 
-    let session: UserSession
     let delegate: CommentsDelegate
 
-    init(session: UserSession, withDelegate delegate: CommentsDelegate) {
-        self.session = session
+    init(delegatingActionsTo delegate: CommentsDelegate) {
         self.delegate = delegate
     }
 
     func retrieveComments(forPost post: Post) {
-        AF.request(APIURL + "/posts/" + String(post.id_post) + "/comments",
-                headers: [.authorization(bearerToken: self.session.token)]).validate()
-                .responseDecodable(of: [Comment].self) { response in
-                    if let safeResponse = response.value {
-                        self.delegate.didFetchComments(safeResponse)
-                        return
-                    }
-
-                    if let safeResponse = response.response {
-                        self.handleError(forCode: safeResponse.statusCode)
-                    }
+        guard let authHeaders = AuthManager.shared.getAuthHeaders() else { return }
+        AF.request("\(APIURL)/posts/\(post.id_post)/comments",
+                headers: authHeaders)
+            .validate()
+            .responseDecodable(of: [Comment].self) { response in
+                if let safeResponse = response.value {
+                    self.delegate.didFetchComments(safeResponse)
+                    return
                 }
+
+                if let safeResponse = response.response {
+                    self.handleError(forCode: safeResponse.statusCode)
+                }
+            }
     }
     
     func postComment(with commentEntry: CommentEntry) {
-        AF.request(APIURL + "/posts/" + String(commentEntry.id_post) + "/comment",
+        guard let authHeaders = AuthManager.shared.getAuthHeaders() else { return }
+        AF.request("\(APIURL)/posts/\(commentEntry.id_post)/comment",
                    method: .post,
                    parameters: commentEntry,
                    encoder: JSONParameterEncoder.default,
-                   headers: [.authorization(bearerToken: self.session.token)])
+                   headers: authHeaders)
             .validate()
             .response() { response in
                 if let safeResponse = response.response {

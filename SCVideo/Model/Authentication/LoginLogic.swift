@@ -64,7 +64,7 @@ class LoginLogic {
         switch responseCode {
         case 500:
             self.delegate?.didLoginFailWithError(LoginError.serverSideError)
-        case 400:
+        case 401:
             self.delegate?.didLoginFailWithError(LoginError.invalidCredentials)
         default:
             self.delegate?.didLoginFailWithError(LoginError.unexpected(

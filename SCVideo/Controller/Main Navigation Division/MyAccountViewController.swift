@@ -8,8 +8,6 @@
 import UIKit
 
 class MyAccountViewController: UIViewController {
-    
-    var currentSession: UserSession?
 
     override func viewDidLoad() {
         super.viewDidLoad()

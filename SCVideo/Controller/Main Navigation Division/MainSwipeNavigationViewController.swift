@@ -9,8 +9,6 @@ import UIKit
 
 class MainSwipeNavigationViewController: EZSwipeController {
     
-    var currentSession: UserSession?
-    
     override func setupView() {
         super.setupView()
         navigationBarShouldNotExist = true
@@ -25,10 +23,7 @@ extension MainSwipeNavigationViewController: EZSwipeControllerDataSource {
         let friendsVC: FriendsViewController = storyboard.instantiateViewController(identifier: "friends-vc")
         let feedVC: FeedViewController = storyboard.instantiateViewController(identifier: "feed-vc")
         let recordVC: RecordViewController = storyboard.instantiateViewController(identifier: "record-vc")
-        
-        friendsVC.currentSession = currentSession
-        feedVC.currentSession = currentSession
-        
+
         return [friendsVC, feedVC, recordVC]
     }
     

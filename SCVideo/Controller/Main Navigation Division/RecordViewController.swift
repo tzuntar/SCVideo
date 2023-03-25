@@ -197,7 +197,7 @@ extension RecordViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
         switch captureState {
         case .start:
             // ToDo: animate the record button
-            // self.animateRecordButton()
+            //DispatchQueue.main.async { self.animateRecordButton() }
             
             _filename = UUID().uuidString // uuid-based clip filename
             clips.append("\(_filename).mov")
@@ -248,13 +248,13 @@ extension RecordViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
                 self?._assetWriter = nil
                 self?._assetWriterInput = nil
                 // ToDo: stop animating the record button
-                // DispatchQueue.main.async { self?.stopAnimatingRecordButton() }
+                //DispatchQueue.main.async { self!.stopAnimatingRecordButton() }
             }
             break
         case .idle:
             // ToDo: UI changes
             // ToDo: stop animating the record button
-            // DispatchQueue.main.async { self?.stopAnimatingRecordButton() }
+            //DispatchQueue.main.async { self.stopAnimatingRecordButton() }
             break
         }
     }

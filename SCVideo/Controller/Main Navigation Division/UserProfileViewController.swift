@@ -9,7 +9,6 @@ import UIKit
 
 class UserProfileViewController: UIViewController {
 
-    var currentSession: UserSession?
     var currentUser: User?
     
     @IBOutlet weak var userName: UILabel!
@@ -43,9 +42,8 @@ class UserProfileViewController: UIViewController {
     }
     
     @IBAction func addFriendPressed(_ sender: UIButton) {
-        guard let session = currentSession,
-              let user = currentUser else { return }
-        let logic = FriendsLogic(session: session, withDelegate: self)
+        guard let user = currentUser else { return }
+        let logic = FriendsLogic(delegatingActionsTo: self)
         logic.addFriend(user: user)
     }
     

@@ -19,7 +19,6 @@ class PostCell: UITableViewCell {
     @IBOutlet weak var likeButton: UIButton!
     
     private var currentPost: Post?
-    private var currentSession: UserSession?
     
     // only applicable to video posts
     private var player: AVPlayer?
@@ -44,9 +43,8 @@ class PostCell: UITableViewCell {
     }
     
     @IBAction func likeButtonPressed(_ sender: UIButton) {
-        guard let post = currentPost,
-              let session = currentSession else { return }
-        let logic = PostActionsLogic(session: session, withDelegate: self)
+        guard let post = currentPost else { return }
+        let logic = PostActionsLogic(delegatingActionsTo: self)
         logic.toggleLike(post)
     }
     
@@ -85,7 +83,6 @@ class PostCell: UITableViewCell {
     
     func loadData(forPost post: Post, asSession session: UserSession) {
         self.currentPost = post
-        self.currentSession = session
         
         usernameButton.setTitle(post.user.full_name, for: .normal)
         contentLabel.text = post.description

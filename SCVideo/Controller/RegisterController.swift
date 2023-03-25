@@ -15,17 +15,11 @@ class RegisterController: UIViewController {
     @IBOutlet weak var passwordField: UITextField!
     @IBOutlet weak var confirmPasswordField: UITextField!
 
-    var username: String?
     let registrationLogic = RegistrationLogic()
-
-    var session: UserSession?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         registrationLogic.delegate = self;
-        if let safeUsername = username {
-            usernameField.text = safeUsername
-        }
     }
 
     @IBAction func backArrowPressed(_ sender: UIButton) {
@@ -50,19 +44,12 @@ class RegisterController: UIViewController {
                 password: password))
     }
 
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "registrationToMain" {
-            guard let safeSession = session,
-                  let swipeVC = segue.destination as? MainSwipeNavigationViewController else { return }
-            swipeVC.currentSession = safeSession
-        }
-    }
 }
 
 extension RegisterController: RegistrationDelegate {
 
     func didRegisterUser(_ session: UserSession) {
-        self.session = session
+        AuthManager.shared.startSession(session)
         performSegue(withIdentifier: "registrationToMain", sender: self)
     }
 

@@ -8,8 +8,7 @@
 import UIKit
 
 class FriendsViewController: UIViewController {
-    
-    var currentSession: UserSession?
+
     var friends: [User]?
     var friendsLogic: FriendsLogic?
     var selectedFriend: User?
@@ -21,18 +20,13 @@ class FriendsViewController: UIViewController {
         friendsTableView.dataSource = self
         friendsTableView.register(UINib(nibName: "UserCell", bundle: nil),
                                   forCellReuseIdentifier: "UserCell")
-
-        if let safeSession = currentSession {
-            friendsLogic = FriendsLogic(session: safeSession, withDelegate: self)
-            friendsLogic!.retrieveFriends()
-        }
+        friendsLogic = FriendsLogic(delegatingActionsTo: self)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showFriendAccount" {
             guard let friendProfileVC = segue.destination as? UserProfileViewController,
                   let friend = selectedFriend else { return }
-            friendProfileVC.currentSession = currentSession
             friendProfileVC.currentUser = friend
         }
     }

@@ -7,7 +7,7 @@
 
 import Foundation
 
-class SettingsHelper {
+class SettingsHelper {    
     private struct SettingsBundleKeys {
         static let ApiUrlKey = "api_url"
     }
@@ -26,6 +26,6 @@ class SettingsHelper {
     
     static func getApiUrl() -> String {
         let url : String? = UserDefaults.standard.string(forKey: SettingsBundleKeys.ApiUrlKey)
-        return url != nil ? url! : "http://192.168.64.108:3000"
+        return url != nil ? url! : "http://192.168.64.7:3000"
     }
 }

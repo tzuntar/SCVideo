@@ -14,8 +14,7 @@ class UploadViewController: UIViewController, UINavigationControllerDelegate {
     @IBOutlet weak var filenameLabel: UILabel!
     @IBOutlet weak var fileSizeLabel: UILabel!
     @IBOutlet weak var postDescriptionBox: UITextView!
-    
-    var currentSession: UserSession?
+
     var postLogic: PostLogic?
     var videoPicker: UIImagePickerController?
     var selectedAsset: AVURLAsset?
@@ -25,10 +24,7 @@ class UploadViewController: UIViewController, UINavigationControllerDelegate {
         videoPreviewBox.layer.borderWidth = 2
         videoPreviewBox.layer.borderColor = UIColor.white.cgColor
         videoPreviewBox.layer.cornerRadius = 10
-        
-        if let safeSession = currentSession {
-            postLogic = PostLogic(session: safeSession, withDelegate: self)
-        }
+        postLogic = PostLogic(delegatingActionsTo: self)
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -58,20 +54,15 @@ class UploadViewController: UIViewController, UINavigationControllerDelegate {
     }
     
     @IBAction func postButtonPressed(_ sender: UIButton) {
-        guard let logic = postLogic,
-              let session = currentSession else {
-            print("Initialization failed!")
-            return
-        }
         guard let description = postDescriptionBox.text,
               let asset = selectedAsset else { return }
         postDescriptionBox.endEditing(true)
-        logic.postVideo(with: NewPostEntry(
-                        id_user: session.user.id_user,
-                        type: "video",
+        postLogic!.postVideo(with: NewPostEntry(
+                          id_user: AuthManager.shared.session!.user.id_user,
+                             type: "video",
                         videoFile: asset,
-                        title: nil,
-                        description: description))
+                            title: nil,
+                      description: description))
     }
     
     private func goBack() {

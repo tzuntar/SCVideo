@@ -12,8 +12,7 @@ class FeedViewController: UIViewController, UIScrollViewDelegate {
     
     var tableNode: ASTableNode!
     var posts: [Post] = []
-    var currentSession: UserSession?
-    var feedLogic: FeedLogic?
+    var feedLogic = FeedLogic()
     var lastNode: PostNode?
     
     private var _selectedPost: Post?
@@ -27,7 +26,6 @@ class FeedViewController: UIViewController, UIScrollViewDelegate {
         self.view.insertSubview(tableNode.view, at: 0)
         self.applyStyles()
         self.tableNode.leadingScreensForBatching = 1.0  // overriding the default of 2.0
-        self.feedLogic = FeedLogic(withSession: self.currentSession!)
     }
     
     override func viewWillLayoutSubviews() {
@@ -47,13 +45,11 @@ class FeedViewController: UIViewController, UIScrollViewDelegate {
             guard let destination = segue.destination as? CommentsViewController,
                   let safePost = self._selectedPost else { return }
             destination.currentPost = safePost
-            destination.currentSession = currentSession
             break
         case "showPosterProfile":
             guard let destination = segue.destination as? UserProfileViewController,
                   let safePost = self._selectedPost else { return }
             destination.currentUser = safePost.user
-            destination.currentSession = currentSession
             break
         default:
             return
@@ -101,7 +97,7 @@ extension FeedViewController: ASTableDelegate {
 // MARK: - Batched Fetching Operations
 extension FeedViewController {
     func retrieveNextPageWithCompletion(block: @escaping ([Post]) -> Void) {
-        feedLogic?.loadPostBatch(limit: 2, offset: posts.count, completion: { (posts: [Post]?, errorCode: Int?) in
+        feedLogic.loadPostBatch(limit: 2, offset: posts.count, completion: { (posts: [Post]?, errorCode: Int?) in
             if let error = errorCode {
                 return print("Loading post batch failed with code \(error)")
             }

@@ -13,8 +13,6 @@ class LoginController: UIViewController {
     @IBOutlet weak var passwordField: UITextField!
 
     let loginLogic = LoginLogic()
-
-    var session: UserSession?
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -45,27 +43,12 @@ class LoginController: UIViewController {
         view.endEditing(true)       // causes the view (or one of its embedded text fields) to resign the first responder status.
     }
 
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        switch segue.identifier {
-        case "showRegisterSheet":
-            guard let registerVc = segue.destination as? RegisterController else {
-                return
-            }
-            registerVc.username = usernameField.text
-        case "loginToMain":
-            guard let swipeVC = segue.destination as? MainSwipeNavigationViewController else { return }
-            swipeVC.currentSession = session
-        default:
-            return
-        }
-    }
-
 }
 
 extension LoginController: LoginDelegate {
 
     func didLogInUser(_ session: UserSession) {
-        self.session = session
+        AuthManager.shared.startSession(session)
         self.performSegue(withIdentifier: "loginToMain", sender: self)
     }
 

@@ -9,14 +9,9 @@ import Foundation
 import Alamofire
 
 class FeedLogic {
-    
-    let session: UserSession
-    
-    init(withSession session: UserSession) {
-        self.session = session
-    }
-    
+
     func loadPostBatch(limit: Int, offset: Int?, completion: @escaping ([Post]?, _ errorCode: Int?) -> Void) {
+        guard let authHeaders = AuthManager.shared.getAuthHeaders() else { return }
         let params: Parameters = [
             "limit": limit,
             "offset": offset ?? 0
@@ -24,7 +19,8 @@ class FeedLogic {
         AF.request("\(APIURL)/posts/feed/",
                    parameters: params,
                    encoding: URLEncoding(destination: .queryString),
-                   headers: [.authorization(bearerToken: self.session.token)]).validate()
+                   headers: authHeaders)
+            .validate()
             .responseDecodable(of: [Post].self) { response in
                 if let safeResponse = response.value {
                     return completion(safeResponse, nil)

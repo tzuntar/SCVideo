@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		1953684D948A36F26D1EF654 /* Pods_SCVideo_SCVideoUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E054E39AC7D1244EEF14261 /* Pods_SCVideo_SCVideoUITests.framework */; };
 		1BCE049F72991AE7A0BE8F9B /* CommonExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BCE007066848E27210E8034 /* CommonExtensions.swift */; };
-		1BCE052D820F2307011FDE01 /* AuthLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BCE036319BB2AFFE03A84A3 /* AuthLogic.swift */; };
 		1BCE0C6615D23387560DB363 /* CommentsLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BCE07C1B8BF1B61A28BE6BD /* CommentsLogic.swift */; };
 		2701A19829AB4D4800FEA390 /* PostNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2701A19729AB4D4800FEA390 /* PostNode.swift */; };
 		2701A1A029AB547500FEA390 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2701A19F29AB547500FEA390 /* FeedViewController.swift */; };
@@ -39,6 +38,7 @@
 		2728657129C994B1002F747A /* SettingsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2728657029C994B1002F747A /* SettingsHelper.swift */; };
 		272F0F4E28F69FB800D6A943 /* DataModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 272F0F4D28F69FB800D6A943 /* DataModels.swift */; };
 		272F0F5928F6A0A300D6A943 /* LoginLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 272F0F5828F6A0A300D6A943 /* LoginLogic.swift */; };
+		274092AD29CE263E00B4800F /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274092AC29CE263E00B4800F /* AuthManager.swift */; };
 		276B382429AA9519005F51E7 /* VideoCompositionWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276B382329AA9519005F51E7 /* VideoCompositionWriter.swift */; };
 		276EB4AF290FB1E200CB6C77 /* MyAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276EB4AE290FB1E200CB6C77 /* MyAccountViewController.swift */; };
 		276EB4B4290FB20100CB6C77 /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276EB4B3290FB20100CB6C77 /* UserProfileViewController.swift */; };
@@ -47,6 +47,7 @@
 		27750DA1290822D7005FA599 /* UploadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27750DA0290822D7005FA599 /* UploadViewController.swift */; };
 		27750DA6290822DD005FA599 /* FriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27750DA5290822DD005FA599 /* FriendsViewController.swift */; };
 		27750DC6290A9DEF005FA599 /* FeedLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27750DC5290A9DEE005FA599 /* FeedLogic.swift */; };
+		2778006129CCF06C00BC8ACD /* KeychainHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2778006029CCF06C00BC8ACD /* KeychainHelper.swift */; };
 		2789E79429B91C04004004DF /* PostProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2789E79329B91C04004004DF /* PostProtocols.swift */; };
 		27A6150229114CCB0017FC87 /* RecordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A6150129114CCB0017FC87 /* RecordViewController.swift */; };
 		27A61507291159BA0017FC87 /* PostLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A61506291159BA0017FC87 /* PostLogic.swift */; };
@@ -94,7 +95,6 @@
 		063B2C28337D2B208087EF5B /* Pods-SCVideo-SCVideoUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SCVideo-SCVideoUITests.debug.xcconfig"; path = "Target Support Files/Pods-SCVideo-SCVideoUITests/Pods-SCVideo-SCVideoUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		081C4F1C21E37384C582B8D1 /* Pods_SCVideo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SCVideo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1BCE007066848E27210E8034 /* CommonExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommonExtensions.swift; sourceTree = "<group>"; };
-		1BCE036319BB2AFFE03A84A3 /* AuthLogic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthLogic.swift; sourceTree = "<group>"; };
 		1BCE07C1B8BF1B61A28BE6BD /* CommentsLogic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentsLogic.swift; sourceTree = "<group>"; };
 		26D066E3E72BEECB68158CF6 /* Pods-SCVideo-SCVideoUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SCVideo-SCVideoUITests.release.xcconfig"; path = "Target Support Files/Pods-SCVideo-SCVideoUITests/Pods-SCVideo-SCVideoUITests.release.xcconfig"; sourceTree = "<group>"; };
 		2701A19729AB4D4800FEA390 /* PostNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostNode.swift; sourceTree = "<group>"; };
@@ -133,6 +133,7 @@
 		2728657029C994B1002F747A /* SettingsHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsHelper.swift; sourceTree = "<group>"; };
 		272F0F4D28F69FB800D6A943 /* DataModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModels.swift; sourceTree = "<group>"; };
 		272F0F5828F6A0A300D6A943 /* LoginLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginLogic.swift; sourceTree = "<group>"; };
+		274092AC29CE263E00B4800F /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
 		276B382329AA9519005F51E7 /* VideoCompositionWriter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCompositionWriter.swift; sourceTree = "<group>"; };
 		276EB4AE290FB1E200CB6C77 /* MyAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAccountViewController.swift; sourceTree = "<group>"; };
 		276EB4B3290FB20100CB6C77 /* UserProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
@@ -141,6 +142,7 @@
 		27750DA0290822D7005FA599 /* UploadViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadViewController.swift; sourceTree = "<group>"; };
 		27750DA5290822DD005FA599 /* FriendsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsViewController.swift; sourceTree = "<group>"; };
 		27750DC5290A9DEE005FA599 /* FeedLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedLogic.swift; sourceTree = "<group>"; };
+		2778006029CCF06C00BC8ACD /* KeychainHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = KeychainHelper.swift; path = ../../../../Mobilne/SCVideo/SCVideo/Utilities/KeychainHelper.swift; sourceTree = "<group>"; };
 		2789E79329B91C04004004DF /* PostProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostProtocols.swift; sourceTree = "<group>"; };
 		27A6150129114CCB0017FC87 /* RecordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordViewController.swift; sourceTree = "<group>"; };
 		27A61506291159BA0017FC87 /* PostLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostLogic.swift; sourceTree = "<group>"; };
@@ -376,7 +378,7 @@
 		271DAFCA290D291700E7346B /* Authentication */ = {
 			isa = PBXGroup;
 			children = (
-				1BCE036319BB2AFFE03A84A3 /* AuthLogic.swift */,
+				274092AC29CE263E00B4800F /* AuthManager.swift */,
 				272F0F5828F6A0A300D6A943 /* LoginLogic.swift */,
 				27BDB1FC2904643B0034E1CD /* RegistrationLogic.swift */,
 			);
@@ -406,6 +408,7 @@
 				2701A1A429AB5E6E00FEA390 /* SCVideo-Bridging-Header.h */,
 				271CAAD629B67C8400BA9242 /* EZSwipeController.swift */,
 				2728657029C994B1002F747A /* SettingsHelper.swift */,
+				2778006029CCF06C00BC8ACD /* KeychainHelper.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -717,6 +720,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				27160A8F28E5B17D008739C3 /* RegisterController.swift in Sources */,
+				274092AD29CE263E00B4800F /* AuthManager.swift in Sources */,
 				276EB4B4290FB20100CB6C77 /* UserProfileViewController.swift in Sources */,
 				27A61507291159BA0017FC87 /* PostLogic.swift in Sources */,
 				27A6150229114CCB0017FC87 /* RecordViewController.swift in Sources */,
@@ -734,6 +738,7 @@
 				27750DA6290822DD005FA599 /* FriendsViewController.swift in Sources */,
 				2728657129C994B1002F747A /* SettingsHelper.swift in Sources */,
 				271DAF75290AFE5900E7346B /* PostCell.swift in Sources */,
+				2778006129CCF06C00BC8ACD /* KeychainHelper.swift in Sources */,
 				2701A1A629AB5E6E00FEA390 /* GradientNode.m in Sources */,
 				27C79C2F29103E72006FDBC3 /* FriendsLogic.swift in Sources */,
 				27A6150E2913079C0017FC87 /* WarningAlert.swift in Sources */,
@@ -742,7 +747,6 @@
 				27160A2F28E57860008739C3 /* SceneDelegate.swift in Sources */,
 				2701A1A029AB547500FEA390 /* FeedViewController.swift in Sources */,
 				2701A1B329AB5F5900FEA390 /* PostDetails.swift in Sources */,
-				1BCE052D820F2307011FDE01 /* AuthLogic.swift in Sources */,
 				27750DC6290A9DEF005FA599 /* FeedLogic.swift in Sources */,
 				1BCE049F72991AE7A0BE8F9B /* CommonExtensions.swift in Sources */,
 				276EB4DD291039CA00CB6C77 /* UserCell.swift in Sources */,
