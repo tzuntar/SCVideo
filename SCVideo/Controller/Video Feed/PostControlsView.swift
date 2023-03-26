@@ -13,7 +13,6 @@ class PostControlsView: UIView {
     @IBOutlet weak var likeButton: UIButton!
     @IBOutlet weak var likeCountLabel: UILabel!
     @IBOutlet weak var commentCountLabel: UILabel!
-    @IBOutlet weak var shareCountLabel: UILabel!
     
     private let _CONTENT_XIB_NAME = "PostControls"
     private var _delegate: PostNodeActionDelegate?
@@ -36,7 +35,10 @@ class PostControlsView: UIView {
     
     public func setPost(post: Post) {
         self._post = post
-        //likeCountLabel.text = 1
+        if post.user!.id_user == AuthManager.shared.session!.user.id_user {
+            likeCountLabel.isHidden = false
+            //likeCountLabel.text = like_count
+        }
         likeButton.setImage(UIImage.init(named: (post.is_liked == 0) ? "Like" : "Liked"),
                             for: .normal)
     }

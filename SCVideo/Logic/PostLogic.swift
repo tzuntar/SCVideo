@@ -76,7 +76,6 @@ class PostLoaderLogic {
     }
     
     static func fetchVideoThumbnail(forPost post: Post, completion: @escaping (CGImage?, Error?) -> Void) {
-        // ToDo: display the No File image on errors
         let asset = AVURLAsset(url: URL(
             string: "\(APIURL)/posts/videos/\(post.content_uri)")!)
         let imgGenerator = AVAssetImageGenerator(asset: asset)
@@ -85,6 +84,19 @@ class PostLoaderLogic {
             completion(cgImage, nil)
         } catch let error {
             completion(nil, error)
+        }
+    }
+    
+    static func loadPostsForUser(_ user: User, completion: @escaping ([Post]?) -> Void) {
+        guard let authHeaders = AuthManager.shared.getAuthHeaders() else { return }
+        AF.request("\(APIURL)/users/\(user.id_user)/posts",
+                   headers: authHeaders)
+        .validate()
+        .responseDecodable(of: [Post].self) { response in
+            if let safeResponse = response.value {
+                return completion(safeResponse)
+            }
+            return completion(nil)
         }
     }
     

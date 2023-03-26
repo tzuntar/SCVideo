@@ -36,7 +36,7 @@ class PostDetails: UIView {
     
     public func setPost(post: Post) {
         self._post = post
-        usernameButton.setTitle("@\(post.user.username)", for: .normal)
+        usernameButton.setTitle("@\(post.user!.username)", for: .normal)
         captionLabel.text = post.title ?? "No caption"
         descriptionLabel.text = post.description ?? "No description"
     }

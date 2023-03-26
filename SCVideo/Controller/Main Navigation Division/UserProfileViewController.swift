@@ -10,17 +10,23 @@ import UIKit
 class UserProfileViewController: UIViewController {
 
     var currentUser: User?
+    var userPosts: [Post]?
     
     @IBOutlet weak var userName: UILabel!
+    @IBOutlet weak var userUsername: UILabel!
     @IBOutlet weak var userPhoto: UIImageView!
-    @IBOutlet weak var userTown: UILabel!
-    @IBOutlet weak var userOccupation: UILabel!
-    @IBOutlet weak var userEducation: UILabel!
+    @IBOutlet weak var userSchool: UILabel!
     @IBOutlet weak var userBio: UITextView!
-    @IBOutlet weak var addUserButton: UIButton!
+    @IBOutlet weak var postsCollectionView: UICollectionView!
+    @IBOutlet weak var addFriendButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        postsCollectionView.delegate = self
+        postsCollectionView.dataSource = self
+        postsCollectionView.register(UINib(nibName: "PostCell", bundle: nil),
+                                     forCellWithReuseIdentifier: "PostCell")
+
         userBio.layer.borderWidth = 3
         userBio.layer.borderColor = UIColor.white.cgColor
         userBio.layer.cornerRadius = 8
@@ -28,9 +34,7 @@ class UserProfileViewController: UIViewController {
 
         if let user = currentUser {
             userName.text = user.full_name
-            userTown.text = user.town?.name
-            userOccupation.text = user.occupation
-            userEducation.text = user.education
+            userUsername.text = "@\(user.username)"
             userBio.text = user.bio
             
             if let photo = user.photo_uri {
@@ -38,23 +42,62 @@ class UserProfileViewController: UIViewController {
             }
             
             toggleAddFriendButton(userIsFriend: false)  // ToDo: this
+            fetchUserPosts()
         }
     }
-    
+
     @IBAction func addFriendPressed(_ sender: UIButton) {
         guard let user = currentUser else { return }
         let logic = FriendsLogic(delegatingActionsTo: self)
-        logic.addFriend(user: user)
+        /*if (userIsFriend) {
+            logic.removeFriend(user)
+        } else {*/
+            logic.addFriend(user: user)
+        //}
     }
     
     private func toggleAddFriendButton(userIsFriend: Bool) {
-        addUserButton.setTitle(userIsFriend ? "Odstrani prijatelja" : "Dodaj prijatelja", for: .normal)
+        let imageName = userIsFriend ? "RemoveFriendButton" : "AddFriendButton"
+        addFriendButton.setImage(UIImage(named: imageName), for: .normal)
+    }
+    
+    private func fetchUserPosts() {
+        PostLoaderLogic.loadPostsForUser(currentUser!) { (posts: [Post]?) in
+            self.userPosts = posts
+            self.postsCollectionView.reloadData()
+        }
     }
     
 }
 
-// MARK: - Friend Actions Delegate
+extension UserProfileViewController: UICollectionViewDataSource {
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        guard let posts = userPosts else { return 0 }
+        return posts.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PostCell", for: indexPath) as! PostCell
+        guard let posts = userPosts else { return cell }
+        cell.loadPost(posts[indexPath.row])
+        return cell
+    }
 
+}
+
+extension UserProfileViewController: UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let leftAndRightPaddings: CGFloat = 45.0
+        let numberOfItemsPerRow: CGFloat = 4.0
+        let width = (collectionView.frame.width - leftAndRightPaddings) / numberOfItemsPerRow
+        return CGSize(width: width, height: width)
+    }
+
+}
+
+// MARK: - Friend Actions Delegate
 extension UserProfileViewController : AddFriendDelegate {
     
     func didAddSucceed(_ friend: User) {

@@ -24,13 +24,14 @@ class PostNode: ASCellNode {
         super.init()
 
         PostLoaderLogic.fetchVideoThumbnail(forPost: post) { (image: CGImage?, error: Error?) in
-            guard let img = image else {
+            if let img = image {
+                self.thumbnailNode.image = UIImage(cgImage: img)
+            } else {
                 if let e = error {
                     print("Fetching thumbnail for post \(post.id_post) failed: \(e.localizedDescription)")
                 }
-                return
+                self.thumbnailNode.image = UIImage(named: "No File")
             }
-            self.thumbnailNode.image = UIImage(cgImage: img)
         }
         thumbnailNode.contentMode = .scaleAspectFill
         
@@ -55,8 +56,8 @@ class PostNode: ASCellNode {
 
         // all UIView calls _must_ be done on the main thread
         let postControlsView = PostControlsView()
-        postControlsView.frame = CGRect(origin: CGPoint(x: 300, y: 280),
-                                        size: CGSize(width: 83, height: 320))
+        postControlsView.frame = CGRect(origin: CGPoint(x: UIScreen.main.bounds.width - 70, y: 280),
+                                        size: CGSize(width: 63, height: 289))
         postControlsView.setPost(post: post)
         postControlsView.setDelegate(delegate: nodeActionsDelegate)
         self.view.addSubview(postControlsView)

@@ -32,3 +32,16 @@ extension UITableViewCell {
         return nil
     }
 }
+
+extension UIViewController {
+    func hideKeyboardWhenTappedAround() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(true)   // causes the view (or one of its embedded text fields) to resign the first responder status.
+    }
+}
+

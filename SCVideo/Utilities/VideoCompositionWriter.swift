@@ -44,6 +44,48 @@ class VideoCompositionWriter {
         }
         return composition
     }
+    
+    private static func mergeClips(_ clips: [AVAsset], completion: @escaping (Result<AVAsset, Error>) -> Void) {
+        guard let firstClip = clips.first else {
+            return completion(.failure(NSError(domain: "com.tzuntar.scvideo",
+                                               code: 0,
+                                               userInfo: [NSLocalizedDescriptionKey: "No clips to merge"])))
+        }
+        let composition = AVMutableComposition()
+        do {
+            let videoTracks = firstClip.tracks(withMediaType: .video)
+            let audioTracks = firstClip.tracks(withMediaType: .audio)
+            
+            let videoCompositionTrack = composition.addMutableTrack(withMediaType: .video, preferredTrackID: kCMPersistentTrackID_Invalid)
+            let audioCompositionTrack = composition.addMutableTrack(withMediaType: .audio, preferredTrackID: kCMPersistentTrackID_Invalid)
+
+            for clip in clips {
+                try clip.loadTracks(withMediaType: .video) { (tracks: [AVAssetTrack]?, error: Error?) throws -> Void in
+                    guard error == nil, let tracks = tracks else {
+                        print("Error loading tracks: \(error?.localizedDescription)")
+                        return
+                    }
+
+                    let timeRange = CMTimeRangeMake(start: .zero, duration: clip.duration)
+                    try videoCompositionTrack?.insertTimeRange(timeRange,
+                                                               of: tracks[0],
+                                                               at: composition.duration)
+                }
+                
+                try videoCompositionTrack?.insertTimeRange(
+                    CMTimeRangeMake(start: .zero, duration: clip.duration),
+                    of: clip.tracks(withMediaType: .video)[0],
+                    at: composition.duration)
+                try audioCompositionTrack?.insertTimeRange(
+                    CMTimeRangeMake(start: .zero, duration: clip.duration),
+                    of: clip.tracks(withMediaType: .audio)[0],
+                    at: composition.duration)
+                completion(.success(composition))
+            }
+        } catch {
+            completion(.failure(error))
+        }
+    }
 
     /**
      Merges video tracks specified as filenames in the clips array into a
@@ -60,7 +102,31 @@ class VideoCompositionWriter {
             totalDuration = CMTimeAdd(totalDuration, asset.duration)
         }
 
-        let mixComposition = merge(clips: assets)
+        
+        mergeClips(assets) { (result: Result<AVAsset, Error>) in
+            switch result {
+            case .success(let composition):
+                let exporter = AVAssetExportSession(asset: composition, presetName: AVAssetExportPresetMediumQuality)
+                let tempUrl = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent("filename")
+                exporter?.outputURL = tempUrl
+                exporter?.outputFileType = .mp4
+                exporter?.shouldOptimizeForNetworkUse = true
+                
+                exporter?.exportAsynchronously(completionHandler: {
+                    switch exporter?.status {
+                    case .completed:
+                        completion(true, exporter?.outputURL)
+                    default:
+                        completion(false, nil) // error
+                    }
+                })
+            case .failure(let error):
+                print(error)
+                completion(false, nil);
+            }
+        }
+        
+        /*let mixComposition = merge(clips: assets)
         let url = directory.appendingPathComponent("Out").appendingPathComponent(filename)
         guard let exporter = AVAssetExportSession(asset: mixComposition,
                                                   presetName: AVAssetExportPresetHighestQuality) else { return }
@@ -76,7 +142,7 @@ class VideoCompositionWriter {
                     completion(false, nil)
                 }
             }
-        }
+        }*/
     }
 
 }

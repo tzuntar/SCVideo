@@ -30,8 +30,9 @@ private final class KeychainAccess {
             
             let attributesToUpdate = [kSecValueData: data] as CFDictionary
             SecItemUpdate(query, attributesToUpdate)
+        } else {
+            print("Failed to save data to the keychain: \(status)")
         }
-        print("Failed to save data to the keychain: \(status)")
     }
     
     static func read(service: String, account: String) -> Data? {

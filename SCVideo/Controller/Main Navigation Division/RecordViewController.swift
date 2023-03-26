@@ -16,6 +16,7 @@ class RecordViewController: UIViewController {
     @IBOutlet weak var flipCameraButton: UIButton!
     @IBOutlet weak var deleteClipButton: UIButton!
     @IBOutlet weak var useClipButton: UIButton!
+    @IBOutlet weak var recIndicator: UIImageView!
     
     var captureSession: AVCaptureSession!
     var videoPreviewLayer: AVCaptureVideoPreviewLayer!
@@ -147,10 +148,20 @@ class RecordViewController: UIViewController {
                         self.performSegue(withIdentifier: "UploadRecorded", sender: self)
                     }
                 }
-                
-                // ToDo: UI changes
-                //self.stopAnimatingRecordButton()
+
+                self.indicateRecordingState()
             }
+        }
+    }
+    
+    private func indicateRecordingState() {
+        switch captureState {
+        case .start, .capturing:
+            recordButton.setImage(UIImage(named: "Recording Button"), for: .normal)
+            startFlashingRecIndicator()
+        default:
+            recordButton.setImage(UIImage(named: "Record Button"), for: .normal)
+            stopFlashingRecIndicator()
         }
     }
     
@@ -190,14 +201,38 @@ class RecordViewController: UIViewController {
     }
 }
 
+// MARK: - Animations & Shit
+extension RecordViewController {
+    
+    private func startFlashingRecIndicator() {
+        recIndicator.isHidden = false
+        UIView.animate(withDuration: 0.5,
+                       delay: 0.0,
+                       options: [.curveEaseInOut, .repeat, .autoreverse, .allowUserInteraction]) {
+            self.recIndicator.alpha = 1.0
+        }
+    }
+    
+    private func stopFlashingRecIndicator() {
+        recIndicator.isHidden = true
+        UIView.animate(withDuration: 0.5,
+                       delay: 0.0,
+                       options: [.curveEaseInOut, .repeat, .autoreverse, .allowUserInteraction]) {
+            self.recIndicator.alpha = 0.0
+        }
+    }
+    
+}
+
 // MARK: - Sample Buffer Delegate
 extension RecordViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
     func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
         let timestamp = CMSampleBufferGetPresentationTimeStamp(sampleBuffer).seconds
         switch captureState {
         case .start:
-            // ToDo: animate the record button
-            //DispatchQueue.main.async { self.animateRecordButton() }
+            DispatchQueue.main.async {
+                self.indicateRecordingState()
+            }
             
             _filename = UUID().uuidString // uuid-based clip filename
             clips.append("\(_filename).mov")
@@ -247,14 +282,15 @@ extension RecordViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
                 self?.captureState = .idle
                 self?._assetWriter = nil
                 self?._assetWriterInput = nil
-                // ToDo: stop animating the record button
-                //DispatchQueue.main.async { self!.stopAnimatingRecordButton() }
+            }
+            DispatchQueue.main.async {
+                self.indicateRecordingState()
             }
             break
         case .idle:
-            // ToDo: UI changes
-            // ToDo: stop animating the record button
-            //DispatchQueue.main.async { self.stopAnimatingRecordButton() }
+            DispatchQueue.main.async {
+                self.indicateRecordingState()
+            }
             break
         }
     }

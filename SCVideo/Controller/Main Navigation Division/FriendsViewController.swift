@@ -21,6 +21,7 @@ class FriendsViewController: UIViewController {
         friendsTableView.register(UINib(nibName: "UserCell", bundle: nil),
                                   forCellReuseIdentifier: "UserCell")
         friendsLogic = FriendsLogic(delegatingActionsTo: self)
+        friendsLogic!.retrieveFriends()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

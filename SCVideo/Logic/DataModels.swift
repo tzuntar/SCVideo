@@ -54,7 +54,7 @@ class Post: Codable {
     let title: String?
     let description: String?
     let content_uri: String
-    let user: User
+    let user: User?
     //let added_on: Date
     let added_on: String
     //let is_deleted: Bool
