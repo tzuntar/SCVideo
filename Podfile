@@ -8,6 +8,7 @@ target 'SCVideo' do
   pod 'Alamofire'
   pod 'Texture' # a.k.a. AsyncDisplayKit
   pod 'JWTDecode'
+  pod 'MSAL'  # ActiveDirectory login
 
   target 'SCVideoTests' do
     inherit! :search_paths

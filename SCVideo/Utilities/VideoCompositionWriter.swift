@@ -47,7 +47,7 @@ class VideoCompositionWriter {
     
     private static func mergeClips(_ clips: [AVAsset], completion: @escaping (Result<AVAsset, Error>) -> Void) {
         guard let firstClip = clips.first else {
-            return completion(.failure(NSError(domain: "com.tzuntar.scvideo",
+            return completion(.failure(NSError(domain: "si.scv.scvideo",
                                                code: 0,
                                                userInfo: [NSLocalizedDescriptionKey: "No clips to merge"])))
         }
@@ -60,18 +60,6 @@ class VideoCompositionWriter {
             let audioCompositionTrack = composition.addMutableTrack(withMediaType: .audio, preferredTrackID: kCMPersistentTrackID_Invalid)
 
             for clip in clips {
-                try clip.loadTracks(withMediaType: .video) { (tracks: [AVAssetTrack]?, error: Error?) throws -> Void in
-                    guard error == nil, let tracks = tracks else {
-                        print("Error loading tracks: \(error?.localizedDescription)")
-                        return
-                    }
-
-                    let timeRange = CMTimeRangeMake(start: .zero, duration: clip.duration)
-                    try videoCompositionTrack?.insertTimeRange(timeRange,
-                                                               of: tracks[0],
-                                                               at: composition.duration)
-                }
-                
                 try videoCompositionTrack?.insertTimeRange(
                     CMTimeRangeMake(start: .zero, duration: clip.duration),
                     of: clip.tracks(withMediaType: .video)[0],

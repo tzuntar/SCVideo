@@ -39,6 +39,7 @@
 		272F0F4E28F69FB800D6A943 /* DataModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 272F0F4D28F69FB800D6A943 /* DataModels.swift */; };
 		272F0F5928F6A0A300D6A943 /* LoginLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 272F0F5828F6A0A300D6A943 /* LoginLogic.swift */; };
 		274092AD29CE263E00B4800F /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274092AC29CE263E00B4800F /* AuthManager.swift */; };
+		27673F1329D18E50009DB796 /* MSALHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27673F1229D18E50009DB796 /* MSALHelper.swift */; };
 		276B382429AA9519005F51E7 /* VideoCompositionWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276B382329AA9519005F51E7 /* VideoCompositionWriter.swift */; };
 		276EB4AF290FB1E200CB6C77 /* MyAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276EB4AE290FB1E200CB6C77 /* MyAccountViewController.swift */; };
 		276EB4B4290FB20100CB6C77 /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276EB4B3290FB20100CB6C77 /* UserProfileViewController.swift */; };
@@ -134,6 +135,9 @@
 		272F0F4D28F69FB800D6A943 /* DataModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModels.swift; sourceTree = "<group>"; };
 		272F0F5828F6A0A300D6A943 /* LoginLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginLogic.swift; sourceTree = "<group>"; };
 		274092AC29CE263E00B4800F /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
+		27673F1229D18E50009DB796 /* MSALHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MSALHelper.swift; sourceTree = "<group>"; };
+		27673F1729D19058009DB796 /* Keys.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Keys.xcconfig; sourceTree = "<group>"; };
+		27673F1E29D19234009DB796 /* SCVideo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SCVideo.entitlements; sourceTree = "<group>"; };
 		276B382329AA9519005F51E7 /* VideoCompositionWriter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCompositionWriter.swift; sourceTree = "<group>"; };
 		276EB4AE290FB1E200CB6C77 /* MyAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAccountViewController.swift; sourceTree = "<group>"; };
 		276EB4B3290FB20100CB6C77 /* UserProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
@@ -238,6 +242,7 @@
 		27160A2028E57860008739C3 = {
 			isa = PBXGroup;
 			children = (
+				27673F1729D19058009DB796 /* Keys.xcconfig */,
 				27160A2B28E57860008739C3 /* SCVideo */,
 				27160A4228E57862008739C3 /* SCVideoTests */,
 				27160A4D28E57862008739C3 /* SCVideoUITests */,
@@ -260,6 +265,7 @@
 		27160A2B28E57860008739C3 /* SCVideo */ = {
 			isa = PBXGroup;
 			children = (
+				27673F1E29D19234009DB796 /* SCVideo.entitlements */,
 				276B382229AA950B005F51E7 /* Utilities */,
 				27160A7428E57F2D008739C3 /* Fonts */,
 				27160A2C28E57860008739C3 /* AppDelegate.swift */,
@@ -382,6 +388,7 @@
 				274092AC29CE263E00B4800F /* AuthManager.swift */,
 				272F0F5828F6A0A300D6A943 /* LoginLogic.swift */,
 				27BDB1FC2904643B0034E1CD /* RegistrationLogic.swift */,
+				27673F1229D18E50009DB796 /* MSALHelper.swift */,
 			);
 			path = Authentication;
 			sourceTree = "<group>";
@@ -751,6 +758,7 @@
 				1BCE049F72991AE7A0BE8F9B /* CommonExtensions.swift in Sources */,
 				276EB4DD291039CA00CB6C77 /* UserCell.swift in Sources */,
 				1BCE0C6615D23387560DB363 /* CommentsLogic.swift in Sources */,
+				27673F1329D18E50009DB796 /* MSALHelper.swift in Sources */,
 				271CAAD229B67C3D00BA9242 /* MainSwipeNavigationViewController.swift in Sources */,
 				2701A19829AB4D4800FEA390 /* PostNode.swift in Sources */,
 				276B382429AA9519005F51E7 /* VideoCompositionWriter.swift in Sources */,
@@ -802,6 +810,7 @@
 /* Begin XCBuildConfiguration section */
 		27160A5128E57862008739C3 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 27673F1729D19058009DB796 /* Keys.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -863,6 +872,7 @@
 		};
 		27160A5228E57862008739C3 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 27673F1729D19058009DB796 /* Keys.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -923,6 +933,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = SCVideo/SCVideo.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6H7ZBTZ9NS;
 				INFOPLIST_FILE = SCVideo/Info.plist;
@@ -930,7 +941,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.tzuntar.SCVideo;
+				PRODUCT_BUNDLE_IDENTIFIER = si.scv.SCVideo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -949,6 +960,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = SCVideo/SCVideo.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6H7ZBTZ9NS;
 				INFOPLIST_FILE = SCVideo/Info.plist;
@@ -956,7 +968,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.tzuntar.SCVideo;
+				PRODUCT_BUNDLE_IDENTIFIER = si.scv.SCVideo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;

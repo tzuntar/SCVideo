@@ -89,7 +89,7 @@ extension UserProfileViewController: UICollectionViewDataSource {
 extension UserProfileViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let leftAndRightPaddings: CGFloat = 45.0
+        let leftAndRightPaddings: CGFloat = 10.0
         let numberOfItemsPerRow: CGFloat = 4.0
         let width = (collectionView.frame.width - leftAndRightPaddings) / numberOfItemsPerRow
         return CGSize(width: width, height: width)

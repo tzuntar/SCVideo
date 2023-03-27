@@ -73,5 +73,23 @@
 	</array>
 	<key>UIUserInterfaceStyle</key>
 	<string>Dark</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>msauth.si.scv.SCVideo</string>
+			</array>
+		</dict>
+	</array>
+	<key>MSAL_CLIENT_ID</key>
+	<string>$(MSAL_CLIENT_ID)</string>
+	<key>MSAL_CLIENT_SECRET</key>
+	<string>$(MSAL_CLIENT_SECRET)</string>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>msauthv2</string>
+		<string>msauthv3</string>
+	</array>
 </dict>
 </plist>
