@@ -13,19 +13,26 @@ class LoginController: UIViewController {
     @IBOutlet weak var passwordField: UITextField!
 
     let loginLogic = LoginLogic()
+    var msalHelper = MSALHelper()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.hideKeyboardWhenTappedAround()
+        hideKeyboardWhenTappedAround()
         loginLogic.delegate = self
+        do {
+            try msalHelper.initMSAL(forViewController: self)
+        } catch {
+            print("Failed: \(error)")
+        }
     }
 
     @IBAction func loginButtonPressed(_ sender: UIButton) {
-        if usernameField.text != nil && passwordField.text != nil {
+        /*if usernameField.text != nil && passwordField.text != nil {
             loginLogic.attemptLogin(with: LoginEntry(
                     username: usernameField.text!,
                     password: passwordField.text!))
-        }
+        }*/
+        msalHelper.startLoginFromUI()
     }
 
     @IBAction func registerButtonPressed(_ sender: UIButton) {
