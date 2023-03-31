@@ -16,6 +16,22 @@ protocol LoginDelegate {
 struct LoginEntry: Encodable {
     let username: String
     let password: String
+    let email: String?
+    let full_name: String?
+
+    init(username: String, password: String) {
+        self.username = username
+        self.password = password
+        email = nil
+        full_name = nil
+    }
+
+    init(username: String, password: String, email: String, full_name: String) {
+        self.username = username
+        self.password = password
+        self.email = email
+        self.full_name = full_name
+    }
 }
 
 enum LoginError: Error, CustomStringConvertible {
@@ -60,15 +76,32 @@ class LoginLogic {
                 }
     }
 
+    func attemptAdLogin(with loginEntry: LoginEntry) {
+        AF.request("\(APIURL)/auth_ad/login",
+                       method: .post,
+                   parameters: loginEntry,
+                      encoder: JSONParameterEncoder.default)
+                .validate()
+                .responseDecodable(of: UserSession.self) { response in
+                    if let safeResponse = response.value {
+                        self.delegate?.didLogInUser(safeResponse)
+                        return
+                    }
+
+                    if let safeResponse = response.response {
+                        self.handleError(forCode: safeResponse.statusCode)
+                    }
+                }
+    }
+
     private func handleError(forCode responseCode: Int) {
         switch responseCode {
         case 500:
-            self.delegate?.didLoginFailWithError(LoginError.serverSideError)
+            delegate?.didLoginFailWithError(LoginError.serverSideError)
         case 401:
-            self.delegate?.didLoginFailWithError(LoginError.invalidCredentials)
+            delegate?.didLoginFailWithError(LoginError.invalidCredentials)
         default:
-            self.delegate?.didLoginFailWithError(LoginError.unexpected(
-                    code: responseCode))
+            delegate?.didLoginFailWithError(LoginError.unexpected(code: responseCode))
         }
     }
 

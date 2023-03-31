@@ -6,6 +6,11 @@
 import UIKit
 import MSAL
 
+protocol MSALAuthDelegate: UIViewController {
+    func didAuthAccount(_ account: MSALAccount)
+    func didAuthFailWithError(_ error: Error?)
+}
+
 class MSALHelper {
 
     private class MSALSettings {
@@ -16,24 +21,24 @@ class MSALHelper {
         static var kClientSecret: String?
     }
 
+    private var delegate: MSALAuthDelegate?
     private var applicationContext: MSALPublicClientApplication?
     private var webViewParameters: MSALWebviewParameters?
     private var currentAccount: MSALAccount?
     private var accessToken: String?
 
-    typealias AccountCompletion = (MSALAccount?) -> Void
-
-    func initMSAL(forViewController viewController: UIViewController) throws {
+    func initMSAL(delegatingActionsTo delegate: MSALAuthDelegate) throws {
         MSALSettings.kClientId = Bundle.main.object(forInfoDictionaryKey: "MSAL_CLIENT_ID") as? String
         MSALSettings.kClientSecret = Bundle.main.object(forInfoDictionaryKey: "MSAL_CLIENT_SECRET") as? String
         guard let authorityURL = URL(string: MSALSettings.kAuthority),
               let clientId = MSALSettings.kClientId else { return }
+        self.delegate = delegate
         let authority = try MSALAADAuthority(url: authorityURL)
         let applicationConfig = MSALPublicClientApplicationConfig(clientId: clientId,
-                                                                  redirectUri: nil,
-                                                                    authority: authority)
+                                                               redirectUri: nil,
+                                                                 authority: authority)
         applicationContext = try MSALPublicClientApplication(configuration: applicationConfig)
-        webViewParameters = MSALWebviewParameters(authPresentationViewController: viewController)
+        webViewParameters = MSALWebviewParameters(authPresentationViewController: delegate)
     }
 
     private func writeLog(_ text: String) {
@@ -57,50 +62,51 @@ class MSALHelper {
         applicationContext.acquireToken(with: parameters) { (result, error) in
             if let error = error {
                 self.writeLog("Could not acquire token: \(error)")
+                delegate?.didAuthFailWithError(error)
                 return
             }
 
             guard let result = result else {
-                self.writeLog("Could not acquire token: No result returned")
+                self.delegate?.didAuthFailWithError(self.reportLocalError(
+                        withMessage: "No result returned when acquiring the token",
+                        errorCode: nil))
                 return
             }
 
             self.accessToken = result.accessToken
             self.currentAccount = result.account
-            self.writeLog("LOGIN SUCCESS! User: \(result.account.username!)")
             self.getContentWithToken()
+            self.delegate?.didAuthAccount(result.account)
         }
     }
 
     func acquireTokenSilently(_ account : MSALAccount!) {
         guard let applicationContext = applicationContext else { return }
         let parameters = MSALSilentTokenParameters(scopes: MSALSettings.kScopes, account: account)
-        applicationContext.acquireTokenSilent(with: parameters) { (result, error) in
+        applicationContext.acquireTokenSilent(with: parameters) { [self] (result, error) in
             if let error = error {
                 let nsError = error as NSError
 
                 if (nsError.domain == MSALErrorDomain) {
                     if (nsError.code == MSALError.interactionRequired.rawValue) {   // display the Sign In window
                         DispatchQueue.main.async {
-                            self.acquireTokenInteractively()
+                            acquireTokenInteractively()
                         }
                         return
                     }
                 }
 
-                self.writeLog("Could not acquire token: \(error)")
+                writeLog("Could not acquire token: \(error)")
                 return
             }
 
             guard let result = result else {
-                self.writeLog("Could not acquire token: No result returned")
+                writeLog("No result returned when acquiring the token")
                 return
             }
 
-            self.accessToken = result.accessToken
-            self.currentAccount = result.account
-            self.writeLog("LOGIN SUCCESS! User: \(result.account.username!)")
-            self.getContentWithToken()
+            accessToken = result.accessToken
+            currentAccount = result.account
         }
     }
 
@@ -108,25 +114,6 @@ class MSALHelper {
         MSALSettings.kGraphEndpoint.hasSuffix("/")
                 ? (MSALSettings.kGraphEndpoint + "v1.0/me/")
                 : (MSALSettings.kGraphEndpoint + "/v1.0/me/");
-    }
-
-    func getContentWithToken() {
-        guard let accessToken = accessToken else { return }
-        var request = URLRequest(url: URL(string: getGraphEndpoint())!)
-        request.setValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
-        URLSession.shared.dataTask(with: request) { data, response, error in
-            if let error = error {
-                self.writeLog("Could not get graph result: \(error)")
-                return
-            }
-
-            guard let result = try? JSONSerialization.jsonObject(with: data!, options: []) else {
-                self.writeLog("JSON deserialization failed")
-                return
-            }
-
-            self.writeLog("Graph API result: \(result)")
-        }.resume()
     }
 
     func signOutFromUI() {
@@ -152,7 +139,36 @@ class MSALHelper {
         }
     }
 
-    func getDeviceMode() -> MSALDeviceMode? {
+    // ToDo: integrate this into the login workflow
+    func fetchLoginEntry() -> LoginEntry? {
+        guard let accessToken = accessToken else { return nil }
+        var request = URLRequest(url: URL(string: getGraphEndpoint())!)
+        request.setValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
+        var loginEntry: LoginEntry?
+        URLSession.shared.dataTask(with: request) { data, response, error in
+                    if let error = error {
+                        self.writeLog("Retrieving user's login entry failed: \(error)")
+                        return
+                    }
+
+                    guard let result = try? JSONSerialization.jsonObject(with: data!, options: []) else {
+                        self.writeLog("JSON deserialization failed")
+                        return
+                    }
+
+                    let data = result as! [String : String]
+                    let username = data["mail"]!.components(separatedBy: "@")[0].lowercased()
+                    loginEntry = LoginEntry(username: username,
+                                            password: data["id"]!,
+                                            email: data["mail"]!,
+                                            full_name: data["displayName"]!)
+                }.resume()
+        return loginEntry
+    }
+
+    // MARK: Utility Methods
+
+    private func getDeviceMode() -> MSALDeviceMode? {
         var devMode: MSALDeviceMode?
         if #available(iOS 13.0, *) {
             applicationContext?.getDeviceInformation(with: nil, completionBlock: { (deviceInformation, error) in
@@ -161,6 +177,12 @@ class MSALHelper {
             })
         }
         return devMode
+    }
+
+    private func reportLocalError(withMessage message: String, errorCode code: Int?) -> NSError {
+        NSError(domain: Bundle.main.bundleIdentifier ?? "local",
+                  code: code ?? 1,
+              userInfo: [NSLocalizedDescriptionKey: message])
     }
 
 }

@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "ForwardButtonDark.png",
+      "filename" : "ForwardButton.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "ForwardButtonDark@2x.png",
+      "filename" : "ForwardButton@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "ForwardButtonDark@3x.png",
+      "filename" : "ForwardButton@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
