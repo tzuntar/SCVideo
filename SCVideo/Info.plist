@@ -30,7 +30,7 @@
 	<key>NSCameraUsageDescription</key>
 	<string>Kamera bo uporabljena za snemanje videoposnetkov.</string>
 	<key>NSMicrophoneUsageDescription</key>
-	<string>Mikforon bo uporavljenj za snemanje zvoka v videoposnetkih.</string>
+	<string>Mikforon bo uporabljen za snemanje zvoka v videoposnetkih.</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Share-Regular.ttf</string>
@@ -84,8 +84,6 @@
 	</array>
 	<key>MSAL_CLIENT_ID</key>
 	<string>$(MSAL_CLIENT_ID)</string>
-	<key>MSAL_CLIENT_SECRET</key>
-	<string>$(MSAL_CLIENT_SECRET)</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>msauthv2</string>

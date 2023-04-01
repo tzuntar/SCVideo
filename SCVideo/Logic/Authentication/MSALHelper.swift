@@ -9,6 +9,8 @@ import MSAL
 protocol MSALAuthDelegate: UIViewController {
     func didAuthAccount(_ account: MSALAccount)
     func didAuthFailWithError(_ error: Error?)
+    func didFetchLoginEntry(_ loginEntry: LoginEntry)
+    func didFetchingLoginEntryFailWithError(_ error: Error?)
 }
 
 class MSALHelper {
@@ -75,7 +77,6 @@ class MSALHelper {
 
             self.accessToken = result.accessToken
             self.currentAccount = result.account
-            self.getContentWithToken()
             self.delegate?.didAuthAccount(result.account)
         }
     }
@@ -139,31 +140,30 @@ class MSALHelper {
         }
     }
 
-    // ToDo: integrate this into the login workflow
-    func fetchLoginEntry() -> LoginEntry? {
-        guard let accessToken = accessToken else { return nil }
+    func fetchLoginEntry() {
+        guard let accessToken = accessToken else { return }
         var request = URLRequest(url: URL(string: getGraphEndpoint())!)
         request.setValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
-        var loginEntry: LoginEntry?
         URLSession.shared.dataTask(with: request) { data, response, error in
                     if let error = error {
-                        self.writeLog("Retrieving user's login entry failed: \(error)")
+                        self.delegate?.didFetchingLoginEntryFailWithError(error)
                         return
                     }
 
                     guard let result = try? JSONSerialization.jsonObject(with: data!, options: []) else {
                         self.writeLog("JSON deserialization failed")
+                        self.delegate?.didFetchingLoginEntryFailWithError(nil)
                         return
                     }
 
                     let data = result as! [String : String]
                     let username = data["mail"]!.components(separatedBy: "@")[0].lowercased()
-                    loginEntry = LoginEntry(username: username,
-                                            password: data["id"]!,
-                                            email: data["mail"]!,
-                                            full_name: data["displayName"]!)
+                    let loginEntry = LoginEntry(username: username,
+                                                password: data["id"]!,
+                                                   email: data["mail"]!,
+                                               full_name: data["displayName"]!)
+                    self.delegate?.didFetchLoginEntry(loginEntry)
                 }.resume()
-        return loginEntry
     }
 
     // MARK: Utility Methods

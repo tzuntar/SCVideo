@@ -45,17 +45,23 @@ class LoginController: UIViewController {
 
 extension LoginController: MSALAuthDelegate {
 
-        func didAuthAccount(_ account: MSALAccount) {
-            loginLogic.attemptAdLogin(with: LoginEntry(username: account.username!,
-                                                       password: account.identifier!,
-                                                       email: "account.email",
-                                                       full_name: "account.name"))
-        }
+    func didAuthAccount(_ account: MSALAccount) {
+        msalHelper.fetchLoginEntry()
+    }
 
-        func didAuthFailWithError(_ error: Error?) {
-            WarningAlert().showWarning(withTitle: "Napaka", withDescription: "Prišlo je do neznane napake pri prijavi.")
-            print("[MSAL] Failed to authenticate account: \(error?.localizedDescription ?? "Unknown error")")
-        }
+    func didAuthFailWithError(_ error: Error?) {
+        WarningAlert().showWarning(withTitle: "Napaka", withDescription: "Prišlo je do neznane napake pri prijavi.")
+        print("[MSAL] Failed to authenticate account: \(error?.localizedDescription ?? "Unknown error")")
+    }
+
+    func didFetchLoginEntry(_ loginEntry: LoginEntry) {
+        loginLogic.attemptAdLogin(with: loginEntry)
+    }
+
+    func didFetchingLoginEntryFailWithError(_ error: Error?) {
+        WarningAlert().showWarning(withTitle: "Napaka",
+                withDescription: "Pridobivanje podatkov o uporabniku je spodletelo.")
+    }
 
 }
 
@@ -69,10 +75,10 @@ extension LoginController: LoginDelegate {
     func didLoginFailWithError(_ error: Error) {
         if let error = error as? LoginError {
             WarningAlert().showWarning(withTitle: "Napaka",
-                                       withDescription: error.description)
+                                 withDescription: error.description)
         } else {
             WarningAlert().showWarning(withTitle: "Napaka",
-                                       withDescription: error.localizedDescription)
+                                 withDescription: error.localizedDescription)
         }
     }
 
