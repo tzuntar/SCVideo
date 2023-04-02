@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="NunitoSans-Bold.ttf">
+            <string>NunitoSans-Bold</string>
+        </array>
+        <array key="NunitoSans-SemiBold.ttf">
+            <string>NunitoSans-SemiBold</string>
+        </array>
+    </customFonts>
+    <scenes>
+        <!--Login Controller-->
+        <scene sceneID="d1O-H1-JJ5">
+            <objects>
+                <viewController storyboardIdentifier="login-vc" id="2WY-Br-Wad" customClass="LoginController" customModule="SCVideo" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="gzt-JU-ZxG">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BackgroundBuildingPhoto" translatesAutoresizingMaskIntoConstraints="NO" id="hu5-zL-wlg">
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                            </imageView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="68e-2W-xa0">
+                                <rect key="frame" x="40" y="94" width="313" height="704"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo" translatesAutoresizingMaskIntoConstraints="NO" id="Wvi-XD-Ks0">
+                                        <rect key="frame" x="0.0" y="0.0" width="313" height="50"/>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Prijavi se s svojim šolskim računom" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1TQ-zt-a0B">
+                                        <rect key="frame" x="0.0" y="223.99999999999997" width="313" height="65.666666666666657"/>
+                                        <fontDescription key="fontDescription" name="NunitoSans-Bold" family="Nunito Sans" pointSize="24"/>
+                                        <color key="textColor" name="HeadingTextLabel"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FpO-JZ-ugj" userLabel="LoginButtonView">
+                                        <rect key="frame" x="0.0" y="464" width="313" height="66"/>
+                                        <subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ButtonForward" translatesAutoresizingMaskIntoConstraints="NO" id="mX8-Y7-IX3">
+                                                <rect key="frame" x="0.0" y="0.0" width="313" height="66"/>
+                                            </imageView>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Xa-XQ-d8D">
+                                                <rect key="frame" x="86.666666666666686" y="8" width="140" height="50"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="50" id="7b8-8S-DpR"/>
+                                                    <constraint firstAttribute="width" constant="140" id="WuN-Tp-I5A"/>
+                                                </constraints>
+                                                <state key="normal" title="Prijavi se">
+                                                    <color key="titleColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="loginButtonPressed:" destination="2WY-Br-Wad" eventType="touchUpInside" id="k3F-LE-lYG"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstItem="mX8-Y7-IX3" firstAttribute="leading" secondItem="FpO-JZ-ugj" secondAttribute="leading" id="5AE-dt-8v7"/>
+                                            <constraint firstItem="7Xa-XQ-d8D" firstAttribute="centerY" secondItem="FpO-JZ-ugj" secondAttribute="centerY" id="7Fd-0f-EIO"/>
+                                            <constraint firstItem="mX8-Y7-IX3" firstAttribute="top" secondItem="FpO-JZ-ugj" secondAttribute="top" id="Lin-e3-ZJo"/>
+                                            <constraint firstAttribute="bottom" secondItem="mX8-Y7-IX3" secondAttribute="bottom" id="RBr-Lh-J4G"/>
+                                            <constraint firstAttribute="trailing" secondItem="mX8-Y7-IX3" secondAttribute="trailing" id="g6L-1i-7zC"/>
+                                            <constraint firstItem="7Xa-XQ-d8D" firstAttribute="centerX" secondItem="FpO-JZ-ugj" secondAttribute="centerX" id="jI2-kG-Pat"/>
+                                        </constraints>
+                                    </view>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="pEv-sj-7cK">
+                                        <rect key="frame" x="0.0" y="704" width="313" height="0.0"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1eF-nU-mRD">
+                                                <rect key="frame" x="0.0" y="0.0" width="313" height="0.0"/>
+                                                <fontDescription key="fontDescription" name="NunitoSans-SemiBold" family="Nunito Sans" pointSize="18"/>
+                                                <color key="textColor" name="DescriptionTextLabel"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="ZWq-8x-kOz"/>
+                        <color key="backgroundColor" name="Background"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="68e-2W-xa0" secondAttribute="trailing" constant="40" id="0Ae-FF-FLa"/>
+                            <constraint firstAttribute="trailing" secondItem="hu5-zL-wlg" secondAttribute="trailing" id="4Nw-yq-sMA"/>
+                            <constraint firstItem="68e-2W-xa0" firstAttribute="leading" secondItem="ZWq-8x-kOz" secondAttribute="leading" constant="40" id="CvS-G4-rF4"/>
+                            <constraint firstItem="ZWq-8x-kOz" firstAttribute="bottom" secondItem="68e-2W-xa0" secondAttribute="bottom" constant="20" id="O7J-ss-pqC"/>
+                            <constraint firstItem="68e-2W-xa0" firstAttribute="top" secondItem="ZWq-8x-kOz" secondAttribute="top" constant="35" id="Rcl-cC-8Js"/>
+                            <constraint firstItem="hu5-zL-wlg" firstAttribute="top" secondItem="gzt-JU-ZxG" secondAttribute="top" id="bnq-54-T6P"/>
+                            <constraint firstAttribute="bottom" secondItem="hu5-zL-wlg" secondAttribute="bottom" id="s7C-HN-LbX"/>
+                            <constraint firstItem="hu5-zL-wlg" firstAttribute="leading" secondItem="gzt-JU-ZxG" secondAttribute="leading" id="ytk-Ms-gsl"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="lVn-BO-Zhz"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7Mf-Ku-yP4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="68" y="-33"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="BackgroundBuildingPhoto" width="1800" height="3620"/>
+        <image name="ButtonForward" width="154" height="62"/>
+        <image name="Logo" width="178" height="50"/>
+        <namedColor name="Background">
+            <color red="0.059000000357627869" green="0.082000002264976501" blue="0.10999999940395355" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="DescriptionTextLabel">
+            <color red="0.75800001621246338" green="0.7850000262260437" blue="0.8970000147819519" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="HeadingTextLabel">
+            <color red="1" green="0.99599999189376831" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

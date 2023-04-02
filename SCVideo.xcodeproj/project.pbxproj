@@ -49,6 +49,7 @@
 		27750DA6290822DD005FA599 /* FriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27750DA5290822DD005FA599 /* FriendsViewController.swift */; };
 		27750DC6290A9DEF005FA599 /* FeedLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27750DC5290A9DEE005FA599 /* FeedLogic.swift */; };
 		2778006129CCF06C00BC8ACD /* KeychainHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2778006029CCF06C00BC8ACD /* KeychainHelper.swift */; };
+		2783010D29D96D4D0024D341 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2783010C29D96D4D0024D341 /* Login.storyboard */; };
 		2789E79429B91C04004004DF /* PostProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2789E79329B91C04004004DF /* PostProtocols.swift */; };
 		27A6150229114CCB0017FC87 /* RecordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A6150129114CCB0017FC87 /* RecordViewController.swift */; };
 		27A61507291159BA0017FC87 /* PostLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A61506291159BA0017FC87 /* PostLogic.swift */; };
@@ -147,6 +148,7 @@
 		27750DA5290822DD005FA599 /* FriendsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsViewController.swift; sourceTree = "<group>"; };
 		27750DC5290A9DEE005FA599 /* FeedLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedLogic.swift; sourceTree = "<group>"; };
 		2778006029CCF06C00BC8ACD /* KeychainHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainHelper.swift; sourceTree = "<group>"; };
+		2783010C29D96D4D0024D341 /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		2789E79329B91C04004004DF /* PostProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostProtocols.swift; sourceTree = "<group>"; };
 		27A6150129114CCB0017FC87 /* RecordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordViewController.swift; sourceTree = "<group>"; };
 		27A61506291159BA0017FC87 /* PostLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostLogic.swift; sourceTree = "<group>"; };
@@ -326,6 +328,7 @@
 				2701A19629AB4D3600FEA390 /* Video Feed */,
 				27A6150B2913077E0017FC87 /* Alerts */,
 				27160A3728E57862008739C3 /* LaunchScreen.storyboard */,
+				2783010C29D96D4D0024D341 /* Login.storyboard */,
 				27160A6A28E57942008739C3 /* Main.storyboard */,
 				271DAFBF290D28D600E7346B /* Table Controls */,
 			);
@@ -586,6 +589,7 @@
 				27BBA0C829A6A17E004CB7BD /* NunitoSans-SemiBold.ttf in Resources */,
 				27BBA0C429A6A17E004CB7BD /* NunitoSans-Regular.ttf in Resources */,
 				271DAF76290AFE5900E7346B /* PostCell.xib in Resources */,
+				2783010D29D96D4D0024D341 /* Login.storyboard in Resources */,
 				27BBA0AB29A6A150004CB7BD /* VarelaRound-Regular.ttf in Resources */,
 				27BBA0C029A6A17E004CB7BD /* NunitoSans-Light.ttf in Resources */,
 				27BBA0CA29A6A17E004CB7BD /* NunitoSans-Italic.ttf in Resources */,

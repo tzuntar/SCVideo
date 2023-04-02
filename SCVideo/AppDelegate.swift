@@ -18,10 +18,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // MSAL Logger setup
         MSALGlobalConfig.loggerConfig.setLogCallback { (logLevel, message, containsPII) in
             if let displayableMessage = message {
-                if (!containsPII) { // Prevent sensitive informations from leaking in non-debug mode
-#if DEBUG
-                    print(displayableMessage)
-#endif
+                if (containsPII) { // Prevent sensitive informations from leaking in non-debug mode
+                    #if DEBUG
+                        print(displayableMessage)
+                    #endif
                 }
             }
         }

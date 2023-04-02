@@ -27,8 +27,8 @@ class AuthManager {
     func startSession(_ session: UserSession) {
         self.session = session
         KeychainHelper.standard.save(session,
-                                     service: self.keychainService,
-                                     account: self.keychainAccount)
+                                     service: keychainService,
+                                     account: keychainAccount)
     }
     
     func authenticate() -> Bool {

@@ -64,7 +64,7 @@ class MSALHelper {
         applicationContext.acquireToken(with: parameters) { (result, error) in
             if let error = error {
                 self.writeLog("Could not acquire token: \(error)")
-                delegate?.didAuthFailWithError(error)
+                self.delegate?.didAuthFailWithError(error)
                 return
             }
 
@@ -108,6 +108,7 @@ class MSALHelper {
 
             accessToken = result.accessToken
             currentAccount = result.account
+            delegate?.didAuthAccount(result.account)
         }
     }
 
@@ -156,12 +157,12 @@ class MSALHelper {
                         return
                     }
 
-                    let data = result as! [String : String]
-                    let username = data["mail"]!.components(separatedBy: "@")[0].lowercased()
+                    let data = result as! [String : Any]
+                    let username = (data["mail"] as! String).components(separatedBy: "@")[0].lowercased()
                     let loginEntry = LoginEntry(username: username,
-                                                password: data["id"]!,
-                                                   email: data["mail"]!,
-                                               full_name: data["displayName"]!)
+                                                password: (data["id"] as! String),
+                                                   email: (data["mail"] as! String),
+                                               full_name: (data["displayName"] as! String))
                     self.delegate?.didFetchLoginEntry(loginEntry)
                 }.resume()
     }

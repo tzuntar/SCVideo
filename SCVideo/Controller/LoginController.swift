@@ -28,13 +28,7 @@ class LoginController: UIViewController {
     }
 
     @IBAction func loginButtonPressed(_ sender: UIButton) {
-//        if usernameField.text != nil && passwordField.text != nil {
-//            loginLogic.attemptLogin(with: LoginEntry(
-//                    username: usernameField.text!,
-//                    password: passwordField.text!))
-//        } else {
-            msalHelper.startLoginFromUI()
-//        }
+        msalHelper.startLoginFromUI()
     }
 
     @IBAction func registerButtonPressed(_ sender: UIButton) {
