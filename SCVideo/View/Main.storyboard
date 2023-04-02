@@ -6,13 +6,15 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
         <array key="NunitoSans-Black.ttf">
             <string>NunitoSans-Black</string>
+        </array>
+        <array key="NunitoSans-Bold.ttf">
+            <string>NunitoSans-Bold</string>
         </array>
         <array key="NunitoSans-SemiBold.ttf">
             <string>NunitoSans-SemiBold</string>
@@ -277,28 +279,37 @@
                                                 </constraints>
                                             </view>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="1vT-jO-NcU">
-                                                <rect key="frame" x="100" y="0.0" width="248" height="87.666666666666671"/>
+                                                <rect key="frame" x="100" y="0.0" width="123.66666666666669" height="87.666666666666671"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User User" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4wK-1n-opK">
-                                                        <rect key="frame" x="0.0" y="0.0" width="248" height="35.666666666666664"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="123.66666666666667" height="35.666666666666664"/>
                                                         <fontDescription key="fontDescription" name="NunitoSans-Black" family="Nunito Sans" pointSize="26"/>
                                                         <color key="textColor" name="HeadingTextLabel"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="@user" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gel-m8-kdp">
-                                                        <rect key="frame" x="0.0" y="39.666666666666671" width="248" height="23.333333333333329"/>
+                                                        <rect key="frame" x="0.0" y="39.666666666666671" width="123.66666666666667" height="23.333333333333329"/>
                                                         <fontDescription key="fontDescription" name="NunitoSans-SemiBold" family="Nunito Sans" pointSize="17"/>
                                                         <color key="textColor" name="DescriptionTextLabel"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ŠCV - dijak" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D2V-Ci-598">
-                                                        <rect key="frame" x="0.0" y="67" width="248" height="20.666666666666671"/>
+                                                        <rect key="frame" x="0.0" y="67" width="123.66666666666667" height="20.666666666666671"/>
                                                         <fontDescription key="fontDescription" name="NunitoSans-SemiBold" family="Nunito Sans" pointSize="15"/>
                                                         <color key="textColor" name="DescriptionTextLabel"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                 </subviews>
                                             </stackView>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JYo-W5-p5r">
+                                                <rect key="frame" x="243.66666666666671" y="0.0" width="104.33333333333334" height="87.666666666666671"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="filled" title="Log Out"/>
+                                                <connections>
+                                                    <action selector="logOutPressed:" destination="9Cz-wH-Qas" eventType="touchUpInside" id="Jxs-IH-vTd"/>
+                                                    <action selector="selectProfilePicPressed:" destination="9Cz-wH-Qas" eventType="touchUpInside" id="0gi-tb-8LW"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                     </stackView>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Fancy text goes here" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oV5-1j-jb7">
@@ -389,46 +400,46 @@
                                                     <action selector="useClipPressed:" destination="vpu-Mw-GyL" eventType="touchUpInside" id="uCl-yW-Ydg"/>
                                                 </connections>
                                             </button>
-                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="BCP-hX-oIB">
-                                                <rect key="frame" x="35" y="30" width="320" height="32"/>
-                                                <subviews>
-                                                    <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Recording Tag" translatesAutoresizingMaskIntoConstraints="NO" id="uui-C7-PgR">
-                                                        <rect key="frame" x="0.0" y="6.6666666666666714" width="40" height="19"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="width" constant="40" id="Ote-qA-jYP"/>
-                                                        </constraints>
-                                                    </imageView>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Record Video" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iWE-hn-9lx">
-                                                        <rect key="frame" x="0.0" y="6" width="102.66666666666667" height="20"/>
-                                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
-                                                        <nil key="textColor"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bpn-pw-Rp6" userLabel="Flip Camera Button">
-                                                        <rect key="frame" x="294" y="0.0" width="26" height="32"/>
-                                                        <state key="normal" image="Flip Camera Button"/>
-                                                        <connections>
-                                                            <action selector="flipCameraPressed:" destination="vpu-Mw-GyL" eventType="touchUpInside" id="Ytb-Vl-7Wm"/>
-                                                        </connections>
-                                                    </button>
-                                                </subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Recording Tag" translatesAutoresizingMaskIntoConstraints="NO" id="uui-C7-PgR">
+                                                <rect key="frame" x="35" y="30" width="70" height="30"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="trailing" secondItem="Bpn-pw-Rp6" secondAttribute="trailing" id="Htx-Ej-2DJ"/>
-                                                    <constraint firstItem="uui-C7-PgR" firstAttribute="leading" secondItem="BCP-hX-oIB" secondAttribute="leading" id="icC-iy-Mei"/>
+                                                    <constraint firstAttribute="width" constant="70" id="Ote-qA-jYP"/>
+                                                    <constraint firstAttribute="height" constant="30" id="SDW-E6-yrN"/>
                                                 </constraints>
-                                            </stackView>
+                                            </imageView>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bpn-pw-Rp6" userLabel="Flip Camera Button">
+                                                <rect key="frame" x="329" y="30" width="26" height="32"/>
+                                                <state key="normal" image="Flip Camera Button"/>
+                                                <connections>
+                                                    <action selector="flipCameraPressed:" destination="vpu-Mw-GyL" eventType="touchUpInside" id="Ytb-Vl-7Wm"/>
+                                                </connections>
+                                            </button>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Record Video" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iWE-hn-9lx">
+                                                <rect key="frame" x="35" y="30" width="320" height="30"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="30" id="38D-kZ-X41"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="NunitoSans-Bold" family="Nunito Sans" pointSize="18"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
+                                            <constraint firstItem="uui-C7-PgR" firstAttribute="top" secondItem="SGd-YM-oWy" secondAttribute="top" constant="30" id="2c8-Jb-VwD"/>
                                             <constraint firstAttribute="bottom" secondItem="fUV-na-e54" secondAttribute="bottom" constant="50" id="J4z-3y-M2Y"/>
-                                            <constraint firstAttribute="trailing" secondItem="BCP-hX-oIB" secondAttribute="trailing" constant="35" id="KlL-yt-ZMs"/>
+                                            <constraint firstItem="iWE-hn-9lx" firstAttribute="leading" secondItem="SGd-YM-oWy" secondAttribute="leading" constant="35" id="N4z-kZ-Q5x"/>
+                                            <constraint firstItem="iWE-hn-9lx" firstAttribute="top" secondItem="SGd-YM-oWy" secondAttribute="top" constant="30" id="QL0-HC-qe5"/>
                                             <constraint firstItem="hTQ-bK-mtt" firstAttribute="centerX" secondItem="SGd-YM-oWy" secondAttribute="centerX" id="T75-Nk-3ff"/>
                                             <constraint firstItem="RW7-Qz-QJa" firstAttribute="leading" secondItem="hTQ-bK-mtt" secondAttribute="trailing" constant="50" id="TxZ-sN-1DX"/>
                                             <constraint firstAttribute="bottom" secondItem="RW7-Qz-QJa" secondAttribute="bottom" constant="50" id="gfw-gb-HYk"/>
                                             <constraint firstAttribute="bottom" secondItem="hTQ-bK-mtt" secondAttribute="bottom" constant="30" id="iIc-cY-pBt"/>
-                                            <constraint firstItem="BCP-hX-oIB" firstAttribute="top" secondItem="SGd-YM-oWy" secondAttribute="top" constant="30" id="mJC-pd-uNz"/>
+                                            <constraint firstAttribute="trailing" secondItem="Bpn-pw-Rp6" secondAttribute="trailing" constant="35" id="lac-II-qrf"/>
                                             <constraint firstAttribute="trailing" secondItem="fUV-na-e54" secondAttribute="trailing" constant="35" id="phN-U5-GZK"/>
-                                            <constraint firstItem="BCP-hX-oIB" firstAttribute="leading" secondItem="SGd-YM-oWy" secondAttribute="leading" constant="35" id="vwI-Pw-66d"/>
+                                            <constraint firstItem="uui-C7-PgR" firstAttribute="leading" secondItem="SGd-YM-oWy" secondAttribute="leading" constant="35" id="rH6-zf-eIW"/>
+                                            <constraint firstAttribute="trailing" secondItem="iWE-hn-9lx" secondAttribute="trailing" constant="35" id="uqc-n5-RxO"/>
+                                            <constraint firstItem="Bpn-pw-Rp6" firstAttribute="top" secondItem="SGd-YM-oWy" secondAttribute="top" constant="30" id="weJ-Fq-Uwa"/>
+                                            <constraint firstItem="iWE-hn-9lx" firstAttribute="centerX" secondItem="SGd-YM-oWy" secondAttribute="centerX" id="yWe-Wu-m5B"/>
                                         </constraints>
                                     </view>
                                 </subviews>

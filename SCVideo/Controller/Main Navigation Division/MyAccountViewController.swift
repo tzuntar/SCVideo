@@ -36,7 +36,15 @@ class MyAccountViewController: UIViewController {
 
     @IBAction func selectProfilePicPressed(_ sender: UIButton) {
     }
-    
+
+    @IBAction func logOutPressed(_ sender: UIButton) {
+        AuthManager.shared.endSession()
+        let loginStoryboard = UIStoryboard(name: "Login", bundle: nil)
+        let loginController = loginStoryboard.instantiateViewController(withIdentifier: "login-vc")
+        loginController.modalPresentationStyle = .fullScreen
+        present(loginController, animated: true, completion: nil)
+    }
+
     private func fetchUserPosts() {
         PostLoaderLogic.loadPostsForUser(currentUser!) { (posts: [Post]?) in
             self.userPosts = posts

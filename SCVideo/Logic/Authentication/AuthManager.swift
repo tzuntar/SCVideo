@@ -30,7 +30,15 @@ class AuthManager {
                                      service: keychainService,
                                      account: keychainAccount)
     }
-    
+
+    /**
+     Checks if the access token is still valid.
+     If it is, returns true.
+     If it is not, tries to refresh the access token.
+     If the refresh is successful, returns true.
+     If the refresh is not successful, returns false.
+     - Returns: true if the user is authenticated, false if not.
+     */
     func authenticate() -> Bool {
         guard let token = session?.token else { return false }
         do {
@@ -46,7 +54,11 @@ class AuthManager {
             return false
         }
     }
-    
+
+    /**
+     Refreshes the access token.
+     - Returns: true if the refresh was successful, false if not.
+     */
     private func refreshAccessToken() -> Bool {
         guard let session = session else { return false }
         let params = ["token": session.token.refreshToken]
@@ -67,6 +79,15 @@ class AuthManager {
                 }
             }
         return false
+    }
+
+    /**
+     Clears the session and removes the token from the keychain.
+     */
+    func endSession() {
+        session = nil
+        KeychainHelper.standard.delete(service: keychainService,
+                                       account: keychainAccount)
     }
     
     /**

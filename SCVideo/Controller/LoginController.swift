@@ -63,7 +63,10 @@ extension LoginController: LoginDelegate {
 
     func didLogInUser(_ session: UserSession) {
         AuthManager.shared.startSession(session)
-        performSegue(withIdentifier: "loginToMain", sender: self)
+        let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let swipeVC = mainStoryboard.instantiateViewController(withIdentifier: "swipe-vc")
+        swipeVC.modalPresentationStyle = .fullScreen
+        present(swipeVC, animated: true, completion: nil)
     }
 
     func didLoginFailWithError(_ error: Error) {

@@ -43,7 +43,7 @@ class RecordViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        _sessionQueue = DispatchQueue(label: "com.tzuntar.SCVideo.record")
+        _sessionQueue = DispatchQueue(label: "si.scv.SCVideo.Record")
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -188,7 +188,7 @@ class RecordViewController: UIViewController {
     }
     
     @IBAction func useClipPressed(_ sender: Any) {
-        self.mergeSegmentsAndUseAsPost(clips: clips)
+        mergeSegmentsAndUseAsPost(clips: clips)
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -205,7 +205,7 @@ class RecordViewController: UIViewController {
 extension RecordViewController {
     
     private func startFlashingRecIndicator() {
-        recIndicator.isHidden = false
+        recIndicator.alpha = CGFloat(integerLiteral: 1)
         UIView.animate(withDuration: 0.5,
                        delay: 0.0,
                        options: [.curveEaseInOut, .repeat, .autoreverse, .allowUserInteraction]) {
@@ -214,7 +214,7 @@ extension RecordViewController {
     }
     
     private func stopFlashingRecIndicator() {
-        recIndicator.isHidden = true
+        recIndicator.alpha = .zero
         UIView.animate(withDuration: 0.5,
                        delay: 0.0,
                        options: [.curveEaseInOut, .repeat, .autoreverse, .allowUserInteraction]) {
