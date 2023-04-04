@@ -13,7 +13,9 @@ class UploadViewController: UIViewController, UINavigationControllerDelegate {
     @IBOutlet weak var videoPreviewBox: UIImageView!
     @IBOutlet weak var filenameLabel: UILabel!
     @IBOutlet weak var fileSizeLabel: UILabel!
+    @IBOutlet weak var postTitleBox: UITextField!
     @IBOutlet weak var postDescriptionBox: UITextView!
+    @IBOutlet weak var postDescriptionPlaceholderLabel: UILabel!
 
     var postLogic: PostLogic?
     var videoPicker: UIImagePickerController?
@@ -21,9 +23,20 @@ class UploadViewController: UIViewController, UINavigationControllerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        hideKeyboardWhenTappedAround()
         videoPreviewBox.layer.borderWidth = 2
         videoPreviewBox.layer.borderColor = UIColor.white.cgColor
         videoPreviewBox.layer.cornerRadius = 10
+        postTitleBox.layer.borderWidth = 2
+        postTitleBox.layer.borderColor = UIColor.white.cgColor
+        postTitleBox.layer.cornerRadius = 10
+        postDescriptionBox.layer.borderWidth = 2
+        postDescriptionBox.layer.borderColor = UIColor.white.cgColor
+        postDescriptionBox.layer.cornerRadius = 10
+
+        // used to manually hide the placeholder text
+        postDescriptionBox.delegate = self
+
         postLogic = PostLogic(delegatingActionsTo: self)
     }
 
@@ -46,7 +59,7 @@ class UploadViewController: UIViewController, UINavigationControllerDelegate {
             picker.mediaTypes = ["public.movie"]
             picker.allowsEditing = true
             if let asset = selectedAsset {
-                self.loadAssetDetails(forAsset: asset)
+                loadAssetDetails(forAsset: asset)
             } else {
                 present(picker, animated: true)
             }
@@ -54,27 +67,29 @@ class UploadViewController: UIViewController, UINavigationControllerDelegate {
     }
     
     @IBAction func postButtonPressed(_ sender: UIButton) {
-        guard let description = postDescriptionBox.text,
-              let asset = selectedAsset else { return }
+        guard let asset = selectedAsset else { return }
+        guard let title = postTitleBox.text else {
+            postTitleBox.layer.borderColor = UIColor(named: "ButtonColor")?.cgColor
+            postTitleBox.becomeFirstResponder()
+            return
+        }
+        postTitleBox.endEditing(true)
         postDescriptionBox.endEditing(true)
         postLogic!.postVideo(with: NewPostEntry(
-                          id_user: AuthManager.shared.session!.user.id_user,
                              type: "video",
                         videoFile: asset,
-                            title: nil,
-                      description: description))
+                            title: title,
+                      description: postDescriptionBox.text))
     }
-    
+
     private func goBack() {
-        if let nav = navigationController {
-            nav.popViewController(animated: true)
-        }
+        dismiss(animated: true)
     }
     
     private func loadAssetDetails(forAsset asset: AVURLAsset) {
         let imgGenerator = AVAssetImageGenerator(asset: asset)
         do {
-            self.selectedAsset = asset
+            selectedAsset = asset
             let previewCgImage = try imgGenerator
                 .copyCGImage(at: CMTimeMake(value: 0, timescale: 1), actualTime: nil)
             videoPreviewBox.image = UIImage(cgImage: previewCgImage)
@@ -86,7 +101,7 @@ class UploadViewController: UIViewController, UINavigationControllerDelegate {
             if let fileSize = PostLogic.getAssetSize(forLocalUrl: asset.url) {  // 0 MB, 00:00
                 let size = String(format: "%.2f", Double(fileSize) / 1024 / 1024)
                 fileSizeLabel.text = size + " MB, " +
-                    String(format: "%02i:%02i", minutes, seconds)
+                    String(format: "%02i min. %02i sek.", minutes, seconds)
             } else {    // No file size available, use format 00:00
                 fileSizeLabel.text = String(format: "%02i:%02i", minutes, seconds)
             }
@@ -127,7 +142,22 @@ extension UploadViewController: UIImagePickerControllerDelegate {
         picker.dismiss(animated: true, completion: nil)
         if let url = info[.mediaURL] as? NSURL {
             let asset = AVURLAsset(url: url.absoluteURL!)
-            self.loadAssetDetails(forAsset: asset)
+            loadAssetDetails(forAsset: asset)
+        }
+    }
+}
+
+// MARK - Description Text View Delegate
+
+extension UploadViewController: UITextViewDelegate {
+
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        postDescriptionPlaceholderLabel.isHidden = true
+    }
+
+    public func textViewDidEndEditing(_ textView: UITextView) {
+        if (textView.text == "") {
+            postDescriptionPlaceholderLabel.isHidden = false
         }
     }
 }

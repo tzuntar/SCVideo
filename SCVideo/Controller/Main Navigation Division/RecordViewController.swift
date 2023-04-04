@@ -17,12 +17,14 @@ class RecordViewController: UIViewController {
     @IBOutlet weak var deleteClipButton: UIButton!
     @IBOutlet weak var useClipButton: UIButton!
     @IBOutlet weak var recIndicator: UIImageView!
-    
+    @IBOutlet weak var timeIndicator: UILabel!
+    @IBOutlet weak var recordedClipsView: UIScrollView!
+
     var captureSession: AVCaptureSession!
     var videoPreviewLayer: AVCaptureVideoPreviewLayer!
     var videoDeviceInput: AVCaptureDeviceInput!
     private var _videoOutput: AVCaptureVideoDataOutput!
-    
+
     private var _assetWriter: AVAssetWriter!
     private var _assetWriterInput: AVAssetWriterInput!
     private var _adapter: AVAssetWriterInputPixelBufferAdaptor?
@@ -30,37 +32,38 @@ class RecordViewController: UIViewController {
     private var _finalAsset: AVURLAsset?
     private var _time: Double = 0
     private var _usingFrontCamera: Bool = false
-    var clips: [String] = []
+    var clips: [URL] = []
     var audioPlayer: AVAudioPlayer?
-    
+
     private var _sessionQueue: DispatchQueue!
-    
+
     private enum CaptureState {
         case idle, start, capturing, end
     }
-    
+
     private var captureState = CaptureState.idle
 
     override func viewDidLoad() {
         super.viewDidLoad()
         _sessionQueue = DispatchQueue(label: "si.scv.SCVideo.Record")
     }
-    
+
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         captureSession = AVCaptureSession()
         setUpInputs()
         setUpLivePreview()
         startCameraPreview()
+        // FixMe: for some reason this only works once
     }
-    
+
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         if captureSession.isRunning {
             captureSession.stopRunning()
         }
     }
-    
+
     private func setUpInputs(usingFrontCamera: Bool = false) {
         if captureSession.isRunning {
             captureSession.stopRunning()
@@ -75,7 +78,7 @@ class RecordViewController: UIViewController {
                 }
             }
         }
-        
+
         // make sure the rear camera and microphone are available
         guard let rearCamera = AVCaptureDevice.default(for: AVMediaType.video),
               let microphone = AVCaptureDevice.default(for: AVMediaType.audio)
@@ -83,7 +86,7 @@ class RecordViewController: UIViewController {
             print("Unable to access capture devices")
             return
         }
-        
+
         do {
             var cameraInput: AVCaptureDeviceInput?
             if usingFrontCamera {
@@ -102,7 +105,7 @@ class RecordViewController: UIViewController {
 
             let audioInput = try AVCaptureDeviceInput(device: microphone)
             let output = AVCaptureVideoDataOutput()
-            
+
             if captureSession.canAddInput(cameraInput!),
                captureSession.canAddInput(audioInput),
                captureSession.canAddOutput(output) {
@@ -111,7 +114,7 @@ class RecordViewController: UIViewController {
                 captureSession.addOutput(output)
                 videoDeviceInput = cameraInput!
                 _videoOutput = output
-                
+
                 _videoOutput.setSampleBufferDelegate(self, queue: _sessionQueue)
             }
         } catch {
@@ -119,7 +122,7 @@ class RecordViewController: UIViewController {
         }
         captureSession.commitConfiguration()
     }
-    
+
     private func setUpLivePreview() {
         videoPreviewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
         videoPreviewLayer.videoGravity = .resizeAspectFill
@@ -127,7 +130,7 @@ class RecordViewController: UIViewController {
         previewView.layer.insertSublayer(videoPreviewLayer, at: 0)
         videoPreviewLayer.frame = previewView.bounds
     }
-    
+
     /**
      Starts the capture session in the background
      */
@@ -137,34 +140,36 @@ class RecordViewController: UIViewController {
             self.captureSession?.startRunning()
         }
     }
-    
-    private func mergeSegmentsAndUseAsPost(clips _: [String]) {
-        DispatchQueue.main.async {
-            if let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
-                let filename = "\(self._filename).mov"
-                VideoCompositionWriter.mergeAudioVideo(dir, filename: filename, clips: self.clips) { success, outUrl in
-                    if success, let url = outUrl {
-                        self._finalAsset = AVURLAsset(url: url)
-                        self.performSegue(withIdentifier: "UploadRecorded", sender: self)
-                    }
-                }
 
-                self.indicateRecordingState()
+    private func mergeSegmentsAndUseAsPost(clips _: [URL]) {
+        DispatchQueue.main.async {
+            let dir = FileManager.default.temporaryDirectory
+            let filename = "\(self._filename).mov"
+            /*if let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
+                let filename = "\(self._filename).mov"*/
+            VideoCompositionWriter.mergeAudioVideo(dir, filename: filename, clips: self.clips) { success, outUrl in
+                if success, let url = outUrl {
+                    self._finalAsset = AVURLAsset(url: url)
+                    self.performSegue(withIdentifier: "UploadRecorded", sender: self)
+                }
             }
+
+            self.indicateRecordingState()
         }
     }
-    
+
     private func indicateRecordingState() {
         switch captureState {
         case .start, .capturing:
             recordButton.setImage(UIImage(named: "Recording Button"), for: .normal)
+            timeIndicator.alpha = CGFloat(integerLiteral: 1)
             startFlashingRecIndicator()
         default:
             recordButton.setImage(UIImage(named: "Record Button"), for: .normal)
             stopFlashingRecIndicator()
         }
     }
-    
+
 // MARK: - Control Actions
 
     @IBAction func recordPressed(_ sender: UIButton) {
@@ -177,18 +182,27 @@ class RecordViewController: UIViewController {
             break
         }
     }
-    
+
     @IBAction func flipCameraPressed(_ sender: UIButton) {
         _usingFrontCamera = !_usingFrontCamera
         setUpInputs(usingFrontCamera: _usingFrontCamera)
         startCameraPreview()
     }
-    
+
     @IBAction func deleteClipPressed(_ sender: UIButton) {
     }
-    
+
     @IBAction func useClipPressed(_ sender: Any) {
-        mergeSegmentsAndUseAsPost(clips: clips)
+        guard clips.count > 0 else { return }
+        #if ENABLE_MULTI_CLIP
+            mergeSegmentsAndUseAsPost(clips: clips)
+        #else
+            DispatchQueue.main.async {
+                self._finalAsset = AVURLAsset(url: self.clips.last!)
+                self.performSegue(withIdentifier: "UploadRecorded", sender: self)
+                self.indicateRecordingState()
+            }
+        #endif
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -201,27 +215,58 @@ class RecordViewController: UIViewController {
     }
 }
 
-// MARK: - Animations & Shit
+// MARK: - Animations & User Interface Updates
 extension RecordViewController {
-    
+
+    // FixMe: fix these opacity shenanigans
     private func startFlashingRecIndicator() {
-        recIndicator.alpha = CGFloat(integerLiteral: 1)
         UIView.animate(withDuration: 0.5,
                        delay: 0.0,
                        options: [.curveEaseInOut, .repeat, .autoreverse, .allowUserInteraction]) {
             self.recIndicator.alpha = 1.0
         }
+        //recIndicator.alpha = 1.0    // one's here
     }
-    
+
     private func stopFlashingRecIndicator() {
-        recIndicator.alpha = .zero
         UIView.animate(withDuration: 0.5,
                        delay: 0.0,
                        options: [.curveEaseInOut, .repeat, .autoreverse, .allowUserInteraction]) {
             self.recIndicator.alpha = 0.0
         }
+        //recIndicator.alpha = 0.0    // here's another
     }
-    
+
+    private func setTimeIndicator(toSeconds seconds: Int) {
+        let minutes = seconds / 60
+        let seconds = seconds % 60
+        timeIndicator.text = String(format: "%02d:%02d", minutes, seconds)
+    }
+
+    private func reloadClipsView() {
+        for subview in recordedClipsView.subviews {
+            subview.removeFromSuperview()
+        }
+        for clip in clips {
+            let template = UINib(nibName: "RecordedClipCell", bundle: nil)
+            guard let view = template.instantiate(withOwner: self, options: nil).first as? RecordedClipCell else {
+                continue
+            }
+            view.configure(forClip: AVAsset(url: clip))
+            recordedClipsView.addSubview(view)
+
+            //view.translatesAutoresizingMaskIntoConstraints = false
+            let lastSubview = recordedClipsView.subviews.last
+            NSLayoutConstraint.activate([
+                view.topAnchor.constraint(equalTo: recordedClipsView.topAnchor),
+                view.bottomAnchor.constraint(equalTo: recordedClipsView.bottomAnchor),
+                view.leadingAnchor.constraint(equalTo: lastSubview != nil
+                        ? lastSubview!.leadingAnchor
+                        : recordedClipsView.leadingAnchor),
+           ]);
+        }
+    }
+
 }
 
 // MARK: - Sample Buffer Delegate
@@ -233,47 +278,48 @@ extension RecordViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
             DispatchQueue.main.async {
                 self.indicateRecordingState()
             }
-            
+
             _filename = UUID().uuidString // uuid-based clip filename
-            clips.append("\(_filename).mov")
-            let videoPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
-                .appendingPathComponent("(\(_filename).mov")
-            
-            let writer = try! AVAssetWriter(outputURL: videoPath, fileType: .mov)
-            
+            let clipUrl = FileManager.default.temporaryDirectory.appendingPathComponent("(\(_filename).mov")
+            clips.append(clipUrl)
+            /*let videoPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+                .appendingPathComponent("(\(_filename).mov")*/
+            let writer = try! AVAssetWriter(outputURL: clipUrl, fileType: .mov)
+
             // AVAssetWriterInput is used to mix down the audio tracks
             let settings = _videoOutput!.recommendedVideoSettingsForAssetWriter(writingTo: .mov)
             let input = AVAssetWriterInput(mediaType: .video, outputSettings: settings)
             input.mediaTimeScale = CMTimeScale(bitPattern: 600)
             input.expectsMediaDataInRealTime = true
             input.transform = CGAffineTransform(rotationAngle: .pi / 2)
-            
+
             // append video samples as pixel buffers to the AVAssetWriterInput
             let adapter = AVAssetWriterInputPixelBufferAdaptor(assetWriterInput: input, sourcePixelBufferAttributes: nil)
             if writer.canAdd(input) {
                 writer.add(input)
             }
-            
+
             // start writing to the flash
             let startingTimeDelay = CMTimeMakeWithSeconds(0.5, preferredTimescale: 1_000_000_000)
             writer.startWriting()
             writer.startSession(atSourceTime: .zero + startingTimeDelay)
-            
+
             _assetWriter = writer
             _assetWriterInput = input
             _adapter = adapter
             captureState = .capturing
             _time = timestamp
         case .capturing:
-            // ToDo: UI changes
             if _assetWriterInput?.isReadyForMoreMediaData == true {
                 // append the sample buffer at the correct time
                 let time = CMTime(seconds: timestamp - _time, preferredTimescale: CMTimeScale(600))
                 _adapter?.append(CMSampleBufferGetImageBuffer(sampleBuffer)!,
                                  withPresentationTime: time)
             }
+            DispatchQueue.main.async {
+                self.setTimeIndicator(toSeconds: Int(timestamp - self._time))
+            }
         case .end:
-            // ToDo: UI changes
             // write the rest of the video file
             guard _assetWriterInput?.isReadyForMoreMediaData == true,
                   _assetWriter!.status != .failed else { break }
@@ -285,8 +331,8 @@ extension RecordViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
             }
             DispatchQueue.main.async {
                 self.indicateRecordingState()
+                self.reloadClipsView()
             }
-            break
         case .idle:
             DispatchQueue.main.async {
                 self.indicateRecordingState()

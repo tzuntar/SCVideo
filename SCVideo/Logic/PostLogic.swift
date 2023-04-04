@@ -9,10 +9,9 @@ import AVFoundation
 import Alamofire
 
 struct NewPostEntry {
-    let id_user: Int
     let type: String
     let videoFile: AVURLAsset
-    let title: String?
+    let title: String
     let description: String?
 }
 
@@ -124,7 +123,7 @@ class PostActionsLogic {
                    method: .post,
                    headers: authHeaders)
             .validate()
-            .response() { response in
+            .response { response in
                 if let safeResponse = response.response {
                     if safeResponse.statusCode == 200 {
                         post.is_liked = 1
@@ -142,7 +141,7 @@ class PostActionsLogic {
                    method: .post,
                    headers: authHeaders)
             .validate()
-            .response() { response in
+            .response { response in
                 if let safeResponse = response.response {
                     if safeResponse.statusCode == 200 {
                         post.is_liked = 0
@@ -177,10 +176,8 @@ class PostLogic {
         AF.upload(multipartFormData: { multiPart in
             multiPart.append(safeData, withName: "video",
                              fileName: newPostEntry.videoFile.url.lastPathComponent)
-            multiPart.append(String(newPostEntry.id_user).data(using: .utf8)!, withName: "id_user")
-            if let title = newPostEntry.title {
-                multiPart.append(title.data(using: .utf8)!, withName: title)
-            }
+            multiPart.append(String(AuthManager.shared.session!.user.id_user).data(using: .utf8)!, withName: "id_user")
+            multiPart.append(newPostEntry.title.data(using: .utf8)!, withName: "title")
             if let desc = newPostEntry.description {
                 multiPart.append(desc.data(using: .utf8)!, withName: "description")
             }
@@ -190,7 +187,7 @@ class PostLogic {
         .uploadProgress(queue: .main) { progress in
             print("Upload Progress: \(progress.fractionCompleted)")
         }
-        .response() { response in
+        .response { response in
             if let safeResponse = response.response {
                 self.handleError(forCode: safeResponse.statusCode)
             }
