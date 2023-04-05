@@ -17,15 +17,18 @@ class PostCell: UICollectionViewCell {
     
     private var player: AVPlayer?
     private var playerLayer: AVPlayerLayer?
-    
+
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        postImage.layer.cornerRadius = 8
+    }
+
     @objc func playPressed(_ sender: UIImageView) {
         guard let post = currentPost else { return }
-        let frame = self.postImage.frame
-    
         player = AVPlayer(url: URL(string: post.content_uri)!)
         playerLayer = AVPlayerLayer(player: player)
         let audioSession = AVAudioSession.sharedInstance()
-        playerLayer!.frame = frame
+        playerLayer!.frame = postImage.frame
         playerLayer!.videoGravity = .resizeAspectFill
         postView.layer.addSublayer(playerLayer!)
         player?.volume = 1
@@ -34,33 +37,24 @@ class PostCell: UICollectionViewCell {
     }
     
     func loadPost(_ post: Post) {
-        self.currentPost = post
+        currentPost = post
         DispatchQueue.global(qos: .background).async {
-            let loader = PostLoaderLogic(delegate: self)
-            loader.loadVideoPostThumbnail(forPost: post)
+            PostLoaderLogic.fetchVideoThumbnail(forPost: self.currentPost!) { image, error in
+                guard let image = image, error == nil else {
+                    print(error!)
+                    DispatchQueue.main.async {
+                        self.postImage.image = UIImage(named: "No File")
+                    }
+                    return
+                }
+                DispatchQueue.main.async {
+                    self.postImage.image = UIImage(cgImage: image)
+                    let tap = UITapGestureRecognizer(target: self, action: #selector(PostCell.playPressed))
+                    self.postImage.addGestureRecognizer(tap)
+                    self.postImage.isUserInteractionEnabled = true
+                }
+            }
         }
     }
 
-}
-
-// MARK: - Post Loading
-
-extension PostCell: PostLoaderDelegate {
-    
-    func didLoadVideoThumbnail(_ image: CGImage) {
-        DispatchQueue.main.async {
-            self.postImage.image = UIImage(cgImage: image)
-            let tap = UITapGestureRecognizer(target: self, action: #selector(PostCell.playPressed))
-            self.postImage.addGestureRecognizer(tap)
-            self.postImage.isUserInteractionEnabled = true
-        }
-    }
-    
-    func didLoadingFailWithError(_ error: Error) {
-        print(error)
-        DispatchQueue.main.async {
-            self.postImage.image = UIImage(named: "No File")
-        }
-    }
-    
 }

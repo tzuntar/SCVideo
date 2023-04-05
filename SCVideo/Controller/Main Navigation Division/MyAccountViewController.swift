@@ -14,7 +14,7 @@ class MyAccountViewController: UIViewController {
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var schoolLabel: UILabel!
     @IBOutlet weak var bioTextBox: UITextView!
-    @IBOutlet weak var postsCollectionView: UICollectionView!
+    @IBOutlet weak var postsTableView: UITableView!
     
     private var currentUser: User?
     private var userPosts: [Post]?
@@ -22,9 +22,16 @@ class MyAccountViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         currentUser = AuthManager.shared.session!.user
-        
+        postsTableView.delegate = self
+        postsTableView.dataSource = self
+        postsTableView.register(UINib(nibName: "EditablePostCell", bundle: nil),
+                                forCellReuseIdentifier: "EditablePostCell")
+
         profilePic.layer.cornerRadius = profilePic.layer.frame.height / 2
-        
+        bioTextBox.layer.borderWidth = 3
+        bioTextBox.layer.borderColor = UIColor(named: "DescriptionTextLabel")?.cgColor
+        bioTextBox.layer.cornerRadius = 8
+
         nameLabel.text = currentUser!.full_name
         usernameLabel.text = "@\(currentUser!.username)"
         bioTextBox.text = currentUser!.bio
@@ -48,29 +55,45 @@ class MyAccountViewController: UIViewController {
     private func fetchUserPosts() {
         PostLoaderLogic.loadPostsForUser(currentUser!) { (posts: [Post]?) in
             self.userPosts = posts
-            self.postsCollectionView.reloadData()
+            self.postsTableView.reloadData()
         }
     }
 }
 
-extension MyAccountViewController: UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+extension MyAccountViewController: UITableViewDataSource {
+
+    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard let posts = userPosts else { return 0 }
         return posts.count
     }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PostCell", for: indexPath) as! PostCell
+
+    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "EditablePostCell", for: indexPath) as! EditablePostCell
         guard let posts = userPosts else { return cell }
-        cell.loadPost(posts[indexPath.item])
+        cell.configure(for: posts[indexPath.item])
         return cell
     }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let leftAndRightPaddings: CGFloat = 45.0
-        let numberOfItemsPerRow: CGFloat = 4.0
-        let width = (collectionView.frame.width - leftAndRightPaddings) / numberOfItemsPerRow
-        return CGSize(width: width, height: width)
+
+}
+
+extension MyAccountViewController: UITableViewDelegate {
+
+    private func handleDelete(_ post: Post) {
+        PostActionsLogic.delete(post) { deleted in
+            if !deleted { return }
+            self.userPosts?.removeAll(where: { $0.id_post == post.id_post })
+            self.postsTableView.reloadData()
+        }
+    }
+
+    public func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let delete = UIContextualAction(style: .destructive, title: "Delete") { [weak self] (action, view, completion) in
+            guard let self = self else { return }
+            let post = self.userPosts![indexPath.item]
+            self.handleDelete(post)
+            completion(true)
+        }
+        delete.backgroundColor = .red
+        return UISwipeActionsConfiguration(actions: [delete])
     }
 }

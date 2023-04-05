@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="NunitoSans-Bold.ttf">
+            <string>NunitoSans-Bold</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="150" id="gad-6p-3O7" customClass="EditablePostCell" customModule="SCVideo" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="150"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="gad-6p-3O7" id="0An-TF-2ga">
+                <rect key="frame" x="0.0" y="0.0" width="393" height="150"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="File Pending" translatesAutoresizingMaskIntoConstraints="NO" id="PD7-pg-UkU">
+                        <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="150" id="TkY-pR-nii"/>
+                            <constraint firstAttribute="height" constant="150" id="ofH-5x-uDB"/>
+                        </constraints>
+                    </imageView>
+                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="xZ6-IC-cDv">
+                        <rect key="frame" x="170" y="0.0" width="223" height="150"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Post Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nEa-DX-ud0">
+                                <rect key="frame" x="0.0" y="0.0" width="223" height="32"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="32" id="vGD-De-hin"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="NunitoSans-Bold" family="Nunito Sans" pointSize="20"/>
+                                <color key="textColor" name="HeadingTextLabel"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Post Description" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2rI-eh-YYa">
+                                <rect key="frame" x="0.0" y="32" width="223" height="86"/>
+                                <fontDescription key="fontDescription" name="NunitoSans-Bold" family="Nunito Sans" pointSize="20"/>
+                                <color key="textColor" name="DescriptionTextLabel"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1/1/00 00:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nSf-lq-Tiq">
+                                <rect key="frame" x="0.0" y="118" width="223" height="32"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="32" id="lE0-OC-Ds1"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="NunitoSans-Bold" family="Nunito Sans" pointSize="20"/>
+                                <color key="textColor" name="DescriptionTextLabel"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                    </stackView>
+                </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                <constraints>
+                    <constraint firstItem="PD7-pg-UkU" firstAttribute="leading" secondItem="0An-TF-2ga" secondAttribute="leading" id="RB2-7U-xKE"/>
+                    <constraint firstItem="xZ6-IC-cDv" firstAttribute="leading" secondItem="PD7-pg-UkU" secondAttribute="trailing" constant="20" id="TGG-fc-AIj"/>
+                    <constraint firstAttribute="bottom" secondItem="xZ6-IC-cDv" secondAttribute="bottom" id="iUW-mh-YlN"/>
+                    <constraint firstItem="xZ6-IC-cDv" firstAttribute="top" secondItem="0An-TF-2ga" secondAttribute="top" id="oht-HL-hjM"/>
+                    <constraint firstAttribute="trailing" secondItem="xZ6-IC-cDv" secondAttribute="trailing" id="sK3-VE-rF2"/>
+                    <constraint firstAttribute="bottom" secondItem="PD7-pg-UkU" secondAttribute="bottom" id="uBB-yI-vHw"/>
+                    <constraint firstItem="PD7-pg-UkU" firstAttribute="top" secondItem="0An-TF-2ga" secondAttribute="top" id="v5S-K9-qms"/>
+                </constraints>
+            </tableViewCellContentView>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <connections>
+                <outlet property="postDescription" destination="2rI-eh-YYa" id="nRE-5X-5Q1"/>
+                <outlet property="postThumbnail" destination="PD7-pg-UkU" id="KHS-PQ-bRl"/>
+                <outlet property="postTimestamp" destination="nSf-lq-Tiq" id="VAM-5T-QUK"/>
+                <outlet property="postTitle" destination="nEa-DX-ud0" id="5rB-2b-ooA"/>
+            </connections>
+            <point key="canvasLocation" x="130.53435114503816" y="0.0"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="File Pending" width="237" height="176"/>
+        <namedColor name="DescriptionTextLabel">
+            <color red="0.75800001621246338" green="0.7850000262260437" blue="0.8970000147819519" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="HeadingTextLabel">
+            <color red="1" green="0.99599999189376831" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

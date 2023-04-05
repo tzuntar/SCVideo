@@ -26,6 +26,7 @@ class SettingsHelper {
     
     static func getApiUrl() -> String {
         let url : String? = UserDefaults.standard.string(forKey: SettingsBundleKeys.ApiUrlKey)
-        return url != nil ? url! : "http://192.168.64.7:3000"
+        let defaultUrl = Bundle.main.object(forInfoDictionaryKey: "DEFAULT_SERVER_IP") as? String
+        return url != nil ? url! : (defaultUrl != nil ? defaultUrl! : "http://localhost:3000")
     }
 }

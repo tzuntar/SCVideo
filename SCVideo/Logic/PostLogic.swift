@@ -152,6 +152,23 @@ class PostActionsLogic {
                 }
             }
     }
+
+    static func delete(_ post: Post, completion: @escaping (Bool) -> Void) {
+        guard let authHeaders = AuthManager.shared.getAuthHeaders() else { return }
+        guard post.user?.id_user == AuthManager.shared.session?.user.id_user else { return }
+            AF.request(APIURL + "/posts/" + String(post.id_post),
+                   method: .delete,
+                   headers: authHeaders)
+            .validate()
+            .response { response in
+                if let safeResponse = response.response {
+                    if safeResponse.statusCode == 200 {
+                        completion(true)
+                    } else {
+                        completion(false)
+                    }
+                }
+            } }
     
     private func handleError(forCode responseCode: Int) {
         switch responseCode {

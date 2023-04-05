@@ -101,7 +101,7 @@ class UploadViewController: UIViewController, UINavigationControllerDelegate {
             if let fileSize = PostLogic.getAssetSize(forLocalUrl: asset.url) {  // 0 MB, 00:00
                 let size = String(format: "%.2f", Double(fileSize) / 1024 / 1024)
                 fileSizeLabel.text = size + " MB, " +
-                    String(format: "%02i min. %02i sek.", minutes, seconds)
+                    String(format: "%02i:%02i", minutes, seconds)
             } else {    // No file size available, use format 00:00
                 fileSizeLabel.text = String(format: "%02i:%02i", minutes, seconds)
             }

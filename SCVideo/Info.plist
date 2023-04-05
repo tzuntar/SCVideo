@@ -36,6 +36,8 @@
 	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>DEFAULT_SERVER_IP</key>
+	<string>http://$(DEFAULT_SERVER_IP)</string>
 	<key>MSAL_CLIENT_ID</key>
 	<string>$(MSAL_CLIENT_ID)</string>
 	<key>NSAppTransportSecurity</key>

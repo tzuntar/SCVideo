@@ -28,7 +28,7 @@ class UserProfileViewController: UIViewController {
                                      forCellWithReuseIdentifier: "PostCell")
 
         userBio.layer.borderWidth = 3
-        userBio.layer.borderColor = UIColor.white.cgColor
+        userBio.layer.borderColor = UIColor(named: "DescriptionTextLabel")?.cgColor
         userBio.layer.cornerRadius = 8
         userPhoto.layer.cornerRadius = userPhoto.layer.frame.height / 2
 
@@ -36,6 +36,11 @@ class UserProfileViewController: UIViewController {
             userName.text = user.full_name
             userUsername.text = "@\(user.username)"
             userBio.text = user.bio
+            if user.bio == nil || user.bio == "" {
+                userBio.text = "Ni opisa"
+                userBio.font = UIFont(name: "NunitoSans-SemiBoldItalic", size: 17.0)
+                userBio.textColor = UIColor(named: "DescriptionTextLabel")
+            }
             
             if let photo = user.photo_uri {
                 userPhoto.loadFrom(URLAddress: "\(APIURL)/images/profile/\(photo)")
@@ -89,8 +94,8 @@ extension UserProfileViewController: UICollectionViewDataSource {
 extension UserProfileViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let leftAndRightPaddings: CGFloat = 10.0
-        let numberOfItemsPerRow: CGFloat = 4.0
+        let leftAndRightPaddings: CGFloat = 20.0
+        let numberOfItemsPerRow: CGFloat = 2.0
         let width = (collectionView.frame.width - leftAndRightPaddings) / numberOfItemsPerRow
         return CGSize(width: width, height: width)
     }

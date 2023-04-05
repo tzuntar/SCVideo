@@ -8,9 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		1953684D948A36F26D1EF654 /* Pods_SCVideo_SCVideoUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E054E39AC7D1244EEF14261 /* Pods_SCVideo_SCVideoUITests.framework */; };
+		1BCE00B487F148F09FC29D94 /* EditablePostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BCE09D94A2D6A445C68DE7F /* EditablePostCell.swift */; };
 		1BCE049F72991AE7A0BE8F9B /* CommonExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BCE007066848E27210E8034 /* CommonExtensions.swift */; };
 		1BCE05383E68CD949A4F26A0 /* RecordedClipCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BCE036D76ED4977E647B1A9 /* RecordedClipCell.swift */; };
 		1BCE07BC93FEC8C6D284A156 /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BCE0CEDEE0CF7E7555DF5EC /* UserCell.swift */; };
+		1BCE0B642ED185295E462029 /* DateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BCE03C8AAC6A09A7EEBDE8E /* DateHelper.swift */; };
 		1BCE0C1DD2C6C4A7E5E9D5E2 /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BCE0F85A7EC9DFB65CBEC13 /* CommentCell.swift */; };
 		1BCE0C6615D23387560DB363 /* CommentsLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BCE07C1B8BF1B61A28BE6BD /* CommentsLogic.swift */; };
 		1BCE0DBD3AC115AA5D90F4E2 /* PostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BCE07668822A3437646AA5C /* PostCell.swift */; };
@@ -52,6 +54,7 @@
 		2778006129CCF06C00BC8ACD /* KeychainHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2778006029CCF06C00BC8ACD /* KeychainHelper.swift */; };
 		2783010D29D96D4D0024D341 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2783010C29D96D4D0024D341 /* Login.storyboard */; };
 		2783010F29D9DF440024D341 /* RecordedClipCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2783010E29D9DF440024D341 /* RecordedClipCell.xib */; };
+		2783011329DD98110024D341 /* EditablePostCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2783011229DD98100024D341 /* EditablePostCell.xib */; };
 		2789E79429B91C04004004DF /* PostProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2789E79329B91C04004004DF /* PostProtocols.swift */; };
 		27A6150229114CCB0017FC87 /* RecordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A6150129114CCB0017FC87 /* RecordViewController.swift */; };
 		27A61507291159BA0017FC87 /* PostLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A61506291159BA0017FC87 /* PostLogic.swift */; };
@@ -100,8 +103,10 @@
 		081C4F1C21E37384C582B8D1 /* Pods_SCVideo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SCVideo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1BCE007066848E27210E8034 /* CommonExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommonExtensions.swift; sourceTree = "<group>"; };
 		1BCE036D76ED4977E647B1A9 /* RecordedClipCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordedClipCell.swift; sourceTree = "<group>"; };
+		1BCE03C8AAC6A09A7EEBDE8E /* DateHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateHelper.swift; sourceTree = "<group>"; };
 		1BCE07668822A3437646AA5C /* PostCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostCell.swift; sourceTree = "<group>"; };
 		1BCE07C1B8BF1B61A28BE6BD /* CommentsLogic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentsLogic.swift; sourceTree = "<group>"; };
+		1BCE09D94A2D6A445C68DE7F /* EditablePostCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditablePostCell.swift; sourceTree = "<group>"; };
 		1BCE0CEDEE0CF7E7555DF5EC /* UserCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
 		1BCE0F85A7EC9DFB65CBEC13 /* CommentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentCell.swift; sourceTree = "<group>"; };
 		26D066E3E72BEECB68158CF6 /* Pods-SCVideo-SCVideoUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SCVideo-SCVideoUITests.release.xcconfig"; path = "Target Support Files/Pods-SCVideo-SCVideoUITests/Pods-SCVideo-SCVideoUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -153,6 +158,7 @@
 		2778006029CCF06C00BC8ACD /* KeychainHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainHelper.swift; sourceTree = "<group>"; };
 		2783010C29D96D4D0024D341 /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		2783010E29D9DF440024D341 /* RecordedClipCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RecordedClipCell.xib; sourceTree = "<group>"; };
+		2783011229DD98100024D341 /* EditablePostCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EditablePostCell.xib; sourceTree = "<group>"; };
 		2789E79329B91C04004004DF /* PostProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostProtocols.swift; sourceTree = "<group>"; };
 		27A6150129114CCB0017FC87 /* RecordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordViewController.swift; sourceTree = "<group>"; };
 		27A61506291159BA0017FC87 /* PostLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostLogic.swift; sourceTree = "<group>"; };
@@ -224,6 +230,7 @@
 				1BCE07668822A3437646AA5C /* PostCell.swift */,
 				1BCE036D76ED4977E647B1A9 /* RecordedClipCell.swift */,
 				1BCE0CEDEE0CF7E7555DF5EC /* UserCell.swift */,
+				1BCE09D94A2D6A445C68DE7F /* EditablePostCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -379,6 +386,7 @@
 				271DAF81290C742300E7346B /* CommentCell.xib */,
 				276EB4DC291039CA00CB6C77 /* UserCell.xib */,
 				2783010E29D9DF440024D341 /* RecordedClipCell.xib */,
+				2783011229DD98100024D341 /* EditablePostCell.xib */,
 			);
 			path = "Table Controls";
 			sourceTree = "<group>";
@@ -433,6 +441,7 @@
 				2701A1A429AB5E6E00FEA390 /* SCVideo-Bridging-Header.h */,
 				271CAAD629B67C8400BA9242 /* EZSwipeController.swift */,
 				2728657029C994B1002F747A /* SettingsHelper.swift */,
+				1BCE03C8AAC6A09A7EEBDE8E /* DateHelper.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -592,6 +601,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				27BBA0BE29A6A17E004CB7BD /* NunitoSans-ExtraLightItalic.ttf in Resources */,
+				2783011329DD98110024D341 /* EditablePostCell.xib in Resources */,
 				2701A1B529AB5F5900FEA390 /* PostDetails.xib in Resources */,
 				27BBA0C529A6A17E004CB7BD /* NunitoSans-LightItalic.ttf in Resources */,
 				272521B029ABC0AB00219572 /* PostControls.xib in Resources */,
@@ -782,6 +792,8 @@
 				1BCE0DBD3AC115AA5D90F4E2 /* PostCell.swift in Sources */,
 				1BCE05383E68CD949A4F26A0 /* RecordedClipCell.swift in Sources */,
 				1BCE07BC93FEC8C6D284A156 /* UserCell.swift in Sources */,
+				1BCE00B487F148F09FC29D94 /* EditablePostCell.swift in Sources */,
+				1BCE0B642ED185295E462029 /* DateHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

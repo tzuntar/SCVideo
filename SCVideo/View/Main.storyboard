@@ -96,8 +96,11 @@
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="40" id="2TT-fx-tZ4"/>
                                                 </constraints>
+                                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                                <state key="normal" image="AddFriendButton"/>
+                                                <state key="normal" image="AddFriendButton">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
                                             </button>
                                         </subviews>
                                     </stackView>
@@ -111,7 +114,7 @@
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="faS-hZ-xGy">
-                                        <rect key="frame" x="20" y="274.66666666666674" width="348" height="485.33333333333326"/>
+                                        <rect key="frame" x="20" y="274.66666666666674" width="348" height="505.33333333333326"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="GuN-DO-OrF">
                                             <size key="itemSize" width="128" height="128"/>
@@ -126,7 +129,7 @@
                                 <constraints>
                                     <constraint firstItem="faS-hZ-xGy" firstAttribute="leading" secondItem="9rV-Sh-DYR" secondAttribute="leading" constant="20" id="0Lb-O3-H7j"/>
                                     <constraint firstItem="rl5-85-LlK" firstAttribute="leading" secondItem="9rV-Sh-DYR" secondAttribute="leading" constant="20" id="398-XK-Z2H"/>
-                                    <constraint firstItem="9rV-Sh-DYR" firstAttribute="bottom" secondItem="faS-hZ-xGy" secondAttribute="bottom" constant="30" id="Dfn-LT-jPJ"/>
+                                    <constraint firstItem="9rV-Sh-DYR" firstAttribute="bottom" secondItem="faS-hZ-xGy" secondAttribute="bottom" constant="10" id="Dfn-LT-jPJ"/>
                                     <constraint firstItem="kZy-m7-dDV" firstAttribute="leading" secondItem="9rV-Sh-DYR" secondAttribute="leading" constant="20" id="FWV-Xa-4eh"/>
                                     <constraint firstItem="rl5-85-LlK" firstAttribute="top" secondItem="kZy-m7-dDV" secondAttribute="bottom" constant="20" id="GJp-cN-nlW"/>
                                     <constraint firstItem="9rV-Sh-DYR" firstAttribute="trailing" secondItem="faS-hZ-xGy" secondAttribute="trailing" constant="20" id="Kwv-hQ-vOm"/>
@@ -321,30 +324,24 @@
                                         <fontDescription key="fontDescription" name="NunitoSans-SemiBold" family="Nunito Sans" pointSize="18"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
-                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Uhm-95-agj">
-                                        <rect key="frame" x="20" y="284.66666666666674" width="348" height="475.33333333333326"/>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="ENx-Fu-KNt">
-                                            <size key="itemSize" width="128" height="128"/>
-                                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                        </collectionViewFlowLayout>
-                                        <cells/>
-                                    </collectionView>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Ucq-8w-Fpm">
+                                        <rect key="frame" x="20" y="284.66666666666674" width="348" height="495.33333333333326"/>
+                                        <color key="backgroundColor" name="Background"/>
+                                        <color key="separatorColor" name="Background"/>
+                                    </tableView>
                                 </subviews>
                                 <viewLayoutGuide key="safeArea" id="xeg-ak-pge"/>
                                 <constraints>
-                                    <constraint firstItem="Uhm-95-agj" firstAttribute="top" secondItem="oV5-1j-jb7" secondAttribute="bottom" constant="20" id="2Xb-iu-wrD"/>
-                                    <constraint firstItem="Uhm-95-agj" firstAttribute="leading" secondItem="xeg-ak-pge" secondAttribute="leading" constant="20" id="FFM-xD-zLB"/>
+                                    <constraint firstItem="Ucq-8w-Fpm" firstAttribute="top" secondItem="oV5-1j-jb7" secondAttribute="bottom" constant="20" id="Bjb-TD-Wex"/>
                                     <constraint firstItem="Oxf-2V-1eC" firstAttribute="leading" secondItem="xeg-ak-pge" secondAttribute="leading" constant="20" id="Gsw-hl-7Uf"/>
                                     <constraint firstItem="oV5-1j-jb7" firstAttribute="top" secondItem="Oxf-2V-1eC" secondAttribute="bottom" constant="20" id="HJm-sp-7sk"/>
-                                    <constraint firstItem="xeg-ak-pge" firstAttribute="bottom" secondItem="Uhm-95-agj" secondAttribute="bottom" constant="30" id="IVU-mv-UyD"/>
+                                    <constraint firstItem="Ucq-8w-Fpm" firstAttribute="leading" secondItem="xeg-ak-pge" secondAttribute="leading" constant="20" id="HlB-42-yXF"/>
                                     <constraint firstItem="xeg-ak-pge" firstAttribute="trailing" secondItem="oV5-1j-jb7" secondAttribute="trailing" constant="20" id="Lh6-QU-9wL"/>
+                                    <constraint firstItem="xeg-ak-pge" firstAttribute="bottom" secondItem="Ucq-8w-Fpm" secondAttribute="bottom" constant="10" id="POz-KM-Hum"/>
                                     <constraint firstItem="oV5-1j-jb7" firstAttribute="leading" secondItem="xeg-ak-pge" secondAttribute="leading" constant="20" id="R2g-8p-ttE"/>
                                     <constraint firstItem="xeg-ak-pge" firstAttribute="trailing" secondItem="Oxf-2V-1eC" secondAttribute="trailing" constant="20" id="fHn-CO-ebq"/>
+                                    <constraint firstAttribute="trailing" secondItem="Ucq-8w-Fpm" secondAttribute="trailing" constant="20" id="mtw-m3-vh2"/>
                                     <constraint firstItem="Oxf-2V-1eC" firstAttribute="top" secondItem="xeg-ak-pge" secondAttribute="top" constant="30" id="yBa-GT-upz"/>
-                                    <constraint firstItem="xeg-ak-pge" firstAttribute="trailing" secondItem="Uhm-95-agj" secondAttribute="trailing" constant="20" id="yTv-Ia-BbV"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -355,7 +352,7 @@
                     <connections>
                         <outlet property="bioTextBox" destination="oV5-1j-jb7" id="mpA-Z4-6ax"/>
                         <outlet property="nameLabel" destination="4wK-1n-opK" id="wSB-7S-iso"/>
-                        <outlet property="postsCollectionView" destination="Uhm-95-agj" id="6ea-wk-wsx"/>
+                        <outlet property="postsTableView" destination="Ucq-8w-Fpm" id="sc3-sl-eEm"/>
                         <outlet property="profilePic" destination="hvc-MW-kiK" id="fQX-p1-AQQ"/>
                         <outlet property="schoolLabel" destination="D2V-Ci-598" id="6Fb-XI-Lpg"/>
                         <outlet property="usernameLabel" destination="gel-m8-kdp" id="5m5-2N-hS5"/>
@@ -394,7 +391,11 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fUV-na-e54" userLabel="Use Clip Button">
-                                                <rect key="frame" x="330" y="682" width="25" height="22"/>
+                                                <rect key="frame" x="325" y="679" width="30" height="30"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="30" id="6MN-l6-sEW"/>
+                                                    <constraint firstAttribute="height" constant="30" id="qkA-sZ-kj9"/>
+                                                </constraints>
                                                 <state key="normal" image="Check"/>
                                                 <connections>
                                                     <action selector="useClipPressed:" destination="vpu-Mw-GyL" eventType="touchUpInside" id="uCl-yW-Ydg"/>
@@ -429,7 +430,7 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceHorizontal="YES" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MK8-ld-9w5">
+                                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" alwaysBounceHorizontal="YES" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MK8-ld-9w5">
                                                 <rect key="frame" x="35" y="554" width="320" height="77"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YfY-bO-MPb">
@@ -454,7 +455,7 @@
                                             <constraint firstItem="MK8-ld-9w5" firstAttribute="leading" secondItem="SGd-YM-oWy" secondAttribute="leading" constant="35" id="0Yg-Yq-XTz"/>
                                             <constraint firstItem="uui-C7-PgR" firstAttribute="top" secondItem="SGd-YM-oWy" secondAttribute="top" constant="30" id="2c8-Jb-VwD"/>
                                             <constraint firstItem="hTQ-bK-mtt" firstAttribute="top" secondItem="MK8-ld-9w5" secondAttribute="bottom" constant="30" id="EZQ-2F-zqV"/>
-                                            <constraint firstAttribute="bottom" secondItem="fUV-na-e54" secondAttribute="bottom" constant="50" id="J4z-3y-M2Y"/>
+                                            <constraint firstAttribute="bottom" secondItem="fUV-na-e54" secondAttribute="bottom" constant="45" id="J4z-3y-M2Y"/>
                                             <constraint firstAttribute="bottom" secondItem="tY0-Tc-Vhr" secondAttribute="bottom" constant="45" id="LI5-eP-ef4"/>
                                             <constraint firstItem="iWE-hn-9lx" firstAttribute="leading" secondItem="SGd-YM-oWy" secondAttribute="leading" constant="35" id="N4z-kZ-Q5x"/>
                                             <constraint firstItem="iWE-hn-9lx" firstAttribute="top" secondItem="SGd-YM-oWy" secondAttribute="top" constant="30" id="QL0-HC-qe5"/>
@@ -519,7 +520,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Objavi posnetek" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QFC-cu-e2o">
-                                <rect key="frame" x="10" y="60" width="370" height="30"/>
+                                <rect key="frame" x="10" y="45" width="370" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="iHK-gL-1w9"/>
                                 </constraints>
@@ -557,25 +558,16 @@
                                     <constraint firstItem="3Ju-Mp-skn" firstAttribute="top" secondItem="lDG-pz-DmA" secondAttribute="top" id="vDg-qI-ag7"/>
                                 </constraints>
                             </view>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Z0E-GT-UOK">
-                                <rect key="frame" x="20" y="130" width="350" height="515"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Z0E-GT-UOK">
+                                <rect key="frame" x="20" y="115" width="350" height="530"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="UAl-l9-TDP">
-                                        <rect key="frame" x="0.0" y="0.0" width="350" height="248"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="350" height="200"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Izbran videoposnetek" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IIM-sd-ejM">
-                                                <rect key="frame" x="0.0" y="0.0" width="350" height="28"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="28" id="wJF-vC-lrE"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" name="NunitoSans-SemiBold" family="Nunito Sans" pointSize="20"/>
-                                                <color key="textColor" name="HeadingTextLabel"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="gbC-E4-Cb9" userLabel="Video Details View">
-                                                <rect key="frame" x="0.0" y="48" width="350" height="200"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="350" height="200"/>
                                                 <subviews>
-                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Loading" translatesAutoresizingMaskIntoConstraints="NO" id="xfA-5q-LyB">
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="File Pending" translatesAutoresizingMaskIntoConstraints="NO" id="xfA-5q-LyB">
                                                         <rect key="frame" x="0.0" y="0.0" width="165" height="200"/>
                                                     </imageView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="N9Q-2m-ETM">
@@ -587,7 +579,7 @@
                                                                 <color key="textColor" name="DescriptionTextLabel"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0 MB, 0 sekund" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jWT-Lp-m6w">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0 MB, 00:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jWT-Lp-m6w">
                                                                 <rect key="frame" x="0.0" y="178" width="165" height="22"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="22" id="w23-Oj-67t"/>
@@ -605,17 +597,22 @@
                                             </stackView>
                                         </subviews>
                                     </stackView>
-                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Naslov objave" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vfJ-pJ-9Ua">
-                                        <rect key="frame" x="0.0" y="258" width="350" height="50"/>
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Naslovi objavo" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vfJ-pJ-9Ua">
+                                        <rect key="frame" x="0.0" y="220" width="350" height="50"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="jAU-rE-J0q"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="NunitoSans-SemiBold" family="Nunito Sans" pointSize="17"/>
                                         <textInputTraits key="textInputTraits"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="placeholderLabel.textColor">
+                                                <color key="value" name="DescriptionTextLabel"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
                                     </textField>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ldp-GH-v9e">
-                                        <rect key="frame" x="0.0" y="318" width="350" height="197"/>
+                                        <rect key="frame" x="0.0" y="290" width="350" height="240"/>
                                         <subviews>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5ze-hE-24F">
                                                 <rect key="frame" x="0.0" y="0.0" width="350" height="159"/>
@@ -623,12 +620,12 @@
                                                 <fontDescription key="fontDescription" name="NunitoSans-SemiBold" family="Nunito Sans" pointSize="17"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="no"/>
                                             </textView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Po želji dopiši opis videoposnetka" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Naf-RZ-2sU">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Po želji dopiši opis" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Naf-RZ-2sU">
                                                 <rect key="frame" x="8" y="10" width="334" height="28"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="28" id="y6S-xB-2NF"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" name="NunitoSans-SemiBoldItalic" family="Nunito Sans" pointSize="16"/>
+                                                <fontDescription key="fontDescription" name="NunitoSans-SemiBoldItalic" family="Nunito Sans" pointSize="17"/>
                                                 <color key="textColor" name="DescriptionTextLabel"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
@@ -653,7 +650,7 @@
                             <constraint firstItem="uKU-2t-YAA" firstAttribute="bottom" secondItem="lDG-pz-DmA" secondAttribute="bottom" constant="40" id="Xm2-xN-4J9"/>
                             <constraint firstItem="uKU-2t-YAA" firstAttribute="trailing" secondItem="QFC-cu-e2o" secondAttribute="trailing" constant="10" id="cMa-O6-ZhO"/>
                             <constraint firstItem="QFC-cu-e2o" firstAttribute="leading" secondItem="uKU-2t-YAA" secondAttribute="leading" constant="10" id="ghu-so-WIt"/>
-                            <constraint firstItem="QFC-cu-e2o" firstAttribute="top" secondItem="tPu-pl-hxS" secondAttribute="top" constant="60" id="koo-bL-abL"/>
+                            <constraint firstItem="QFC-cu-e2o" firstAttribute="top" secondItem="tPu-pl-hxS" secondAttribute="top" constant="45" id="koo-bL-abL"/>
                             <constraint firstAttribute="trailing" secondItem="Z0E-GT-UOK" secondAttribute="trailing" constant="20" id="sO0-br-Q8m"/>
                             <constraint firstItem="lDG-pz-DmA" firstAttribute="leading" secondItem="uKU-2t-YAA" secondAttribute="leading" constant="20" id="vlO-6f-bBA"/>
                         </constraints>
@@ -671,7 +668,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Wpu-rh-G2X" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1652" y="1576"/>
+            <point key="canvasLocation" x="1650.7692307692307" y="1575.3554502369668"/>
         </scene>
         <!--Friends View Controller-->
         <scene sceneID="hzx-Kb-OgR">
@@ -804,9 +801,9 @@
         <image name="ButtonForward" width="154" height="62"/>
         <image name="Camera" width="24" height="15"/>
         <image name="Check" width="25" height="16"/>
+        <image name="File Pending" width="237" height="176"/>
         <image name="Flip Camera Button" width="26" height="32"/>
         <image name="Friends" width="26" height="26"/>
-        <image name="Loading" width="237" height="176"/>
         <image name="Record Button" width="63" height="63"/>
         <image name="Recording Tag" width="65" height="19"/>
         <image name="SearchButton" width="37" height="36"/>
