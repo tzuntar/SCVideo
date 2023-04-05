@@ -12,7 +12,7 @@ import JWTDecode
 class AuthManager {
     static var shared = AuthManager()
 
-    private let refreshURL = "\(APIURL)/refresh"
+    private let refreshURL = "\(APIURL)/auth/refresh"
     private let keychainService = "SCVideo"
     private let keychainAccount = "token"
 

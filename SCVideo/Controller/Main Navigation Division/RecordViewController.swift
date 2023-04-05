@@ -54,7 +54,6 @@ class RecordViewController: UIViewController {
         setUpInputs()
         setUpLivePreview()
         startCameraPreview()
-        // FixMe: for some reason this only works once
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -62,6 +61,7 @@ class RecordViewController: UIViewController {
         if captureSession.isRunning {
             captureSession.stopRunning()
         }
+        removeLivePreview()
     }
 
     private func setUpInputs(usingFrontCamera: Bool = false) {
@@ -129,6 +129,10 @@ class RecordViewController: UIViewController {
         videoPreviewLayer.connection?.videoOrientation = .portrait
         previewView.layer.insertSublayer(videoPreviewLayer, at: 0)
         videoPreviewLayer.frame = previewView.bounds
+    }
+
+    private func removeLivePreview() {
+        videoPreviewLayer.removeFromSuperlayer()
     }
 
     /**
