@@ -10,22 +10,22 @@ import UIKit
 class PostControlsView: UIView {
     
     @IBOutlet var contentView: UIView!
-    @IBOutlet weak var likeButton: UIButton!
-    @IBOutlet weak var likeCountLabel: UILabel!
-    @IBOutlet weak var commentCountLabel: UILabel!
-    
+    @IBOutlet weak var likeButtonIcon: UIImageView!
+    //@IBOutlet weak var likeCountLabel: UILabel!
+    //@IBOutlet weak var commentCountLabel: UILabel!
+
     private let _CONTENT_XIB_NAME = "PostControls"
-    private var _delegate: PostNodeActionDelegate?
-    private var _post: Post?
+    private var delegate: PostNodeActionDelegate?
+    private var currentPost: Post?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.initialize()
+        initialize()
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        self.initialize()
+        initialize()
     }
     
     private func initialize() {
@@ -34,38 +34,38 @@ class PostControlsView: UIView {
     }
     
     public func setPost(post: Post) {
-        self._post = post
+        currentPost = post
         if post.user!.id_user == AuthManager.shared.session!.user.id_user {
-            likeCountLabel.isHidden = false
+            //likeCountLabel.isHidden = false
             //likeCountLabel.text = like_count
         }
-        likeButton.setImage(UIImage.init(named: (post.is_liked == 0) ? "Like" : "Liked"),
-                            for: .normal)
+        likeButtonIcon.image = UIImage(named: (post.is_liked == 0) ? "Like" : "Liked")
     }
     
     public func setDelegate(delegate: PostNodeActionDelegate) {
-        self._delegate = delegate
+        self.delegate = delegate
     }
 
 }
 
 // MARK: - Post Actions
 extension PostControlsView {
+
     @IBAction func likePost(_ sender: UIButton) {
-        guard let safePost = _post else { return }
+        guard let safePost = currentPost else { return }
         let isLiked = !(safePost.is_liked == 1)
-        likeButton.setImage(UIImage.init(named: isLiked ? "Liked" : "Like"), for: .normal)
-        _delegate?.didTapLikePost(safePost, isLiked: isLiked)
+        likeButtonIcon.image = UIImage(named: (isLiked ? "Liked" : "Like"))
+        delegate?.didTapLikePost(safePost, isLiked: isLiked)
     }
-    
+
     @IBAction func commentPost(_ sender: UIButton) {
-        guard let safePost = _post else { return }
-        _delegate?.didTapCommentPost(safePost)
+        guard let safePost = currentPost else { return }
+        delegate?.didTapCommentPost(safePost)
     }
-    
+
     @IBAction func sharePost(_ sender: UIButton) {
-        guard let safePost = _post else { return }
-        _delegate?.didTapSharePost(safePost)
+        guard let safePost = currentPost else { return }
+        delegate?.didTapSharePost(safePost)
     }
     
 }

@@ -16,17 +16,17 @@ class PostDetails: UIView {
     @IBOutlet weak var hashtagsLabel: UILabel!
     
     private let _CONTENT_XIB_NAME = "PostDetails"
-    private var _post: Post?
-    private var _delegate: PostNodeActionDelegate?
+    private var currentPost: Post?
+    private var delegate: PostNodeActionDelegate?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.initialize()
+        initialize()
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        self.initialize()
+        initialize()
     }
     
     private func initialize() {
@@ -35,20 +35,20 @@ class PostDetails: UIView {
     }
     
     public func setPost(post: Post) {
-        self._post = post
+        currentPost = post
         usernameButton.setTitle("@\(post.user!.username)", for: .normal)
         captionLabel.text = post.title ?? "No caption"
         descriptionLabel.text = post.description ?? "No description"
     }
     
     public func setDelegate(delegate: PostNodeActionDelegate) {
-        self._delegate = delegate
+        self.delegate = delegate
     }
 }
 
 // MARK: - Post Actions
 extension PostDetails {
     @IBAction func usernamePressed(_ sender: UIButton) {
-        _delegate?.didTapUserProfile(_post!)
+        delegate?.didTapUserProfile(currentPost!)
     }
 }

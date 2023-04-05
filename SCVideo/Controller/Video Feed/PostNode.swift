@@ -36,7 +36,7 @@ class PostNode: ASCellNode {
         thumbnailNode.contentMode = .scaleAspectFill
         
         // ASD recommends enabling layer-backing in any custom node
-        // that doesn’t need touch handling for better performance
+        // that doesn't need touch handling for better performance
         gradientNode.isLayerBacked = true
         gradientNode.isOpaque = false
         
@@ -52,7 +52,7 @@ class PostNode: ASCellNode {
     override func didLoad() {
         super.didLoad()
         // set the asset on the main thread since the nodes aren't on it
-        self.videoNode.assetURL = URL(string: "\(APIURL)/posts/videos/\(post.content_uri)")!
+        videoNode.assetURL = URL(string: "\(APIURL)/posts/videos/\(post.content_uri)")!
 
         // all UIView calls _must_ be done on the main thread
         let postControlsView = PostControlsView()
@@ -60,14 +60,14 @@ class PostNode: ASCellNode {
                                         size: CGSize(width: 63, height: 289))
         postControlsView.setPost(post: post)
         postControlsView.setDelegate(delegate: nodeActionsDelegate)
-        self.view.addSubview(postControlsView)
+        view.addSubview(postControlsView)
 
         let postDetailsView = PostDetails()
         postDetailsView.frame = CGRect(origin: CGPoint(x: 0, y: UIScreen.main.bounds.height - 170),
                                        size: CGSize(width: 414, height: 141))
         postDetailsView.setPost(post: post)
         postDetailsView.setDelegate(delegate: nodeActionsDelegate)
-        self.view.addSubview(postDetailsView)
+        view.addSubview(postDetailsView)
     }
     
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {

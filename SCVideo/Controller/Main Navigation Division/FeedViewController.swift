@@ -15,40 +15,40 @@ class FeedViewController: UIViewController, UIScrollViewDelegate {
     var feedLogic = FeedLogic()
     var lastNode: PostNode?
     
-    private var _selectedPost: Post?
+    private var selectedPost: Post?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.tableNode = ASTableNode(style: .plain)
-        self.tableNode.delegate = self
-        self.tableNode.dataSource = self
+        tableNode = ASTableNode(style: .plain)
+        tableNode.delegate = self
+        tableNode.dataSource = self
 
-        self.view.insertSubview(tableNode.view, at: 0)
-        self.applyStyles()
-        self.tableNode.leadingScreensForBatching = 1.0  // overriding the default of 2.0
+        view.insertSubview(tableNode.view, at: 0)
+        applyStyles()
+        tableNode.leadingScreensForBatching = 1.0  // overriding the default of 2.0
     }
     
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
-        self.tableNode.frame = self.view.bounds
+        tableNode.frame = view.bounds
     }
     
     private func applyStyles() {
-        self.view.backgroundColor = .systemPink
-        self.tableNode.view.separatorStyle = .singleLine
-        self.tableNode.view.isPagingEnabled = true
+        view.backgroundColor = .systemPink
+        tableNode.view.separatorStyle = .singleLine
+        tableNode.view.isPagingEnabled = true
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.identifier {
         case "showPostComments":
             guard let destination = segue.destination as? CommentsViewController,
-                  let safePost = self._selectedPost else { return }
+                  let safePost = selectedPost else { return }
             destination.currentPost = safePost
             break
         case "showPosterProfile":
             guard let destination = segue.destination as? UserProfileViewController,
-                  let safePost = self._selectedPost else { return }
+                  let safePost = selectedPost else { return }
             destination.currentUser = safePost.user
             break
         default:
@@ -60,7 +60,7 @@ class FeedViewController: UIViewController, UIScrollViewDelegate {
 // MARK: - Video Feed Data Source
 extension FeedViewController: ASTableDataSource {
     func tableNode(_ tableNode: ASTableNode, numberOfRowsInSection section: Int) -> Int {
-        return posts.count
+        posts.count
     }
     
     func tableNode(_ tableNode: ASTableNode, nodeBlockForRowAt indexPath: IndexPath) -> ASCellNodeBlock {
@@ -82,7 +82,7 @@ extension FeedViewController: ASTableDelegate {
     }
     
     func shouldBatchFetch(for tableNode: ASTableNode) -> Bool {
-        return true
+        true
     }
     
     func tableNode(_ tableNode: ASTableNode, willBeginBatchFetchWith context: ASBatchContext) {
@@ -125,20 +125,20 @@ extension FeedViewController {
 // MARK: - Post Actions Delegate
 extension FeedViewController: PostNodeActionDelegate {
     func didTapLikePost(_ post: Post, isLiked: Bool) {
-        self._selectedPost = post
+        selectedPost = post
     }
 
     func didTapCommentPost(_ post: Post) {
-        self._selectedPost = post
-        self.performSegue(withIdentifier: "showPostComments", sender: self)
+        selectedPost = post
+        performSegue(withIdentifier: "showPostComments", sender: self)
     }
 
     func didTapSharePost(_ post: Post) {
-        self._selectedPost = post
+        selectedPost = post
     }
     
     func didTapUserProfile(_ post: Post) {
-        self._selectedPost = post
-        self.performSegue(withIdentifier: "showPosterProfile", sender: self)
+        selectedPost = post
+        performSegue(withIdentifier: "showPosterProfile", sender: self)
     }
 }
