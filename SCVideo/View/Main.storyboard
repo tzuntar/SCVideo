@@ -166,23 +166,28 @@
                         <rect key="frame" x="0.0" y="0.0" width="390" height="787"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Komentarji" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kqd-48-TYr" userLabel="Title">
+                                <rect key="frame" x="55" y="67" width="315" height="37"/>
+                                <fontDescription key="fontDescription" name="NunitoSans-Black" family="Nunito Sans" pointSize="26"/>
+                                <color key="textColor" name="HeadingTextLabel"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="xIs-AO-Dzp">
-                                <rect key="frame" x="20" y="47" width="350" height="707"/>
+                                <rect key="frame" x="20" y="114" width="350" height="571"/>
                                 <color key="backgroundColor" name="Background"/>
                                 <color key="sectionIndexBackgroundColor" red="1" green="0.96470588239999999" blue="0.91764705879999997" alpha="1" colorSpace="calibratedRGB"/>
                             </tableView>
-                            <stackView opaque="NO" contentMode="scaleToFill" alignment="center" id="Kzq-OH-Q5v">
-                                <rect key="frame" x="20" y="764" width="374" height="44"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Kzq-OH-Q5v">
+                                <rect key="frame" x="20" y="695" width="340" height="62"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SUU-Ie-JOc" userLabel="WriteCommentView">
-                                        <rect key="frame" x="0.0" y="0.0" width="340" height="44"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="290" height="62"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Text Field" translatesAutoresizingMaskIntoConstraints="NO" id="cjH-at-2WY">
-                                                <rect key="frame" x="0.0" y="0.0" width="340" height="44"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="290" height="62"/>
                                             </imageView>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Komentiraj..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nfG-di-PC4">
-                                                <rect key="frame" x="20" y="0.0" width="300" height="44"/>
+                                                <rect key="frame" x="20" y="0.0" width="250" height="62"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <color key="textColor" name="HeadingTextLabel"/>
                                                 <fontDescription key="fontDescription" name="NunitoSans-SemiBold" family="Nunito Sans" pointSize="18"/>
@@ -207,7 +212,10 @@
                                         </constraints>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rZc-RQ-61h">
-                                        <rect key="frame" x="340" y="7.6666666666666679" width="34" height="29.000000000000004"/>
+                                        <rect key="frame" x="290" y="16.666666666666629" width="50" height="29"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="50" id="pG9-Gl-B1W"/>
+                                        </constraints>
                                         <state key="normal" image="Send"/>
                                         <connections>
                                             <action selector="sendCommentPressed:" destination="saG-fb-KAD" eventType="touchUpInside" id="BqR-dN-n3J"/>
@@ -215,15 +223,37 @@
                                     </button>
                                 </subviews>
                             </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rkQ-Qt-ZLq">
+                                <rect key="frame" x="20" y="67" width="30" height="37"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="30" id="Tct-UP-Ybr"/>
+                                </constraints>
+                                <color key="tintColor" name="HeadingTextLabel"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="BackArrow" title=" "/>
+                                <connections>
+                                    <action selector="backButtonPressed:" destination="saG-fb-KAD" eventType="touchUpInside" id="tUu-pF-UfE"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="5Z0-xG-XAP"/>
                         <color key="backgroundColor" name="Background"/>
                         <constraints>
+                            <constraint firstItem="5Z0-xG-XAP" firstAttribute="trailing" secondItem="kqd-48-TYr" secondAttribute="trailing" constant="20" id="3oz-3d-YA8"/>
+                            <constraint firstItem="xIs-AO-Dzp" firstAttribute="top" secondItem="rkQ-Qt-ZLq" secondAttribute="bottom" constant="10" id="59y-05-6KW"/>
+                            <constraint firstItem="Kzq-OH-Q5v" firstAttribute="top" secondItem="xIs-AO-Dzp" secondAttribute="bottom" constant="10" id="6pv-SM-peT"/>
                             <constraint firstItem="5Z0-xG-XAP" firstAttribute="trailing" secondItem="xIs-AO-Dzp" secondAttribute="trailing" constant="20" id="9on-c2-AKC"/>
+                            <constraint firstItem="rkQ-Qt-ZLq" firstAttribute="top" secondItem="5Z0-xG-XAP" secondAttribute="top" constant="20" id="I4d-Ag-59S"/>
+                            <constraint firstAttribute="trailing" secondItem="Kzq-OH-Q5v" secondAttribute="trailing" constant="30" id="Luc-nZ-E1w"/>
                             <constraint firstItem="5Z0-xG-XAP" firstAttribute="trailing" secondItem="xIs-AO-Dzp" secondAttribute="trailing" constant="20" id="TV5-BF-e6z"/>
-                            <constraint firstItem="xIs-AO-Dzp" firstAttribute="top" secondItem="5Z0-xG-XAP" secondAttribute="top" id="XeM-nc-Ce5"/>
+                            <constraint firstItem="xIs-AO-Dzp" firstAttribute="top" secondItem="kqd-48-TYr" secondAttribute="bottom" constant="10" id="XeM-nc-Ce5"/>
                             <constraint firstItem="xIs-AO-Dzp" firstAttribute="leading" secondItem="5Z0-xG-XAP" secondAttribute="leading" constant="20" id="bGf-tx-rQg"/>
+                            <constraint firstItem="kqd-48-TYr" firstAttribute="leading" secondItem="rkQ-Qt-ZLq" secondAttribute="trailing" constant="5" id="dWo-aV-DPU"/>
+                            <constraint firstAttribute="bottom" secondItem="Kzq-OH-Q5v" secondAttribute="bottom" constant="30" id="fc5-YH-est"/>
+                            <constraint firstItem="rkQ-Qt-ZLq" firstAttribute="leading" secondItem="5Z0-xG-XAP" secondAttribute="leading" constant="20" id="feP-h1-IAj"/>
+                            <constraint firstItem="kqd-48-TYr" firstAttribute="top" secondItem="5Z0-xG-XAP" secondAttribute="top" constant="20" id="hzX-Og-Ryx"/>
                             <constraint firstItem="Kzq-OH-Q5v" firstAttribute="top" secondItem="xIs-AO-Dzp" secondAttribute="bottom" constant="10" id="nIF-rT-wNj"/>
+                            <constraint firstItem="Kzq-OH-Q5v" firstAttribute="leading" secondItem="5Z0-xG-XAP" secondAttribute="leading" constant="20" id="tBw-Ys-VKf"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="nd3-d7-tI3"/>
@@ -797,6 +827,7 @@
         <image name="AccountButton" width="37" height="36"/>
         <image name="AddFriendButton" width="37" height="36"/>
         <image name="Avatar" width="32" height="32"/>
+        <image name="BackArrow" width="14" height="23"/>
         <image name="Backspace Button" width="28" height="18"/>
         <image name="ButtonForward" width="154" height="62"/>
         <image name="Camera" width="24" height="15"/>

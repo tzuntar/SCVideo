@@ -19,6 +19,7 @@ class CommentsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        hideKeyboardWhenTappedAround()
         commentsTableView.dataSource = self
         commentsTableView.register(UINib(nibName: "CommentCell", bundle: nil),
                                    forCellReuseIdentifier: "CommentCell")
@@ -30,7 +31,7 @@ class CommentsViewController: UIViewController {
     }
 
     @IBAction func backButtonPressed(_ sender: UIButton) {
-        navigationController?.popViewController(animated: true)
+        dismiss(animated: true)
     }
     
     @IBAction func sendCommentPressed(_ sender: UIButton) {
@@ -43,7 +44,7 @@ class CommentsViewController: UIViewController {
                                     content: body))
         }
     }
-    
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showCommenterAccount" {
             guard let commenterProfileVC = segue.destination as? UserProfileViewController,
@@ -76,14 +77,14 @@ extension CommentsViewController: CommentsDelegate {
 extension CommentsViewController: UITableViewDataSource {
 
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard let comments = self.comments else { return 0 }
+        guard let comments = comments else { return 0 }
         return comments.count
     }
 
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CommentCell",
                                                  for: indexPath) as! CommentCell
-        guard let comments = self.comments else { return cell }
+        guard let comments = comments else { return cell }
         cell.loadComment(comments[indexPath.row])
         return cell
     }

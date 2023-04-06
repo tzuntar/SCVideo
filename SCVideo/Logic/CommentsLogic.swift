@@ -67,7 +67,7 @@ class CommentsLogic {
                    encoder: JSONParameterEncoder.default,
                    headers: authHeaders)
             .validate()
-            .response() { response in
+            .response { response in
                 if let safeResponse = response.response {
                     self.handleError(forCode: safeResponse.statusCode)
                 }
