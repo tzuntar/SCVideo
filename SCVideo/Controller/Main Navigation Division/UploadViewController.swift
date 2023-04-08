@@ -16,6 +16,7 @@ class UploadViewController: UIViewController, UINavigationControllerDelegate {
     @IBOutlet weak var postTitleBox: UITextField!
     @IBOutlet weak var postDescriptionBox: UITextView!
     @IBOutlet weak var postDescriptionPlaceholderLabel: UILabel!
+    @IBOutlet weak var stackViewBottom: NSLayoutConstraint!
 
     var postLogic: PostLogic?
     var videoPicker: UIImagePickerController?
@@ -24,6 +25,19 @@ class UploadViewController: UIViewController, UINavigationControllerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         hideKeyboardWhenTappedAround()
+
+        // Notification Center for keyboard handling
+        NotificationCenter.default.addObserver(
+                self,
+                selector: #selector(keyboardWillShow),
+                name: UIResponder.keyboardWillShowNotification,
+                object: nil);
+        NotificationCenter.default.addObserver(
+                self,
+                selector: #selector(keyboardWillHide),
+                name: UIResponder.keyboardWillHideNotification,
+                object: nil);
+
         videoPreviewBox.layer.borderWidth = 2
         videoPreviewBox.layer.borderColor = UIColor.white.cgColor
         videoPreviewBox.layer.cornerRadius = 10
@@ -80,6 +94,16 @@ class UploadViewController: UIViewController, UINavigationControllerDelegate {
                         videoFile: asset,
                             title: title,
                       description: postDescriptionBox.text))
+    }
+
+    @objc func keyboardWillShow(_ notification: Notification) {
+        if postTitleBox.isEditing || postDescriptionBox.isFirstResponder {
+            moveViewWithKeyboard(notification, viewBottomConstraint: stackViewBottom, keyboardWillShow: true)
+        }
+    }
+
+    @objc func keyboardWillHide(_ notification: Notification) {
+        moveViewWithKeyboard(notification, viewBottomConstraint: stackViewBottom, keyboardWillShow: false)
     }
 
     private func goBack() {

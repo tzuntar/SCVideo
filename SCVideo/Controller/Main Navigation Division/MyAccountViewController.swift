@@ -87,13 +87,13 @@ extension MyAccountViewController: UITableViewDelegate {
     }
 
     public func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let delete = UIContextualAction(style: .destructive, title: "Delete") { [weak self] (action, view, completion) in
+        let delete = UIContextualAction(style: .destructive, title: "Odstrani objavo") { [weak self] (action, view, completion) in
             guard let self = self else { return }
             let post = self.userPosts![indexPath.item]
             self.handleDelete(post)
             completion(true)
         }
-        delete.backgroundColor = .red
+        delete.backgroundColor = .systemRed
         return UISwipeActionsConfiguration(actions: [delete])
     }
 }

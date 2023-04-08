@@ -43,5 +43,25 @@ extension UIViewController {
     @objc func dismissKeyboard() {
         view.endEditing(true)   // causes the view (or one of its embedded text fields) to resign the first responder status.
     }
+
+    func moveViewWithKeyboard(_ notification: Notification, viewBottomConstraint: NSLayoutConstraint, keyboardWillShow: Bool) {
+        guard let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else { return }
+        let keyboardAniDuration = notification.userInfo![UIResponder.keyboardAnimationDurationUserInfoKey] as! Double
+        let keyboardAniCurve = UIView.AnimationCurve(rawValue: notification.userInfo![UIResponder.keyboardAnimationCurveUserInfoKey] as! Int)!
+
+        if keyboardWillShow {
+            let safeAreaExists = (view?.window?.safeAreaInsets.bottom != 0)    // necessary because older iPhones don't have a defined safe area
+            let bottomConstant: CGFloat = 20
+            viewBottomConstraint.constant = keyboardSize.height + (safeAreaExists ? 0 : bottomConstant)
+        } else {
+            viewBottomConstraint.constant = 20
+        }
+
+        let animator = UIViewPropertyAnimator(duration: keyboardAniDuration, curve: keyboardAniCurve) { [weak self] in
+            self?.view.layoutIfNeeded() // update constraints
+        }
+
+        animator.startAnimation()
+    }
 }
 

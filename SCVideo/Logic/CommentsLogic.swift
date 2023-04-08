@@ -11,13 +11,15 @@ import Alamofire
 protocol CommentsDelegate {
     func didFetchComments(_ comments: [Comment])
     func didPostCommentSuccessfully()
+    func didDeleteCommentSuccessfully(_ commentEntry: CommentEntry)
     func didFetchingFailWithError(_ error: Error)
 }
 
 struct CommentEntry: Codable {
     let id_post: Int
-    let id_user: Int
-    let content: String
+    let id_user: Int?
+    let id_comment: Int?
+    let content: String?
 }
 
 enum CommentsError: Error, CustomStringConvertible {
@@ -70,6 +72,24 @@ class CommentsLogic {
             .response { response in
                 if let safeResponse = response.response {
                     self.handleError(forCode: safeResponse.statusCode)
+                }
+            }
+    }
+
+    func deleteComment(with commentEntry: CommentEntry) {
+        guard let authHeaders = AuthManager.shared.getAuthHeaders(),
+              let commentId = commentEntry.id_comment else { return }
+        AF.request("\(APIURL)/posts/\(commentEntry.id_post)/comment/\(commentId)",
+                   method: .delete,
+                   headers: authHeaders)
+            .validate()
+            .response { response in
+                if let safeResponse = response.response {
+                    if safeResponse.statusCode == 200 {
+                        self.delegate.didDeleteCommentSuccessfully(commentEntry)
+                    } else {
+                        self.handleError(forCode: safeResponse.statusCode)
+                    }
                 }
             }
     }

@@ -259,6 +259,7 @@
                     <navigationItem key="navigationItem" id="nd3-d7-tI3"/>
                     <connections>
                         <outlet property="commentsTableView" destination="xIs-AO-Dzp" id="FFJ-Xi-YjR"/>
+                        <outlet property="stackViewBottom" destination="fc5-YH-est" id="EON-Kn-rbE"/>
                         <outlet property="writeCommentField" destination="nfG-di-PC4" id="z6m-v6-MHd"/>
                         <segue destination="0KU-Nm-Y2v" kind="presentation" identifier="showCommenterAccount" id="gGN-Zf-V7P"/>
                     </connections>
@@ -693,6 +694,7 @@
                         <outlet property="postDescriptionBox" destination="5ze-hE-24F" id="HSF-Bu-sEK"/>
                         <outlet property="postDescriptionPlaceholderLabel" destination="Naf-RZ-2sU" id="S4g-TO-nUC"/>
                         <outlet property="postTitleBox" destination="vfJ-pJ-9Ua" id="AbQ-fy-yJN"/>
+                        <outlet property="stackViewBottom" destination="1gD-q5-Bmt" id="a0m-5F-7b3"/>
                         <outlet property="videoPreviewBox" destination="xfA-5q-LyB" id="gEr-qf-n1R"/>
                     </connections>
                 </viewController>

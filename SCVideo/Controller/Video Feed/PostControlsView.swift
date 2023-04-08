@@ -17,6 +17,7 @@ class PostControlsView: UIView {
     private let _CONTENT_XIB_NAME = "PostControls"
     private var delegate: PostNodeActionDelegate?
     private var currentPost: Post?
+    private let feedbackGenerator: UIImpactFeedbackGenerator = UIImpactFeedbackGenerator(style: .light)
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -52,6 +53,7 @@ class PostControlsView: UIView {
 extension PostControlsView {
 
     @IBAction func likePost(_ sender: UIButton) {
+        feedbackGenerator.impactOccurred()
         guard let safePost = currentPost else { return }
         let isLiked = !(safePost.is_liked == 1)
         likeButtonIcon.image = UIImage(named: (isLiked ? "Liked" : "Like"))
@@ -59,11 +61,13 @@ extension PostControlsView {
     }
 
     @IBAction func commentPost(_ sender: UIButton) {
+        feedbackGenerator.impactOccurred()
         guard let safePost = currentPost else { return }
         delegate?.didTapCommentPost(safePost)
     }
 
     @IBAction func sharePost(_ sender: UIButton) {
+        feedbackGenerator.impactOccurred()
         guard let safePost = currentPost else { return }
         delegate?.didTapSharePost(safePost)
     }
