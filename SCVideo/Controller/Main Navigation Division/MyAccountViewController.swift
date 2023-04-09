@@ -14,6 +14,7 @@ class MyAccountViewController: UIViewController {
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var schoolLabel: UILabel!
     @IBOutlet weak var bioTextBox: UITextView!
+    @IBOutlet weak var bioPlaceholderLabel: UILabel!
     @IBOutlet weak var postsTableView: UITableView!
     
     private var currentUser: User?
@@ -24,6 +25,7 @@ class MyAccountViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         currentUser = AuthManager.shared.session!.user
+        hideKeyboardWhenTappedAround()
         postsTableView.delegate = self
         postsTableView.dataSource = self
         postsTableView.register(UINib(nibName: "EditablePostCell", bundle: nil),
@@ -33,17 +35,37 @@ class MyAccountViewController: UIViewController {
         bioTextBox.layer.borderWidth = 2
         bioTextBox.layer.borderColor = UIColor(named: "DescriptionTextLabel")?.cgColor
         bioTextBox.layer.cornerRadius = 8
+        bioTextBox.delegate = self
         profilePic.addGestureRecognizer(UITapGestureRecognizer(target: self,
                                                                action: #selector(profilePicPressed)))
 
         nameLabel.text = currentUser!.full_name
         usernameLabel.text = "@\(currentUser!.username)"
-        bioTextBox.text = currentUser!.bio
+        if let bio = currentUser!.bio {
+            bioTextBox.text = bio
+            bioPlaceholderLabel.isHidden = true
+        }
         if let avatarURL = currentUser!.photo_uri {
             profilePic.loadFrom(URLAddress: "\(APIURL)/images/profile/\(avatarURL)")
         }
         DispatchQueue.global(qos: .background).async {
             self.fetchUserPosts()
+        }
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        // do this in the background to avoid blocking the UI in case of failures
+        guard bioTextBox.text != currentUser!.bio else { return }
+        DispatchQueue.global(qos: .background).async {
+            UserLogic.updateBio(self.bioTextBox.text) { result in
+                switch result {
+                case .success(let user):
+                    self.reloadUserChanges(user)
+                case .failure(let error):
+                    print("Updating bio failed: \(error)")
+                }
+            }
         }
     }
 
@@ -66,6 +88,13 @@ class MyAccountViewController: UIViewController {
                 self?.postsTableView.reloadData()
             }
         }
+    }
+
+    private func reloadUserChanges(_ updatedUser: User) {
+        guard let currentSession = AuthManager.shared.session else { return }
+        AuthManager.shared.session = UserSession(token: currentSession.token,
+                                                  user: updatedUser)
+        currentUser = updatedUser
     }
 }
 
@@ -107,6 +136,20 @@ extension MyAccountViewController: UITableViewDelegate {
     }
 }
 
+// MARK - Bio Text View Delegate
+
+extension MyAccountViewController: UITextViewDelegate {
+
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        bioPlaceholderLabel.isHidden = true
+    }
+
+    public func textViewDidEndEditing(_ textView: UITextView) {
+        if (textView.text == "") {
+            bioPlaceholderLabel.isHidden = false
+        }
+    }
+}
 
 // MARK: - Avatar Photo Picker Delegate
 
@@ -137,10 +180,7 @@ extension MyAccountViewController: UIImagePickerControllerDelegate, UINavigation
         UserLogic.uploadNewAvatar(avatar) { result in
             switch result {
             case .success(let updatedUser):
-                guard let currentSession = AuthManager.shared.session else { return }
-                AuthManager.shared.session = UserSession(token: currentSession.token,
-                                                          user: updatedUser)
-                self.currentUser = updatedUser
+                self.reloadUserChanges(updatedUser)
                 self.profilePic.image = avatar
             case .failure(let error):
                 print("Failed to change the user's avatar: \(error)")

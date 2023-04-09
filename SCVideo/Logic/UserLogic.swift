@@ -85,6 +85,28 @@ class UserLogic {
         }
     }
 
+    /**
+     Updates the user's bio.
+     - Parameters:
+        - bio: The new bio.
+        - completion: The completion handler to be called when the update is finished.
+     */
+    static func updateBio(_ bio: String, completion: @escaping (Result<User, Error>) -> Void) {
+        guard let authHeaders = AuthManager.shared.getAuthHeaders() else { return }
+        AF.request("\(APIURL)/users/bio", method: .put, parameters: ["bio": bio], headers: authHeaders)
+            .validate()
+            .responseDecodable(of: User.self) { response in
+                if let safeResponse = response.value {
+                    completion(.success(safeResponse))
+                    return
+                }
+
+                if let safeResponse = response.response {
+                    completion(.failure(UserAccountError.unexpected(code: safeResponse.statusCode)))
+                }
+        }
+    }
+
     private func handleError(forCode responseCode: Int) {
         switch responseCode {
         case 500:

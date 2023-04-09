@@ -104,15 +104,40 @@
                                             </button>
                                         </subviews>
                                     </stackView>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Fancy text goes here" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rl5-85-LlK">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HbH-Uf-bD7">
                                         <rect key="frame" x="20" y="184.66666666666666" width="348" height="70"/>
+                                        <subviews>
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rl5-85-LlK">
+                                                <rect key="frame" x="0.0" y="0.0" width="348" height="70"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="70" id="bEj-cd-EBV"/>
+                                                </constraints>
+                                                <color key="textColor" name="HeadingTextLabel"/>
+                                                <fontDescription key="fontDescription" name="NunitoSans-SemiBold" family="Nunito Sans" pointSize="18"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                            </textView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ni opisa" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ftt-6h-C1y">
+                                                <rect key="frame" x="8" y="10" width="332" height="28"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="28" id="5d0-Pc-a38"/>
+                                                    <constraint firstAttribute="height" constant="28" id="we3-bV-DmU"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="NunitoSans-SemiBoldItalic" family="Nunito Sans" pointSize="17"/>
+                                                <color key="textColor" name="DescriptionTextLabel"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="70" id="bEj-cd-EBV"/>
+                                            <constraint firstAttribute="bottom" secondItem="rl5-85-LlK" secondAttribute="bottom" id="35V-bG-cS9"/>
+                                            <constraint firstAttribute="trailing" secondItem="ftt-6h-C1y" secondAttribute="trailing" constant="8" id="7lK-Bx-dXP"/>
+                                            <constraint firstItem="ftt-6h-C1y" firstAttribute="leading" secondItem="HbH-Uf-bD7" secondAttribute="leading" constant="8" id="Fj1-Ul-aTZ"/>
+                                            <constraint firstItem="rl5-85-LlK" firstAttribute="leading" secondItem="HbH-Uf-bD7" secondAttribute="leading" id="HoV-CD-hOQ"/>
+                                            <constraint firstItem="ftt-6h-C1y" firstAttribute="top" secondItem="HbH-Uf-bD7" secondAttribute="top" constant="10" id="UOv-5d-Mkp"/>
+                                            <constraint firstItem="rl5-85-LlK" firstAttribute="top" secondItem="HbH-Uf-bD7" secondAttribute="top" id="m51-bD-XAA"/>
+                                            <constraint firstAttribute="trailing" secondItem="rl5-85-LlK" secondAttribute="trailing" id="wuq-eI-ZBi"/>
                                         </constraints>
-                                        <color key="textColor" name="HeadingTextLabel"/>
-                                        <fontDescription key="fontDescription" name="NunitoSans-SemiBold" family="Nunito Sans" pointSize="18"/>
-                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                    </textView>
+                                    </view>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="faS-hZ-xGy">
                                         <rect key="frame" x="20" y="274.66666666666674" width="348" height="505.33333333333326"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -128,15 +153,15 @@
                                 <viewLayoutGuide key="safeArea" id="9rV-Sh-DYR"/>
                                 <constraints>
                                     <constraint firstItem="faS-hZ-xGy" firstAttribute="leading" secondItem="9rV-Sh-DYR" secondAttribute="leading" constant="20" id="0Lb-O3-H7j"/>
-                                    <constraint firstItem="rl5-85-LlK" firstAttribute="leading" secondItem="9rV-Sh-DYR" secondAttribute="leading" constant="20" id="398-XK-Z2H"/>
+                                    <constraint firstItem="HbH-Uf-bD7" firstAttribute="leading" secondItem="9rV-Sh-DYR" secondAttribute="leading" constant="20" id="0mn-Rs-OWQ"/>
+                                    <constraint firstItem="HbH-Uf-bD7" firstAttribute="top" secondItem="kZy-m7-dDV" secondAttribute="bottom" constant="20" id="8Sw-lL-Np3"/>
                                     <constraint firstItem="9rV-Sh-DYR" firstAttribute="bottom" secondItem="faS-hZ-xGy" secondAttribute="bottom" constant="10" id="Dfn-LT-jPJ"/>
                                     <constraint firstItem="kZy-m7-dDV" firstAttribute="leading" secondItem="9rV-Sh-DYR" secondAttribute="leading" constant="20" id="FWV-Xa-4eh"/>
-                                    <constraint firstItem="rl5-85-LlK" firstAttribute="top" secondItem="kZy-m7-dDV" secondAttribute="bottom" constant="20" id="GJp-cN-nlW"/>
                                     <constraint firstItem="9rV-Sh-DYR" firstAttribute="trailing" secondItem="faS-hZ-xGy" secondAttribute="trailing" constant="20" id="Kwv-hQ-vOm"/>
-                                    <constraint firstItem="faS-hZ-xGy" firstAttribute="top" secondItem="rl5-85-LlK" secondAttribute="bottom" constant="20" id="LkC-8D-zjY"/>
+                                    <constraint firstItem="faS-hZ-xGy" firstAttribute="top" secondItem="HbH-Uf-bD7" secondAttribute="bottom" constant="20" id="LXV-uY-vND"/>
                                     <constraint firstItem="9rV-Sh-DYR" firstAttribute="trailing" secondItem="kZy-m7-dDV" secondAttribute="trailing" constant="20" id="Pi5-wI-d5o"/>
+                                    <constraint firstItem="9rV-Sh-DYR" firstAttribute="trailing" secondItem="HbH-Uf-bD7" secondAttribute="trailing" constant="20" id="VMb-6M-6CU"/>
                                     <constraint firstItem="kZy-m7-dDV" firstAttribute="top" secondItem="9rV-Sh-DYR" secondAttribute="top" constant="30" id="iyl-XP-Sjw"/>
-                                    <constraint firstItem="9rV-Sh-DYR" firstAttribute="trailing" secondItem="rl5-85-LlK" secondAttribute="trailing" constant="20" id="xu1-il-Xkn"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -148,6 +173,7 @@
                         <outlet property="addFriendButton" destination="P5c-hj-MU0" id="dCu-LB-rqX"/>
                         <outlet property="postsCollectionView" destination="faS-hZ-xGy" id="pm5-dC-cnM"/>
                         <outlet property="userBio" destination="rl5-85-LlK" id="kYv-jZ-1Ft"/>
+                        <outlet property="userBioPlaceholder" destination="ftt-6h-C1y" id="8If-61-RJw"/>
                         <outlet property="userName" destination="LKW-ly-dUY" id="hym-y0-qd5"/>
                         <outlet property="userPhoto" destination="wEM-sa-mcg" id="vJl-4p-NgY"/>
                         <outlet property="userSchool" destination="XVw-rX-ri6" id="mOd-2v-jcO"/>
@@ -340,33 +366,58 @@
                                             </button>
                                         </subviews>
                                     </stackView>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Fancy text goes here" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oV5-1j-jb7">
-                                        <rect key="frame" x="20" y="184.66666666666666" width="348" height="79.999999999999972"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="p6a-70-LpZ">
+                                        <rect key="frame" x="20" y="184.66666666666666" width="348" height="70"/>
+                                        <subviews>
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="3Ks-2p-8gR">
+                                                <rect key="frame" x="0.0" y="0.0" width="348" height="70"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="70" id="1gv-L9-1Em"/>
+                                                </constraints>
+                                                <color key="textColor" name="HeadingTextLabel"/>
+                                                <fontDescription key="fontDescription" name="NunitoSans-SemiBold" family="Nunito Sans" pointSize="18"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                            </textView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Napiši nekaj o sebi..." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ksE-wl-Nlj">
+                                                <rect key="frame" x="8" y="10" width="332" height="28"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="28" id="OSS-j6-tk1"/>
+                                                    <constraint firstAttribute="height" constant="28" id="sWY-HD-2Pe"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="NunitoSans-SemiBoldItalic" family="Nunito Sans" pointSize="17"/>
+                                                <color key="textColor" name="DescriptionTextLabel"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="80" id="csv-Zh-X4V"/>
+                                            <constraint firstItem="3Ks-2p-8gR" firstAttribute="top" secondItem="p6a-70-LpZ" secondAttribute="top" id="FDS-L3-UsQ"/>
+                                            <constraint firstItem="ksE-wl-Nlj" firstAttribute="top" secondItem="p6a-70-LpZ" secondAttribute="top" constant="10" id="HE9-ba-y7C"/>
+                                            <constraint firstAttribute="bottom" secondItem="3Ks-2p-8gR" secondAttribute="bottom" id="L9K-xy-Bth"/>
+                                            <constraint firstItem="3Ks-2p-8gR" firstAttribute="leading" secondItem="p6a-70-LpZ" secondAttribute="leading" id="ahx-4e-oWr"/>
+                                            <constraint firstAttribute="trailing" secondItem="ksE-wl-Nlj" secondAttribute="trailing" constant="8" id="b78-2p-FNh"/>
+                                            <constraint firstAttribute="trailing" secondItem="3Ks-2p-8gR" secondAttribute="trailing" id="eIF-0q-cDc"/>
+                                            <constraint firstItem="ksE-wl-Nlj" firstAttribute="leading" secondItem="p6a-70-LpZ" secondAttribute="leading" constant="8" id="eOV-j1-O5A"/>
                                         </constraints>
-                                        <color key="textColor" name="HeadingTextLabel"/>
-                                        <fontDescription key="fontDescription" name="NunitoSans-SemiBold" family="Nunito Sans" pointSize="18"/>
-                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                    </textView>
+                                    </view>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Ucq-8w-Fpm">
-                                        <rect key="frame" x="20" y="284.66666666666674" width="348" height="495.33333333333326"/>
+                                        <rect key="frame" x="20" y="274.66666666666674" width="348" height="505.33333333333326"/>
                                         <color key="backgroundColor" name="Background"/>
                                         <color key="separatorColor" name="Background"/>
                                     </tableView>
                                 </subviews>
                                 <viewLayoutGuide key="safeArea" id="xeg-ak-pge"/>
                                 <constraints>
-                                    <constraint firstItem="Ucq-8w-Fpm" firstAttribute="top" secondItem="oV5-1j-jb7" secondAttribute="bottom" constant="20" id="Bjb-TD-Wex"/>
+                                    <constraint firstAttribute="trailing" secondItem="p6a-70-LpZ" secondAttribute="trailing" constant="20" id="5i8-pL-Eg0"/>
+                                    <constraint firstItem="p6a-70-LpZ" firstAttribute="top" secondItem="Oxf-2V-1eC" secondAttribute="bottom" constant="20" id="E9g-CK-lAD"/>
                                     <constraint firstItem="Oxf-2V-1eC" firstAttribute="leading" secondItem="xeg-ak-pge" secondAttribute="leading" constant="20" id="Gsw-hl-7Uf"/>
-                                    <constraint firstItem="oV5-1j-jb7" firstAttribute="top" secondItem="Oxf-2V-1eC" secondAttribute="bottom" constant="20" id="HJm-sp-7sk"/>
                                     <constraint firstItem="Ucq-8w-Fpm" firstAttribute="leading" secondItem="xeg-ak-pge" secondAttribute="leading" constant="20" id="HlB-42-yXF"/>
-                                    <constraint firstItem="xeg-ak-pge" firstAttribute="trailing" secondItem="oV5-1j-jb7" secondAttribute="trailing" constant="20" id="Lh6-QU-9wL"/>
                                     <constraint firstItem="xeg-ak-pge" firstAttribute="bottom" secondItem="Ucq-8w-Fpm" secondAttribute="bottom" constant="10" id="POz-KM-Hum"/>
-                                    <constraint firstItem="oV5-1j-jb7" firstAttribute="leading" secondItem="xeg-ak-pge" secondAttribute="leading" constant="20" id="R2g-8p-ttE"/>
                                     <constraint firstItem="xeg-ak-pge" firstAttribute="trailing" secondItem="Oxf-2V-1eC" secondAttribute="trailing" constant="20" id="fHn-CO-ebq"/>
                                     <constraint firstAttribute="trailing" secondItem="Ucq-8w-Fpm" secondAttribute="trailing" constant="20" id="mtw-m3-vh2"/>
+                                    <constraint firstItem="p6a-70-LpZ" firstAttribute="leading" secondItem="xeg-ak-pge" secondAttribute="leading" constant="20" id="nDR-ec-hc4"/>
                                     <constraint firstItem="Oxf-2V-1eC" firstAttribute="top" secondItem="xeg-ak-pge" secondAttribute="top" constant="30" id="yBa-GT-upz"/>
+                                    <constraint firstItem="Ucq-8w-Fpm" firstAttribute="top" secondItem="p6a-70-LpZ" secondAttribute="bottom" constant="20" id="zlh-7o-lhi"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -375,7 +426,8 @@
                     </view>
                     <navigationItem key="navigationItem" id="qXA-gN-3bV"/>
                     <connections>
-                        <outlet property="bioTextBox" destination="oV5-1j-jb7" id="mpA-Z4-6ax"/>
+                        <outlet property="bioPlaceholderLabel" destination="ksE-wl-Nlj" id="zTR-6r-39r"/>
+                        <outlet property="bioTextBox" destination="3Ks-2p-8gR" id="PWM-S9-7e5"/>
                         <outlet property="nameLabel" destination="4wK-1n-opK" id="wSB-7S-iso"/>
                         <outlet property="postsTableView" destination="Ucq-8w-Fpm" id="sc3-sl-eEm"/>
                         <outlet property="profilePic" destination="hvc-MW-kiK" id="fQX-p1-AQQ"/>
@@ -450,7 +502,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tY0-Tc-Vhr">
-                                                <rect key="frame" x="35" y="681.66666666666663" width="53" height="27.333333333333371"/>
+                                                <rect key="frame" x="35" y="685.66666666666663" width="50.333333333333343" height="23.333333333333371"/>
                                                 <fontDescription key="fontDescription" name="NunitoSans-Bold" family="Nunito Sans" pointSize="20"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>

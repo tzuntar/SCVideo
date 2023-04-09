@@ -17,6 +17,7 @@ class UserProfileViewController: UIViewController {
     @IBOutlet weak var userPhoto: UIImageView!
     @IBOutlet weak var userSchool: UILabel!
     @IBOutlet weak var userBio: UITextView!
+    @IBOutlet weak var userBioPlaceholder: UILabel!
     @IBOutlet weak var postsCollectionView: UICollectionView!
     @IBOutlet weak var addFriendButton: UIButton!
     
@@ -35,11 +36,9 @@ class UserProfileViewController: UIViewController {
         if let user = currentUser {
             userName.text = user.full_name
             userUsername.text = "@\(user.username)"
-            userBio.text = user.bio
-            if user.bio == nil || user.bio == "" {
-                userBio.text = "Ni opisa"
-                userBio.font = UIFont(name: "NunitoSans-SemiBoldItalic", size: 17.0)
-                userBio.textColor = UIColor(named: "DescriptionTextLabel")
+            if let bio = currentUser!.bio {
+                userBio.text = bio
+                userBioPlaceholder.isHidden = true
             }
             
             if let photo = user.photo_uri {
