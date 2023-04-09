@@ -26,22 +26,23 @@ class CommentsViewController: UIViewController {
         commentsTableView.register(UINib(nibName: "CommentCell", bundle: nil),
                                    forCellReuseIdentifier: "CommentCell")
 
-        if let post = currentPost {
-            commentsLogic = CommentsLogic(delegatingActionsTo: self)
-            commentsLogic!.retrieveComments(forPost: post)
-        }
-
         // Notification Center for keyboard handling
         NotificationCenter.default.addObserver(
-            self,
-            selector: #selector(keyboardWillShow),
-            name: UIResponder.keyboardWillShowNotification,
-            object: nil);
+                self,
+                selector: #selector(keyboardWillShow),
+                name: UIResponder.keyboardWillShowNotification,
+                object: nil);
         NotificationCenter.default.addObserver(
-            self,
-            selector: #selector(keyboardWillHide),
-            name: UIResponder.keyboardWillHideNotification,
-            object: nil);
+                self,
+                selector: #selector(keyboardWillHide),
+                name: UIResponder.keyboardWillHideNotification,
+                object: nil);
+
+        guard let post = currentPost else { return }
+        commentsLogic = CommentsLogic(delegatingActionsTo: self)
+        DispatchQueue.global(qos: .background).async {
+            self.commentsLogic!.retrieveComments(forPost: post)
+        }
     }
 
     @IBAction func backButtonPressed(_ sender: UIButton) {
@@ -84,7 +85,9 @@ class CommentsViewController: UIViewController {
 extension CommentsViewController: CommentsDelegate {
     func didFetchComments(_ comments: [Comment]) {
         self.comments = comments
-        commentsTableView.reloadData()
+        DispatchQueue.main.async {
+            self.commentsTableView.reloadData()
+        }
     }
 
     func didPostCommentSuccessfully() {

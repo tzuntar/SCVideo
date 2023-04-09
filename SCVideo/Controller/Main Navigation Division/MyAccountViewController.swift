@@ -19,6 +19,8 @@ class MyAccountViewController: UIViewController {
     private var currentUser: User?
     private var userPosts: [Post]?
 
+    private var avatarPicker: UIImagePickerController?
+
     override func viewDidLoad() {
         super.viewDidLoad()
         currentUser = AuthManager.shared.session!.user
@@ -28,9 +30,11 @@ class MyAccountViewController: UIViewController {
                                 forCellReuseIdentifier: "EditablePostCell")
 
         profilePic.layer.cornerRadius = profilePic.layer.frame.height / 2
-        bioTextBox.layer.borderWidth = 3
+        bioTextBox.layer.borderWidth = 2
         bioTextBox.layer.borderColor = UIColor(named: "DescriptionTextLabel")?.cgColor
         bioTextBox.layer.cornerRadius = 8
+        profilePic.addGestureRecognizer(UITapGestureRecognizer(target: self,
+                                                               action: #selector(profilePicPressed)))
 
         nameLabel.text = currentUser!.full_name
         usernameLabel.text = "@\(currentUser!.username)"
@@ -38,10 +42,13 @@ class MyAccountViewController: UIViewController {
         if let avatarURL = currentUser!.photo_uri {
             profilePic.loadFrom(URLAddress: "\(APIURL)/images/profile/\(avatarURL)")
         }
-        fetchUserPosts()
+        DispatchQueue.global(qos: .background).async {
+            self.fetchUserPosts()
+        }
     }
 
-    @IBAction func selectProfilePicPressed(_ sender: UIButton) {
+    @objc func profilePicPressed() {
+        showAvatarPicker()
     }
 
     @IBAction func logOutPressed(_ sender: UIButton) {
@@ -55,7 +62,9 @@ class MyAccountViewController: UIViewController {
     private func fetchUserPosts() {
         PostLoaderLogic.loadPostsForUser(currentUser!) { (posts: [Post]?) in
             self.userPosts = posts
-            self.postsTableView.reloadData()
+            DispatchQueue.main.async { [weak self] in
+                self?.postsTableView.reloadData()
+            }
         }
     }
 }
@@ -95,5 +104,47 @@ extension MyAccountViewController: UITableViewDelegate {
         }
         delete.backgroundColor = .systemRed
         return UISwipeActionsConfiguration(actions: [delete])
+    }
+}
+
+
+// MARK: - Avatar Photo Picker Delegate
+
+extension MyAccountViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+
+    private func showAvatarPicker() {
+        if !UIImagePickerController.isSourceTypeAvailable(.photoLibrary) { return }
+        avatarPicker = UIImagePickerController()
+        guard let picker = avatarPicker else { return }
+        picker.delegate = self
+        picker.sourceType = .photoLibrary
+        if let types = UIImagePickerController.availableMediaTypes(for: picker.sourceType) {
+            if !types.contains("public.image") { return }
+        }
+        picker.mediaTypes = ["public.image"]
+        picker.allowsEditing = true
+        present(picker, animated: true)
+    }
+
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        picker.dismiss(animated: true, completion: nil)
+    }
+
+    func imagePickerController(_ picker: UIImagePickerController,
+            didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        picker.dismiss(animated: true, completion: nil)
+        guard let avatar = info[.originalImage] as? UIImage else { return }
+        UserLogic.uploadNewAvatar(avatar) { result in
+            switch result {
+            case .success(let updatedUser):
+                guard let currentSession = AuthManager.shared.session else { return }
+                AuthManager.shared.session = UserSession(token: currentSession.token,
+                                                          user: updatedUser)
+                self.currentUser = updatedUser
+                self.profilePic.image = avatar
+            case .failure(let error):
+                print("Failed to change the user's avatar: \(error)")
+            }
+        }
     }
 }

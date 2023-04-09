@@ -20,7 +20,7 @@ extension UIView {
      Enables using constraint-based views in ASD nodes
      */
     func fixInView(_ container: UIView!) -> Void {
-        self.translatesAutoresizingMaskIntoConstraints = false
+        translatesAutoresizingMaskIntoConstraints = false
         self.frame = container.frame
         container.addSubview(self)
         NSLayoutConstraint(item: self, attribute: .leading,

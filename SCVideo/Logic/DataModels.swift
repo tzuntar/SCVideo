@@ -30,17 +30,8 @@ class User: Codable {
     //let registration_date: Date
     let registration_date: String
     let is_deleted: Int
-    //let is_deleted: Bool
-    let education: String?
-    let occupation: String?
     let bio: String?
-    let town: Town?
     let photo_uri: String?
-}
-
-struct Town: Codable {
-    let id_town: Int
-    let name: String
 }
 
 enum PostType: String {

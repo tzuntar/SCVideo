@@ -27,7 +27,7 @@ class UserProfileViewController: UIViewController {
         postsCollectionView.register(UINib(nibName: "PostCell", bundle: nil),
                                      forCellWithReuseIdentifier: "PostCell")
 
-        userBio.layer.borderWidth = 3
+        userBio.layer.borderWidth = 2
         userBio.layer.borderColor = UIColor(named: "DescriptionTextLabel")?.cgColor
         userBio.layer.cornerRadius = 8
         userPhoto.layer.cornerRadius = userPhoto.layer.frame.height / 2

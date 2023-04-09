@@ -26,7 +26,7 @@ class UserCell: UITableViewCell {
     }
     
     func loadData(forUser user: User) {
-        self.currentUser = user
+        currentUser = user
         usernameButton.setTitle(user.full_name, for: .normal)
         if let avatarURL = user.photo_uri {
             userProfileImage.loadFrom(URLAddress: "\(APIURL)/images/profile/\(avatarURL)")
@@ -36,7 +36,7 @@ class UserCell: UITableViewCell {
     @IBAction func userButtonPressed(_ sender: UIButton) {
         if let parentVC = parentViewController as? FriendsViewController,
            let friend = currentUser {
-            parentVC.selectedFriend = friend
+            parentVC.selectedUser = friend
             parentVC.performSegue(withIdentifier: "showFriendAccount", sender: parentVC)
         }
     }

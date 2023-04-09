@@ -49,7 +49,7 @@
                                                             <action selector="selectProfilePicPressed:" destination="9Cz-wH-Qas" eventType="touchUpInside" id="Wlj-rw-dAg"/>
                                                         </connections>
                                                     </button>
-                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Avatar" translatesAutoresizingMaskIntoConstraints="NO" id="wEM-sa-mcg">
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Avatar" translatesAutoresizingMaskIntoConstraints="NO" id="wEM-sa-mcg">
                                                         <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="80" id="O7c-0S-dw0"/>
@@ -286,14 +286,7 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0zG-Xg-L30">
                                                 <rect key="frame" x="0.0" y="0.0" width="80" height="87.666666666666671"/>
                                                 <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JBH-a1-bX9">
-                                                        <rect key="frame" x="0.0" y="0.0" width="80" height="87.666666666666671"/>
-                                                        <state key="normal" title="Button"/>
-                                                        <connections>
-                                                            <action selector="selectProfilePicPressed:" destination="9Cz-wH-Qas" eventType="touchUpInside" id="bx9-F4-5Ez"/>
-                                                        </connections>
-                                                    </button>
-                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Avatar" translatesAutoresizingMaskIntoConstraints="NO" id="hvc-MW-kiK">
+                                                    <imageView clipsSubviews="YES" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Avatar" translatesAutoresizingMaskIntoConstraints="NO" id="hvc-MW-kiK">
                                                         <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="80" id="KLp-BM-IA5"/>
@@ -304,44 +297,45 @@
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="trailing" secondItem="hvc-MW-kiK" secondAttribute="trailing" id="Dk1-5g-IYA"/>
-                                                    <constraint firstAttribute="trailing" secondItem="JBH-a1-bX9" secondAttribute="trailing" id="ZcY-OV-K98"/>
                                                     <constraint firstItem="hvc-MW-kiK" firstAttribute="top" secondItem="0zG-Xg-L30" secondAttribute="top" id="bcr-OK-3Ls"/>
                                                     <constraint firstItem="hvc-MW-kiK" firstAttribute="leading" secondItem="0zG-Xg-L30" secondAttribute="leading" id="hyY-sT-32V"/>
-                                                    <constraint firstAttribute="bottom" secondItem="JBH-a1-bX9" secondAttribute="bottom" id="wMH-Xp-zqP"/>
-                                                    <constraint firstItem="JBH-a1-bX9" firstAttribute="leading" secondItem="0zG-Xg-L30" secondAttribute="leading" id="wso-5v-bvG"/>
-                                                    <constraint firstItem="JBH-a1-bX9" firstAttribute="top" secondItem="0zG-Xg-L30" secondAttribute="top" id="y5h-Sc-hGx"/>
                                                 </constraints>
                                             </view>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="1vT-jO-NcU">
-                                                <rect key="frame" x="100" y="0.0" width="123.66666666666669" height="87.666666666666671"/>
+                                                <rect key="frame" x="100" y="0.0" width="188" height="87.666666666666671"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User User" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4wK-1n-opK">
-                                                        <rect key="frame" x="0.0" y="0.0" width="123.66666666666667" height="35.666666666666664"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="188" height="35.666666666666664"/>
                                                         <fontDescription key="fontDescription" name="NunitoSans-Black" family="Nunito Sans" pointSize="26"/>
                                                         <color key="textColor" name="HeadingTextLabel"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="@user" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gel-m8-kdp">
-                                                        <rect key="frame" x="0.0" y="39.666666666666671" width="123.66666666666667" height="23.333333333333329"/>
+                                                        <rect key="frame" x="0.0" y="39.666666666666671" width="188" height="23.333333333333329"/>
                                                         <fontDescription key="fontDescription" name="NunitoSans-SemiBold" family="Nunito Sans" pointSize="17"/>
                                                         <color key="textColor" name="DescriptionTextLabel"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ŠCV - dijak" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D2V-Ci-598">
-                                                        <rect key="frame" x="0.0" y="67" width="123.66666666666667" height="20.666666666666671"/>
+                                                        <rect key="frame" x="0.0" y="67" width="188" height="20.666666666666671"/>
                                                         <fontDescription key="fontDescription" name="NunitoSans-SemiBold" family="Nunito Sans" pointSize="15"/>
                                                         <color key="textColor" name="DescriptionTextLabel"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                 </subviews>
                                             </stackView>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JYo-W5-p5r">
-                                                <rect key="frame" x="243.66666666666671" y="0.0" width="104.33333333333334" height="87.666666666666671"/>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fDo-Vm-rSH">
+                                                <rect key="frame" x="308" y="0.0" width="40" height="87.666666666666671"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="40" id="1gE-0I-hJa"/>
+                                                </constraints>
+                                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="filled" title="Log Out"/>
+                                                <buttonConfiguration key="configuration" style="plain" image="SignOutButton" title=" ">
+                                                    <color key="baseForegroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </buttonConfiguration>
                                                 <connections>
-                                                    <action selector="logOutPressed:" destination="9Cz-wH-Qas" eventType="touchUpInside" id="Jxs-IH-vTd"/>
-                                                    <action selector="selectProfilePicPressed:" destination="9Cz-wH-Qas" eventType="touchUpInside" id="0gi-tb-8LW"/>
+                                                    <action selector="logOutPressed:" destination="9Cz-wH-Qas" eventType="touchUpInside" id="QFf-SW-UBl"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -791,7 +785,7 @@
                     </tabBarItem>
                     <connections>
                         <outlet property="friendsTableView" destination="fIU-ps-Hl4" id="5Ub-95-2Kl"/>
-                        <segue destination="0KU-Nm-Y2v" kind="presentation" identifier="showFriendAccount" id="uqp-cb-mO0"/>
+                        <segue destination="0KU-Nm-Y2v" kind="presentation" identifier="showAnotherUsersProfile" id="uqp-cb-mO0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RKt-KV-3Xl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -823,7 +817,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="gGN-Zf-V7P"/>
+        <segue reference="uqp-cb-mO0"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="AccountButton" width="37" height="36"/>
@@ -841,6 +835,7 @@
         <image name="Recording Tag" width="65" height="19"/>
         <image name="SearchButton" width="37" height="36"/>
         <image name="Send" width="34" height="29"/>
+        <image name="SignOutButton" width="37" height="36"/>
         <image name="Text Field" width="393" height="62"/>
         <image name="Upload" width="26" height="26"/>
         <namedColor name="Background">

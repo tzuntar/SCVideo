@@ -134,7 +134,30 @@ extension FeedViewController: PostNodeActionDelegate {
     }
 
     func didTapSharePost(_ post: Post) {
-        selectedPost = post
+        guard let videoUrl = URL(string: "\(APIURL)/posts/videos/\(post.content_uri)") else { return }
+        /*URLSession.shared.downloadTask(with: videoUrl) { (location, response, error) in
+            guard let location = location else {
+                print("Error downloading asset: \(error?.localizedDescription ?? "unknown error")")
+                return
+            }
+
+            let shareSheet = UIActivityViewController(activityItems: [location],
+                                              applicationActivities: nil)
+            shareSheet.popoverPresentationController?.sourceView = self.view // fixes a crash on iPads
+            shareSheet.popoverPresentationController?.sourceRect = self.view.frame
+            DispatchQueue.main.async {
+                self.present(shareSheet, animated: true, completion: nil)
+            }
+        }.resume()*/
+
+        let tempFile = FileManager.default.temporaryDirectory.appendingPathComponent(post.content_uri)
+        let downloadSession = AVAssetDownloadURLSession(configuration: .default,
+                                                assetDownloadDelegate: nil,
+                                                        delegateQueue: .main)
+        downloadSession.makeAssetDownloadTask(asset: AVURLAsset(url: videoUrl),
+                                         assetTitle: post.content_uri,
+                                   assetArtworkData: nil,
+                                            options: nil)?.resume()
     }
     
     func didTapUserProfile(_ post: Post) {

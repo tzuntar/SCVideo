@@ -11,24 +11,27 @@ class FriendsViewController: UIViewController {
 
     var friends: [User]?
     var friendsLogic: FriendsLogic?
-    var selectedFriend: User?
+    var selectedUser: User?
 
     @IBOutlet weak var friendsTableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        friendsTableView.dataSource = self
         friendsTableView.register(UINib(nibName: "UserCell", bundle: nil),
                                   forCellReuseIdentifier: "UserCell")
+        friendsTableView.dataSource = self
         friendsLogic = FriendsLogic(delegatingActionsTo: self)
-        friendsLogic!.retrieveFriends()
+        DispatchQueue.global(qos: .background).async {
+            self.friendsLogic!.retrieveFriends()
+            self.friendsLogic!.retrieveStrangers()
+        }
     }
-    
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "showFriendAccount" {
-            guard let friendProfileVC = segue.destination as? UserProfileViewController,
-                  let friend = selectedFriend else { return }
-            friendProfileVC.currentUser = friend
+        if segue.identifier == "showAnotherUsersProfile" {
+            guard let userProfileVC = segue.destination as? UserProfileViewController,
+                  let user = selectedUser else { return }
+            userProfileVC.currentUser = user
         }
     }
 
@@ -40,15 +43,16 @@ extension FriendsViewController: FriendListDelegate {
     
     func didFetchFriends(_ friends: [User]) {
         self.friends = friends
-        friendsTableView.reloadData()
+        DispatchQueue.main.async {
+            self.friendsTableView.reloadData()
+        }
     }
     
     func didFriendActionFailWithError(_ error: Error) {
-        WarningAlert().showWarning(withTitle: "Napaka",
-                                   withDescription: "Seznama prijateljev ni bilo mogoče naložiti")
         print(error)
-        if let nav = navigationController {
-            nav.popViewController(animated: true)
+        DispatchQueue.main.async {
+            WarningAlert().showWarning(withTitle: "Napaka",
+                                       withDescription: "Seznama prijateljev ni bilo mogoče naložiti")
         }
     }
 
