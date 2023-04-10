@@ -16,11 +16,16 @@ class SettingsHelper {
      Registers the default values from Settings.bundle
      */
     static func registerSettingsBundle() {
-        if let settingsURL = Bundle.main.url(forResource: "Root", withExtension: "plist", subdirectory: "Settings.bundle"),
-           let settingsRootDict = NSDictionary(contentsOf: settingsURL),
-           let prefSpecifiers = settingsRootDict["PreferenceSpecifiers"] as? [NSDictionary],
-           let keysAndValues = prefSpecifiers.map({ d in (d["Key"], d["DefaultValue"]) }) as? [(String, Any)] {
-            UserDefaults.standard.register(defaults: Dictionary(uniqueKeysWithValues: keysAndValues))
+        if let settingsBundlePath = Bundle.main.path(forResource: "Settings", ofType: "bundle"),
+           let settings = NSDictionary(contentsOfFile: "\(settingsBundlePath)/Root.plist"),
+           let preferences = settings.object(forKey: "PreferenceSpecifiers") as? [NSDictionary] {
+            var defaultsToRegister = [String: Any]()
+            for preference in preferences {
+                if let key = preference.object(forKey: "Key") as? String {
+                    defaultsToRegister[key] = preference.object(forKey: "DefaultValue")
+                }
+            }
+            UserDefaults.standard.register(defaults: defaultsToRegister)
         }
     }
     
