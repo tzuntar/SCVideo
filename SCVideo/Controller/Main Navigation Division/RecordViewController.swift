@@ -22,7 +22,6 @@ class RecordViewController: UIViewController {
 
     var captureSession: AVCaptureSession!
     var videoPreviewLayer: AVCaptureVideoPreviewLayer!
-    var videoDeviceInput: AVCaptureDeviceInput!
     private var _videoOutput: AVCaptureVideoDataOutput!
 
     private var _assetWriter: AVAssetWriter!
@@ -33,9 +32,10 @@ class RecordViewController: UIViewController {
     private var _time: Double = 0
     private var _usingFrontCamera: Bool = false
     var clips: [URL] = []
-    var audioPlayer: AVAudioPlayer?
 
     private var _sessionQueue: DispatchQueue!
+
+    private let _MAX_TOTAL_DURATION: Double = 90    // max duration (of all clips) = 1 min 30 sec
 
     private enum CaptureState {
         case idle, start, capturing, end
@@ -112,9 +112,7 @@ class RecordViewController: UIViewController {
                 captureSession.addInput(cameraInput!)
                 captureSession.addInput(audioInput)
                 captureSession.addOutput(output)
-                videoDeviceInput = cameraInput!
                 _videoOutput = output
-
                 _videoOutput.setSampleBufferDelegate(self, queue: _sessionQueue)
             }
         } catch {
@@ -197,6 +195,9 @@ class RecordViewController: UIViewController {
     }
 
     @IBAction func useClipPressed(_ sender: Any) {
+        if captureState == .capturing { // FixMe: race condition
+            captureState = .end
+        }
         guard clips.count > 0 else { return }
         #if ENABLE_MULTI_CLIP
             mergeSegmentsAndUseAsPost(clips: clips)
@@ -319,6 +320,9 @@ extension RecordViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
                 let time = CMTime(seconds: timestamp - _time, preferredTimescale: CMTimeScale(600))
                 _adapter?.append(CMSampleBufferGetImageBuffer(sampleBuffer)!,
                                  withPresentationTime: time)
+            }
+            if timestamp - _time > _MAX_TOTAL_DURATION {
+                captureState = .end
             }
             DispatchQueue.main.async {
                 self.setTimeIndicator(toSeconds: Int(timestamp - self._time))

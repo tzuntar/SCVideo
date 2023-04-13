@@ -15,11 +15,11 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Zuw-Nd-rwh">
-            <rect key="frame" x="0.0" y="0.0" width="63" height="289"/>
+            <rect key="frame" x="0.0" y="0.0" width="63" height="240"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Uyz-r5-SnR">
-                    <rect key="frame" x="0.0" y="0.0" width="63" height="280"/>
+                <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Uyz-r5-SnR">
+                    <rect key="frame" x="0.0" y="0.0" width="63" height="240"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yoL-XP-1Nm" userLabel="ButtonView">
                             <rect key="frame" x="0.0" y="0.0" width="63" height="80"/>
@@ -52,7 +52,7 @@
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8NJ-7H-4uO" userLabel="ButtonView">
-                            <rect key="frame" x="0.0" y="100" width="63" height="80"/>
+                            <rect key="frame" x="0.0" y="80" width="63" height="80"/>
                             <subviews>
                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Comment" translatesAutoresizingMaskIntoConstraints="NO" id="Zi2-po-0b5">
                                     <rect key="frame" x="0.0" y="0.0" width="63" height="80"/>
@@ -82,7 +82,7 @@
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KpX-v8-5q0" userLabel="ButtonView">
-                            <rect key="frame" x="0.0" y="200" width="63" height="80"/>
+                            <rect key="frame" x="0.0" y="160" width="63" height="80"/>
                             <subviews>
                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Send" translatesAutoresizingMaskIntoConstraints="NO" id="t6s-Ej-Twf">
                                     <rect key="frame" x="0.0" y="0.0" width="63" height="80"/>
@@ -115,12 +115,12 @@
                 </stackView>
             </subviews>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="-82.400000000000006" y="-58.743842364532021"/>
+            <point key="canvasLocation" x="-82.400000000000006" y="-76.847290640394093"/>
         </view>
     </objects>
     <resources>
-        <image name="Comment" width="36" height="34"/>
-        <image name="Like" width="35" height="33"/>
-        <image name="Send" width="34" height="29"/>
+        <image name="Comment" width="31" height="31"/>
+        <image name="Like" width="32" height="30"/>
+        <image name="Send" width="30" height="27"/>
     </resources>
 </document>

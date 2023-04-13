@@ -11,6 +11,9 @@
         <array key="NunitoSans-Bold.ttf">
             <string>NunitoSans-Bold</string>
         </array>
+        <array key="NunitoSans-SemiBold.ttf">
+            <string>NunitoSans-SemiBold</string>
+        </array>
     </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -38,13 +41,13 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="32" id="vGD-De-hin"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="NunitoSans-Bold" family="Nunito Sans" pointSize="20"/>
+                                <fontDescription key="fontDescription" name="NunitoSans-Bold" family="Nunito Sans" pointSize="18"/>
                                 <color key="textColor" name="HeadingTextLabel"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Post Description" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2rI-eh-YYa">
                                 <rect key="frame" x="0.0" y="32" width="223" height="86"/>
-                                <fontDescription key="fontDescription" name="NunitoSans-Bold" family="Nunito Sans" pointSize="20"/>
+                                <fontDescription key="fontDescription" name="NunitoSans-SemiBold" family="Nunito Sans" pointSize="16"/>
                                 <color key="textColor" name="DescriptionTextLabel"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -53,7 +56,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="32" id="lE0-OC-Ds1"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="NunitoSans-Bold" family="Nunito Sans" pointSize="20"/>
+                                <fontDescription key="fontDescription" name="NunitoSans-SemiBold" family="Nunito Sans" pointSize="16"/>
                                 <color key="textColor" name="DescriptionTextLabel"/>
                                 <nil key="highlightedColor"/>
                             </label>

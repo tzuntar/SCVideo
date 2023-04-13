@@ -119,9 +119,8 @@ class PostActionsLogic {
     
     func like(_ post: Post) {
         guard let authHeaders = AuthManager.shared.getAuthHeaders() else { return }
-        AF.request(APIURL + "/posts/" + String(post.id_post) + "/like",
-                   method: .post,
-                   headers: authHeaders)
+        AF.request("\(APIURL)/posts/\(post.id_post)/like",
+                   method: .post, headers: authHeaders)
             .validate()
             .response { response in
                 if let safeResponse = response.response {
@@ -137,8 +136,8 @@ class PostActionsLogic {
     
     func unlike(_ post: Post) {
         guard let authHeaders = AuthManager.shared.getAuthHeaders() else { return }
-        AF.request(APIURL + "/posts/" + String(post.id_post) + "/unlike",
-                   method: .post,
+        AF.request("\(APIURL)/posts/\(post.id_post)/like",
+                   method: .delete,
                    headers: authHeaders)
             .validate()
             .response { response in

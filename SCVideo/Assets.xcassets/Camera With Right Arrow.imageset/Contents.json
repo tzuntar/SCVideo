@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "like copy.png",
+      "filename" : "Camera With Right Arrow.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "like copy@2x.png",
+      "filename" : "Camera With Right Arrow@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "like copy@3x.png",
+      "filename" : "Camera With Right Arrow@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

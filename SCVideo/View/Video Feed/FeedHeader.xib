@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FeedHeader" customModule="SCVideo" customModuleProvider="target">
+            <connections>
+                <outlet property="contentView" destination="r7M-Uz-0d3" id="DIJ-oI-Nt6"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="r7M-Uz-0d3">
+            <rect key="frame" x="0.0" y="0.0" width="544" height="70"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo Without Outline" translatesAutoresizingMaskIntoConstraints="NO" id="bgw-ly-UCA">
+                    <rect key="frame" x="90" y="5" width="364" height="60"/>
+                </imageView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Geh-et-9uN" userLabel="ButtonView">
+                    <rect key="frame" x="10" y="10" width="60" height="50"/>
+                    <subviews>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="User With Left Arrow" translatesAutoresizingMaskIntoConstraints="NO" id="eaH-yW-7KD">
+                            <rect key="frame" x="0.0" y="0.0" width="60" height="50"/>
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="60" id="l75-IE-AMe"/>
+                            </constraints>
+                        </imageView>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="exh-XA-V8B" userLabel="Prijatelji">
+                            <rect key="frame" x="0.0" y="0.0" width="60" height="50"/>
+                            <state key="normal" title=" ">
+                                <color key="titleColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </state>
+                            <connections>
+                                <action selector="showFriendsPressed:" destination="-1" eventType="touchUpInside" id="65Y-hN-2dm"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="eaH-yW-7KD" secondAttribute="bottom" id="N8U-Gb-tNq"/>
+                        <constraint firstItem="exh-XA-V8B" firstAttribute="leading" secondItem="Geh-et-9uN" secondAttribute="leading" id="Qax-hE-XlF"/>
+                        <constraint firstAttribute="bottom" secondItem="exh-XA-V8B" secondAttribute="bottom" id="VYP-Rw-snW"/>
+                        <constraint firstItem="eaH-yW-7KD" firstAttribute="top" secondItem="Geh-et-9uN" secondAttribute="top" id="bvL-7q-adv"/>
+                        <constraint firstItem="eaH-yW-7KD" firstAttribute="leading" secondItem="Geh-et-9uN" secondAttribute="leading" id="cqB-qR-KTd"/>
+                        <constraint firstAttribute="trailing" secondItem="exh-XA-V8B" secondAttribute="trailing" id="ouN-2G-9KI"/>
+                        <constraint firstItem="exh-XA-V8B" firstAttribute="top" secondItem="Geh-et-9uN" secondAttribute="top" id="qY4-7Y-pJL"/>
+                        <constraint firstAttribute="trailing" secondItem="eaH-yW-7KD" secondAttribute="trailing" id="qkL-BK-duH"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cwh-ng-x1n" userLabel="ButtonView">
+                    <rect key="frame" x="474" y="10" width="60" height="50"/>
+                    <subviews>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Camera With Right Arrow" translatesAutoresizingMaskIntoConstraints="NO" id="a4L-xl-pwz">
+                            <rect key="frame" x="0.0" y="0.0" width="60" height="50"/>
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="60" id="LMf-dA-hSj"/>
+                            </constraints>
+                        </imageView>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="doH-LJ-clp" userLabel="Posnemi">
+                            <rect key="frame" x="0.0" y="0.0" width="60" height="50"/>
+                            <state key="normal" title=" ">
+                                <color key="titleColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </state>
+                            <connections>
+                                <action selector="showRecordPressed:" destination="-1" eventType="touchUpInside" id="0F1-x0-fEx"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="doH-LJ-clp" firstAttribute="top" secondItem="Cwh-ng-x1n" secondAttribute="top" id="3j3-gd-BxE"/>
+                        <constraint firstAttribute="trailing" secondItem="a4L-xl-pwz" secondAttribute="trailing" id="Fl2-I9-Uhx"/>
+                        <constraint firstAttribute="bottom" secondItem="a4L-xl-pwz" secondAttribute="bottom" id="PK3-5P-Jnh"/>
+                        <constraint firstItem="a4L-xl-pwz" firstAttribute="top" secondItem="Cwh-ng-x1n" secondAttribute="top" id="YaS-Y7-mGg"/>
+                        <constraint firstItem="doH-LJ-clp" firstAttribute="leading" secondItem="Cwh-ng-x1n" secondAttribute="leading" id="ekd-Zb-5Ns"/>
+                        <constraint firstItem="a4L-xl-pwz" firstAttribute="leading" secondItem="Cwh-ng-x1n" secondAttribute="leading" id="kTs-RT-lyx"/>
+                        <constraint firstAttribute="trailing" secondItem="doH-LJ-clp" secondAttribute="trailing" id="qzS-ok-b2S"/>
+                        <constraint firstAttribute="bottom" secondItem="doH-LJ-clp" secondAttribute="bottom" id="xTu-l6-MPw"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="bgw-ly-UCA" secondAttribute="bottom" constant="5" id="0jA-qi-aZQ"/>
+                <constraint firstAttribute="bottom" secondItem="Cwh-ng-x1n" secondAttribute="bottom" constant="10" id="B1J-Tb-R6o"/>
+                <constraint firstItem="Geh-et-9uN" firstAttribute="leading" secondItem="r7M-Uz-0d3" secondAttribute="leading" constant="10" id="Bbi-gT-W5b"/>
+                <constraint firstItem="bgw-ly-UCA" firstAttribute="centerX" secondItem="r7M-Uz-0d3" secondAttribute="centerX" id="Cdj-8m-Gnz"/>
+                <constraint firstItem="exh-XA-V8B" firstAttribute="top" secondItem="r7M-Uz-0d3" secondAttribute="top" constant="10" id="Cg7-Kk-Qf7"/>
+                <constraint firstItem="Geh-et-9uN" firstAttribute="top" secondItem="r7M-Uz-0d3" secondAttribute="top" constant="10" id="HbI-BH-OBi"/>
+                <constraint firstItem="bgw-ly-UCA" firstAttribute="top" secondItem="r7M-Uz-0d3" secondAttribute="top" constant="5" id="MxJ-J9-qGF"/>
+                <constraint firstItem="exh-XA-V8B" firstAttribute="leading" secondItem="r7M-Uz-0d3" secondAttribute="leading" constant="10" id="PoA-YB-tHM"/>
+                <constraint firstItem="Cwh-ng-x1n" firstAttribute="top" secondItem="r7M-Uz-0d3" secondAttribute="top" constant="10" id="YmF-7B-Fp7"/>
+                <constraint firstAttribute="trailing" secondItem="Cwh-ng-x1n" secondAttribute="trailing" constant="10" id="cuB-CY-GUC"/>
+                <constraint firstItem="Cwh-ng-x1n" firstAttribute="leading" secondItem="bgw-ly-UCA" secondAttribute="trailing" constant="20" id="hJR-NM-C9o"/>
+                <constraint firstAttribute="bottom" secondItem="exh-XA-V8B" secondAttribute="bottom" constant="10" id="jbW-df-0zU"/>
+                <constraint firstItem="bgw-ly-UCA" firstAttribute="leading" secondItem="Geh-et-9uN" secondAttribute="trailing" constant="20" id="vra-Ze-BRy"/>
+                <constraint firstAttribute="bottom" secondItem="Geh-et-9uN" secondAttribute="bottom" constant="10" id="y7d-GL-SLh"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="310.14492753623193" y="-70.982142857142847"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="Camera With Right Arrow" width="53" height="36"/>
+        <image name="Logo Without Outline" width="137" height="32"/>
+        <image name="User With Left Arrow" width="44" height="31"/>
+    </resources>
+</document>

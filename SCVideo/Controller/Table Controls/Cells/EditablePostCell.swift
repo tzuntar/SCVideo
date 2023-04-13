@@ -33,7 +33,6 @@ class EditablePostCell: UITableViewCell {
             postDescription.text = "Ni opisa"
             postDescription.font = UIFont(name: "NunitoSans-SemiBoldItalic", size: 20.0)
             postDescription.textColor = UIColor(named: "DescriptionTextLabel")
-
         }
         postTimestamp.text = DateHelper.formatStringAsDate(post.added_on)
         DispatchQueue.global(qos: .background).async {

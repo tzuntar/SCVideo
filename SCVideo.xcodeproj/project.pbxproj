@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		1953684D948A36F26D1EF654 /* Pods_SCVideo_SCVideoUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E054E39AC7D1244EEF14261 /* Pods_SCVideo_SCVideoUITests.framework */; };
 		1BCE00B487F148F09FC29D94 /* EditablePostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BCE09D94A2D6A445C68DE7F /* EditablePostCell.swift */; };
+		1BCE0211326CDFB97A1A3E05 /* FeedHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BCE0E1B645B3A48AFE874B9 /* FeedHeader.swift */; };
 		1BCE049F72991AE7A0BE8F9B /* CommonExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BCE007066848E27210E8034 /* CommonExtensions.swift */; };
 		1BCE05383E68CD949A4F26A0 /* RecordedClipCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BCE036D76ED4977E647B1A9 /* RecordedClipCell.swift */; };
 		1BCE07BC93FEC8C6D284A156 /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BCE0CEDEE0CF7E7555DF5EC /* UserCell.swift */; };
@@ -60,6 +61,7 @@
 		27A61507291159BA0017FC87 /* PostLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A61506291159BA0017FC87 /* PostLogic.swift */; };
 		27A6150E2913079C0017FC87 /* WarningAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A6150C2913079B0017FC87 /* WarningAlert.swift */; };
 		27A6150F2913079C0017FC87 /* WarningAlert.xib in Resources */ = {isa = PBXBuildFile; fileRef = 27A6150D2913079B0017FC87 /* WarningAlert.xib */; };
+		27B1EAC129E5C17A00AD26EB /* FeedHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 276E596929E4144F0023302F /* FeedHeader.xib */; };
 		27BBA0AB29A6A150004CB7BD /* VarelaRound-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 27BBA0AA29A6A150004CB7BD /* VarelaRound-Regular.ttf */; };
 		27BBA0BD29A6A17E004CB7BD /* NunitoSans-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 27BBA0AF29A6A17D004CB7BD /* NunitoSans-ExtraBold.ttf */; };
 		27BBA0BE29A6A17E004CB7BD /* NunitoSans-ExtraLightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 27BBA0B029A6A17D004CB7BD /* NunitoSans-ExtraLightItalic.ttf */; };
@@ -108,6 +110,7 @@
 		1BCE07C1B8BF1B61A28BE6BD /* CommentsLogic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentsLogic.swift; sourceTree = "<group>"; };
 		1BCE09D94A2D6A445C68DE7F /* EditablePostCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditablePostCell.swift; sourceTree = "<group>"; };
 		1BCE0CEDEE0CF7E7555DF5EC /* UserCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
+		1BCE0E1B645B3A48AFE874B9 /* FeedHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedHeader.swift; sourceTree = "<group>"; };
 		1BCE0F85A7EC9DFB65CBEC13 /* CommentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentCell.swift; sourceTree = "<group>"; };
 		26D066E3E72BEECB68158CF6 /* Pods-SCVideo-SCVideoUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SCVideo-SCVideoUITests.release.xcconfig"; path = "Target Support Files/Pods-SCVideo-SCVideoUITests/Pods-SCVideo-SCVideoUITests.release.xcconfig"; sourceTree = "<group>"; };
 		2701A19729AB4D4800FEA390 /* PostNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostNode.swift; sourceTree = "<group>"; };
@@ -149,6 +152,7 @@
 		27673F1729D19058009DB796 /* Keys.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Keys.xcconfig; sourceTree = "<group>"; };
 		27673F1E29D19234009DB796 /* SCVideo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SCVideo.entitlements; sourceTree = "<group>"; };
 		276B382329AA9519005F51E7 /* VideoCompositionWriter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCompositionWriter.swift; sourceTree = "<group>"; };
+		276E596929E4144F0023302F /* FeedHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FeedHeader.xib; sourceTree = "<group>"; };
 		276EB4AE290FB1E200CB6C77 /* MyAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAccountViewController.swift; sourceTree = "<group>"; };
 		276EB4B3290FB20100CB6C77 /* UserProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
 		276EB4DC291039CA00CB6C77 /* UserCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserCell.xib; sourceTree = "<group>"; };
@@ -247,6 +251,7 @@
 			isa = PBXGroup;
 			children = (
 				2701A1C329AB602E00FEA390 /* PostControls.xib */,
+				276E596929E4144F0023302F /* FeedHeader.xib */,
 				2701A1B029AB5F5900FEA390 /* PostDetails.xib */,
 			);
 			path = "Video Feed";
@@ -259,6 +264,7 @@
 				2701A19729AB4D4800FEA390 /* PostNode.swift */,
 				2701A1BE29AB5F9D00FEA390 /* PostControlsView.swift */,
 				2789E79329B91C04004004DF /* PostProtocols.swift */,
+				1BCE0E1B645B3A48AFE874B9 /* FeedHeader.swift */,
 			);
 			path = "Video Feed";
 			sourceTree = "<group>";
@@ -623,6 +629,7 @@
 				27BBA0C629A6A17E004CB7BD /* NunitoSans-BoldItalic.ttf in Resources */,
 				2783010F29D9DF440024D341 /* RecordedClipCell.xib in Resources */,
 				27160A3928E57862008739C3 /* LaunchScreen.storyboard in Resources */,
+				27B1EAC129E5C17A00AD26EB /* FeedHeader.xib in Resources */,
 				27160A3628E57862008739C3 /* Assets.xcassets in Resources */,
 				27BBA0C929A6A17E004CB7BD /* NunitoSans-ExtraLight.ttf in Resources */,
 				2728656C29C99409002F747A /* Settings.bundle in Resources */,
@@ -794,6 +801,7 @@
 				1BCE07BC93FEC8C6D284A156 /* UserCell.swift in Sources */,
 				1BCE00B487F148F09FC29D94 /* EditablePostCell.swift in Sources */,
 				1BCE0B642ED185295E462029 /* DateHelper.swift in Sources */,
+				1BCE0211326CDFB97A1A3E05 /* FeedHeader.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

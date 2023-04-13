@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "like copy.png",
+      "filename" : "ŠCVIDEO.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "like copy@2x.png",
+      "filename" : "ŠCVIDEO@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "like copy@3x.png",
+      "filename" : "ŠCVIDEO@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

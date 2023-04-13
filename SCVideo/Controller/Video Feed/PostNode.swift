@@ -56,8 +56,8 @@ class PostNode: ASCellNode {
 
         // all UIView calls _must_ be done on the main thread
         let postControlsView = PostControlsView()
-        postControlsView.frame = CGRect(origin: CGPoint(x: UIScreen.main.bounds.width - 70, y: 280),
-                                        size: CGSize(width: 63, height: 289))
+        postControlsView.frame = CGRect(origin: CGPoint(x: UIScreen.main.bounds.width - 70, y: 300),
+                                        size: CGSize(width: 63, height: 240))
         postControlsView.setPost(post: post)
         postControlsView.setDelegate(delegate: nodeActionsDelegate)
         view.addSubview(postControlsView)
