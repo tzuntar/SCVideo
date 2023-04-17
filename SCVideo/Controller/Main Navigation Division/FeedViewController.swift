@@ -14,10 +14,10 @@ class FeedViewController: UIViewController, UIScrollViewDelegate {
     var posts: [Post] = []
     var feedLogic = FeedLogic()
     var lastNode: PostNode?
-    
+
     private var selectedPost: Post?
     private var postActionsLogic: PostActionsLogic?
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         tableNode = ASTableNode(style: .plain)
@@ -40,18 +40,18 @@ class FeedViewController: UIViewController, UIScrollViewDelegate {
         refreshControl.addTarget(self, action: #selector(refreshFeed), for: .valueChanged)
         tableNode.view.refreshControl = refreshControl
     }
-    
+
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         tableNode.frame = view.bounds
     }
-    
+
     private func applyStyles() {
         view.backgroundColor = .systemPink
         tableNode.view.separatorStyle = .singleLine
         tableNode.view.isPagingEnabled = true
     }
-    
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.identifier {
         case "showPostComments":
@@ -75,7 +75,7 @@ extension FeedViewController: ASTableDataSource {
     func tableNode(_ tableNode: ASTableNode, numberOfRowsInSection section: Int) -> Int {
         posts.count
     }
-    
+
     func tableNode(_ tableNode: ASTableNode, nodeBlockForRowAt indexPath: IndexPath) -> ASCellNodeBlock {
         let post = posts[indexPath.row]
         return {
@@ -93,11 +93,11 @@ extension FeedViewController: ASTableDelegate {
         let max = CGSize(width: width, height: .infinity)
         return ASSizeRangeMake(min, max)
     }
-    
+
     func shouldBatchFetch(for tableNode: ASTableNode) -> Bool {
         true
     }
-    
+
     func tableNode(_ tableNode: ASTableNode, willBeginBatchFetchWith context: ASBatchContext) {
         // get the next page of results
         retrieveNextPageWithCompletion { newPosts in
@@ -120,7 +120,7 @@ extension FeedViewController {
             }
         })
     }
-    
+
     func insertNewRowsInTableNode(_ newPosts: [Post]) {
         guard !newPosts.isEmpty else { return }
         let section = 0
@@ -158,32 +158,38 @@ extension FeedViewController: PostNodeActionDelegate {
     }
 
     func didTapSharePost(_ post: Post) {
-        guard let videoUrl = URL(string: "\(APIURL)/posts/videos/\(post.content_uri)") else { return }
-        /*URLSession.shared.downloadTask(with: videoUrl) { (location, response, error) in
-            guard let location = location else {
-                print("Error downloading asset: \(error?.localizedDescription ?? "unknown error")")
-                return
-            }
+        #if ENABLE_DOWNLOAD_CLIP_WHEN_SHARING
+            guard let videoUrl = URL(string: "\(APIURL)/posts/videos/\(post.content_uri)") else { return }
+            /*URLSession.shared.downloadTask(with: videoUrl) { (location, response, error) in
+                guard let location = location else {
+                    print("Error downloading asset: \(error?.localizedDescription ?? "unknown error")")
+                    return
+                }
 
-            let shareSheet = UIActivityViewController(activityItems: [location],
-                                              applicationActivities: nil)
-            shareSheet.popoverPresentationController?.sourceView = self.view // fixes a crash on iPads
-            shareSheet.popoverPresentationController?.sourceRect = self.view.frame
-            DispatchQueue.main.async {
-                self.present(shareSheet, animated: true, completion: nil)
-            }
-        }.resume()*/
+                let shareSheet = UIActivityViewController(activityItems: [location],
+                                                  applicationActivities: nil)
+                shareSheet.popoverPresentationController?.sourceView = self.view // fixes a crash on iPads
+                shareSheet.popoverPresentationController?.sourceRect = self.view.frame
+                DispatchQueue.main.async {
+                    self.present(shareSheet, animated: true, completion: nil)
+                }
+            }.resume()*/
 
-        let downloadSession = AVAssetDownloadURLSession(configuration: .background(withIdentifier: "share-sheet-download"),
-                                                        assetDownloadDelegate: self,
-                                                        delegateQueue: .main)
-        downloadSession.makeAssetDownloadTask(asset: AVURLAsset(url: videoUrl),
-                                         assetTitle: post.content_uri,
-                                   assetArtworkData: nil,
-                                            options: nil)?.resume()
-
+            let downloadSession = AVAssetDownloadURLSession(configuration: .background(withIdentifier: "share-sheet-download"),
+                                                            assetDownloadDelegate: self,
+                                                            delegateQueue: .main)
+            downloadSession.makeAssetDownloadTask(asset: AVURLAsset(url: videoUrl),
+                                             assetTitle: post.content_uri,
+                                       assetArtworkData: nil,
+                                                options: nil)?.resume()
+        #else
+            let videoUrl = URL(string: "\(APIURL)/posts/videos/\(post.content_uri)")!
+            let activityController = UIActivityViewController(activityItems: [videoUrl],
+                                                      applicationActivities: nil)
+            present(activityController, animated: true, completion: nil)
+        #endif
     }
-    
+
     func didTapUserProfile(_ post: Post) {
         selectedPost = post
         performSegue(withIdentifier: "showPosterProfile", sender: self)

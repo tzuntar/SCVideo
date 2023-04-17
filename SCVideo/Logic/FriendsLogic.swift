@@ -17,8 +17,10 @@ protocol FriendListDelegate : FriendDelegate {
     func didFetchStrangers(_ strangers: [User])
 }
 
-protocol AddFriendDelegate : FriendDelegate {
-    func didAddSucceed(_ friend: User)
+protocol FriendProfileDelegate: FriendDelegate {
+    func didCheckFriendship(_ isFriend: Bool)
+    func didAddFriend(_ friend: User)
+    func didRemoveFriend(_ friend: User)
 }
 
 enum FriendsError: Error, CustomStringConvertible {
@@ -76,15 +78,32 @@ class FriendsLogic {
                 }
             }
     }
-    
-    func addFriend(user: User) {
+
+    func checkFriendship(for user: User) {
         guard let authHeaders = AuthManager.shared.getAuthHeaders() else { return }
-        AF.request("\(APIURL)/users/\(user.id_user)/add_friend",
+        AF.request("\(APIURL)/users/\(user.id_user)/friend",
+                    method: .get,
                    headers: authHeaders)
             .validate()
             .response { response in
-                if let d = self.delegate as? AddFriendDelegate {
-                    d.didAddSucceed(user)
+                guard response.response != nil else { return }
+                if let delegate = self.delegate as? FriendProfileDelegate,
+                   let data = response.data {
+                    let isFriend = String(data: data, encoding: .utf8) == "true"
+                    delegate.didCheckFriendship(isFriend)
+                }
+            }
+    }
+    
+    func addFriend(user: User) {
+        guard let authHeaders = AuthManager.shared.getAuthHeaders() else { return }
+        AF.request("\(APIURL)/users/\(user.id_user)/friend",
+                    method: .post,
+                   headers: authHeaders)
+            .validate()
+            .response { response in
+                if let delegate = self.delegate as? FriendProfileDelegate {
+                    delegate.didAddFriend(user)
                     return
                 }
                 
@@ -92,6 +111,24 @@ class FriendsLogic {
                     self.handleError(forCode: safeResponse.statusCode)
                 }
             }
+    }
+
+    func removeFriend(user: User) {
+        guard let authHeaders = AuthManager.shared.getAuthHeaders() else { return }
+        AF.request("\(APIURL)/users/\(user.id_user)/friend",
+                    method: .delete,
+                   headers: authHeaders)
+                .validate()
+                .response { response in
+                    if let delegate = self.delegate as? FriendProfileDelegate {
+                        delegate.didRemoveFriend(user)
+                        return
+                    }
+
+                    if let safeResponse = response.response {
+                        self.handleError(forCode: safeResponse.statusCode)
+                    }
+                }
     }
     
     private func handleError(forCode responseCode: Int) {

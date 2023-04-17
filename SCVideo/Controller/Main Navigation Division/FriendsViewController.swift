@@ -22,6 +22,12 @@ class FriendsViewController: UIViewController {
                                   forCellReuseIdentifier: "UserCell")
         friendsTableView.dataSource = self
         friendsLogic = FriendsLogic(delegatingActionsTo: self)
+
+        // the pull-to-refresh thingy
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(refreshFriendsList), for: .valueChanged)
+        friendsTableView.refreshControl = refreshControl
+
         DispatchQueue.global(qos: .background).async {
             self.friendsLogic!.retrieveFriends()
             self.friendsLogic!.retrieveStrangers()
@@ -29,10 +35,20 @@ class FriendsViewController: UIViewController {
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "showAnotherUsersProfile" {
+        if segue.identifier == "showFriendAccount" {
             guard let userProfileVC = segue.destination as? UserProfileViewController,
                   let user = selectedUser else { return }
             userProfileVC.currentUser = user
+        }
+    }
+
+    @objc func refreshFriendsList() {
+        DispatchQueue.global(qos: .background).async {
+            self.friendsLogic!.retrieveFriends()
+            self.friendsLogic!.retrieveStrangers()
+            DispatchQueue.main.async {
+                self.friendsTableView.refreshControl?.endRefreshing()
+            }
         }
     }
 
@@ -77,44 +93,29 @@ extension FriendsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "UserCell", for: indexPath) as! UserCell
 
-        if let friends = friends {
-            if indexPath.row < friends.count {
-                cell.loadData(forUser: friends[indexPath.row])
-                return cell
-            } else {    // add a separator to the end of the friends list
-                let separatorView = UIView(frame: CGRect(x: 0,
-                                                         y: cell.contentView.frame.size.height - 1,
-                                                         width: cell.contentView.frame.size.width,
-                                                         height: 1))
-                separatorView.backgroundColor = UIColor(named: "DescriptionTextLabel")
-                cell.contentView.addSubview(separatorView)
+        if friends != nil && friends?.count ?? 0 > 0 {
+            if indexPath.row < friends!.count {
+                cell.loadData(forUser: friends![indexPath.row])
+                if indexPath.row == friends!.count - 1 { // add a separator between friends and strangers
+                    let borderBottom = CALayer()
+                    borderBottom.backgroundColor = UIColor(named: "DescriptionTextLabel")?.cgColor
+                    borderBottom.opacity = 0.5
+                    borderBottom.frame = CGRect(x: 15,
+                                                y: cell.frame.height - 20,
+                                                width: tableView.frame.width - 30,
+                                                height: 2)
+                    cell.layer.addSublayer(borderBottom)
+                }
                 return cell
             }
         }
 
-        if let strangers = strangers {
+        if strangers != nil && strangers?.count ?? 0 > 0 {
             let index = indexPath.row - (friends?.count ?? 0)
-            cell.loadData(forUser: strangers[index])
+            cell.loadData(forUser: strangers![index])
         }
 
         return cell
-/*
-//        guard let friends = friends else { return cell }
-        if indexPath.row < (friends?.count ?? 0) {
-            cell.loadData(forUser: friends![indexPath.row])
-        } else {
-            guard let strangers = strangers else { return cell }
-            if indexPath.row == (friends?.count ?? 0) { // add a separator
-                let separatorView = UIView(frame: CGRect(x: 0,
-                                                         y: cell.contentView.frame.size.height - 1,
-                                                         width: cell.contentView.frame.size.width,
-                                                         height: 1))
-                separatorView.backgroundColor = UIColor(named: "DescriptionTextLabel")
-                cell.contentView.addSubview(separatorView)
-            }
-            cell.loadData(forUser: strangers[indexPath.row])
-        }
-        return cell*/
     }
 
 }

@@ -101,6 +101,9 @@
                                                 <state key="normal" image="AddFriendButton">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="addFriendPressed:" destination="0KU-Nm-Y2v" eventType="touchUpInside" id="nhP-Ws-DYF"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
@@ -238,7 +241,7 @@
                                         </constraints>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rZc-RQ-61h">
-                                        <rect key="frame" x="290" y="16.666666666666629" width="50" height="29"/>
+                                        <rect key="frame" x="290" y="17.666666666666629" width="50" height="27"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="50" id="pG9-Gl-B1W"/>
                                         </constraints>
@@ -492,7 +495,7 @@
                                                     <action selector="flipCameraPressed:" destination="vpu-Mw-GyL" eventType="touchUpInside" id="Ytb-Vl-7Wm"/>
                                                 </connections>
                                             </button>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Record Video" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iWE-hn-9lx">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Posnami video" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iWE-hn-9lx">
                                                 <rect key="frame" x="35" y="30" width="320" height="30"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="38D-kZ-X41"/>
@@ -502,7 +505,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tY0-Tc-Vhr">
-                                                <rect key="frame" x="35" y="685.66666666666663" width="50.333333333333343" height="23.333333333333371"/>
+                                                <rect key="frame" x="35" y="681.66666666666663" width="53" height="27.333333333333371"/>
                                                 <fontDescription key="fontDescription" name="NunitoSans-Bold" family="Nunito Sans" pointSize="20"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -837,7 +840,7 @@
                     </tabBarItem>
                     <connections>
                         <outlet property="friendsTableView" destination="fIU-ps-Hl4" id="5Ub-95-2Kl"/>
-                        <segue destination="0KU-Nm-Y2v" kind="presentation" identifier="showAnotherUsersProfile" id="uqp-cb-mO0"/>
+                        <segue destination="0KU-Nm-Y2v" kind="presentation" identifier="showFriendAccount" id="uqp-cb-mO0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RKt-KV-3Xl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -886,7 +889,7 @@
         <image name="Record Button" width="63" height="63"/>
         <image name="Recording Tag" width="65" height="19"/>
         <image name="SearchButton" width="37" height="36"/>
-        <image name="Send" width="34" height="29"/>
+        <image name="Send" width="30" height="27"/>
         <image name="SignOutButton" width="37" height="36"/>
         <image name="Text Field" width="393" height="62"/>
         <image name="Upload" width="26" height="26"/>

@@ -11,6 +11,7 @@ class UserProfileViewController: UIViewController {
 
     var currentUser: User?
     var userPosts: [Post]?
+    private var isFriend: Bool?
     
     @IBOutlet weak var userName: UILabel!
     @IBOutlet weak var userUsername: UILabel!
@@ -20,6 +21,8 @@ class UserProfileViewController: UIViewController {
     @IBOutlet weak var userBioPlaceholder: UILabel!
     @IBOutlet weak var postsCollectionView: UICollectionView!
     @IBOutlet weak var addFriendButton: UIButton!
+
+    private var friendsLogic: FriendsLogic?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,6 +36,7 @@ class UserProfileViewController: UIViewController {
         userBio.layer.cornerRadius = 8
         userPhoto.layer.cornerRadius = userPhoto.layer.frame.height / 2
 
+        friendsLogic = FriendsLogic(delegatingActionsTo: self)
         if let user = currentUser {
             userName.text = user.full_name
             userUsername.text = "@\(user.username)"
@@ -44,20 +48,23 @@ class UserProfileViewController: UIViewController {
             if let photo = user.photo_uri {
                 userPhoto.loadFrom(URLAddress: "\(APIURL)/images/profile/\(photo)")
             }
-            
-            toggleAddFriendButton(userIsFriend: false)  // ToDo: this
+
+            if (user.id_user != AuthManager.shared.session!.user.id_user) {
+                friendsLogic?.checkFriendship(for: user)
+            } else {
+                addFriendButton.isHidden = true
+            }
             fetchUserPosts()
         }
     }
 
     @IBAction func addFriendPressed(_ sender: UIButton) {
         guard let user = currentUser else { return }
-        let logic = FriendsLogic(delegatingActionsTo: self)
-        /*if (userIsFriend) {
-            logic.removeFriend(user)
-        } else {*/
-            logic.addFriend(user: user)
-        //}
+        if isFriend == true {
+            friendsLogic?.removeFriend(user: user)
+        } else {
+            friendsLogic?.addFriend(user: user)
+        }
     }
     
     private func toggleAddFriendButton(userIsFriend: Bool) {
@@ -102,11 +109,21 @@ extension UserProfileViewController: UICollectionViewDelegateFlowLayout {
 }
 
 // MARK: - Friend Actions Delegate
-extension UserProfileViewController : AddFriendDelegate {
-    
-    func didAddSucceed(_ friend: User) {
-        // user.is_friend = true
+extension UserProfileViewController : FriendProfileDelegate {
+
+    func didCheckFriendship(_ isFriend: Bool) {
+        self.isFriend = isFriend
+        toggleAddFriendButton(userIsFriend: isFriend)
+    }
+
+    func didAddFriend(_ friend: User) {
+        isFriend = true
         toggleAddFriendButton(userIsFriend: true)
+    }
+
+    func didRemoveFriend(_ friend: User) {
+        isFriend = false
+        toggleAddFriendButton(userIsFriend: false)
     }
     
     func didFriendActionFailWithError(_ error: Error) {
