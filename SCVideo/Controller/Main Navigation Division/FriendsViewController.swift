@@ -11,17 +11,24 @@ class FriendsViewController: UIViewController {
 
     var friends: [User]?
     var strangers: [User]?
+
+    var allFriends: [User]? // used when searching
+    var allStrangers: [User]?
+
     var friendsLogic: FriendsLogic?
     var selectedUser: User?
 
+    @IBOutlet weak var searchField: UITextField!
     @IBOutlet weak var friendsTableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        hideKeyboardWhenTappedAround()
         friendsTableView.register(UINib(nibName: "UserCell", bundle: nil),
                                   forCellReuseIdentifier: "UserCell")
         friendsTableView.dataSource = self
         friendsLogic = FriendsLogic(delegatingActionsTo: self)
+        searchField.delegate = self
 
         // the pull-to-refresh thingy
         let refreshControl = UIRefreshControl()
@@ -60,6 +67,7 @@ extension FriendsViewController: FriendListDelegate {
     
     func didFetchFriends(_ friends: [User]) {
         self.friends = friends
+        allFriends = friends
         DispatchQueue.main.async {
             self.friendsTableView.reloadData()
         }
@@ -67,6 +75,7 @@ extension FriendsViewController: FriendListDelegate {
 
     func didFetchStrangers(_ strangers: [User]) {
         self.strangers = strangers
+        allStrangers = strangers
         DispatchQueue.main.async {
             self.friendsTableView.reloadData()
         }
@@ -116,6 +125,21 @@ extension FriendsViewController: UITableViewDataSource {
         }
 
         return cell
+    }
+
+}
+
+// MARK: - Search Field Delegate
+
+extension FriendsViewController: UITextFieldDelegate {
+
+    public func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        let searchTerm: String? = (textField.text as? NSString)?.replacingCharacters(in: range, with: string)
+        guard searchTerm != nil && searchTerm != "" else { return true }
+        friends = allFriends?.filter { $0.username.lowercased().contains(searchTerm!.lowercased()) }
+        strangers = allStrangers?.filter { $0.username.lowercased().contains(searchTerm!.lowercased()) }
+        friendsTableView.reloadData()
+        return true
     }
 
 }

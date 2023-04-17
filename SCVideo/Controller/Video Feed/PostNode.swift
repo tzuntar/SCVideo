@@ -19,7 +19,7 @@ class PostNode: ASCellNode {
         self.post = post
         self.nodeActionsDelegate = nodeActionsDelegate
         thumbnailNode = ASNetworkImageNode()
-        videoNode = ASVideoNode()
+        videoNode = FeedVideoNode()
         gradientNode = GradientNode()
         super.init()
 
@@ -41,7 +41,8 @@ class PostNode: ASCellNode {
         gradientNode.isOpaque = false
         
         //videoNode.url = post.thumbnail_url
-        videoNode.shouldAutoplay = false
+        videoNode.muted = true  // ToDo: properly autoplay sound
+        videoNode.shouldAutoplay = true
         videoNode.shouldAutorepeat = false
         videoNode.gravity = AVLayerVideoGravity.resizeAspectFill.rawValue
 

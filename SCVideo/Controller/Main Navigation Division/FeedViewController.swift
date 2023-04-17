@@ -196,25 +196,24 @@ extension FeedViewController: PostNodeActionDelegate {
     }
 }
 
-// MARK - Post Actions Delegate Callbacks
+// MARK: - Post Actions Delegate Callbacks
 extension FeedViewController: PostActionsDelegate {
 
     func didLikePost(_ post: Post) {
-        print("liked")
+        print("Successfully liked post with id \(post.id_post)")
     }
 
     func didUnlikePost(_ post: Post) {
-        print("unliked")
+        print("Successfully unliked post with id \(post.id_post)")
     }
 
     func didActionFailWithError(_ error: Error) {
         print("Post action failed with error: \(error)")
     }
 
-
 }
 
-// MARK - Downloading Videos for Share Sheet
+// MARK: - Downloading Videos for Share Sheet
 extension FeedViewController: AVAssetDownloadDelegate {
     func urlSession(_ session: URLSession, assetDownloadTask: AVAssetDownloadTask, didFinishDownloadingTo location: URL) {
         let exportSession = AVAssetExportSession(asset: assetDownloadTask.urlAsset,

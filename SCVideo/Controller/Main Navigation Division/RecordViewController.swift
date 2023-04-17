@@ -54,6 +54,7 @@ class RecordViewController: UIViewController {
         setUpInputs()
         setUpLivePreview()
         startCameraPreview()
+        recIndicator.alpha = 0.0
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -225,21 +226,29 @@ extension RecordViewController {
 
     // FixMe: fix these opacity shenanigans
     private func startFlashingRecIndicator() {
-        UIView.animate(withDuration: 0.5,
-                       delay: 0.0,
-                       options: [.curveEaseInOut, .repeat, .autoreverse, .allowUserInteraction]) {
-            self.recIndicator.alpha = 1.0
-        }
-        //recIndicator.alpha = 1.0    // one's here
+        #if ENABLE_RECORD_ANIMATIONS
+            UIView.animate(withDuration: 0.5,
+                           delay: 0.0,
+                           options: [.curveEaseInOut, .repeat, .autoreverse, .allowUserInteraction]) {
+                self.recIndicator.alpha = 1.0
+            }
+            //recIndicator.alpha = 1.0    // one's here
+        #else
+            recIndicator.alpha = 1.0
+        #endif
     }
 
     private func stopFlashingRecIndicator() {
-        UIView.animate(withDuration: 0.5,
-                       delay: 0.0,
-                       options: [.curveEaseInOut, .repeat, .autoreverse, .allowUserInteraction]) {
-            self.recIndicator.alpha = 0.0
-        }
-        //recIndicator.alpha = 0.0    // here's another
+        #if ENABLE_RECORD_ANIMATIONS
+            UIView.animate(withDuration: 0.5,
+                           delay: 0.0,
+                           options: [.curveEaseInOut, .repeat, .autoreverse, .allowUserInteraction]) {
+                self.recIndicator.alpha = 0.0
+            }
+            //recIndicator.alpha = 0.0    // here's another
+        #else
+            recIndicator.alpha = 0.0
+        #endif
     }
 
     private func setTimeIndicator(toSeconds seconds: Int) {

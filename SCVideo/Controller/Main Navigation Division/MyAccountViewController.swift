@@ -136,7 +136,7 @@ extension MyAccountViewController: UITableViewDelegate {
     }
 }
 
-// MARK - Bio Text View Delegate
+// MARK: - Bio Text View Delegate
 
 extension MyAccountViewController: UITextViewDelegate {
 

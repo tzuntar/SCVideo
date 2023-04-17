@@ -495,7 +495,7 @@
                                                     <action selector="flipCameraPressed:" destination="vpu-Mw-GyL" eventType="touchUpInside" id="Ytb-Vl-7Wm"/>
                                                 </connections>
                                             </button>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Posnami video" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iWE-hn-9lx">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Posnemi video" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iWE-hn-9lx">
                                                 <rect key="frame" x="35" y="30" width="320" height="30"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="38D-kZ-X41"/>
@@ -840,6 +840,7 @@
                     </tabBarItem>
                     <connections>
                         <outlet property="friendsTableView" destination="fIU-ps-Hl4" id="5Ub-95-2Kl"/>
+                        <outlet property="searchField" destination="TtW-RF-Ey5" id="eyl-2y-nC8"/>
                         <segue destination="0KU-Nm-Y2v" kind="presentation" identifier="showFriendAccount" id="uqp-cb-mO0"/>
                     </connections>
                 </viewController>
