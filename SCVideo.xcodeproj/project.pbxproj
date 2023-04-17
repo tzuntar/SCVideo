@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1953684D948A36F26D1EF654 /* Pods_SCVideo_SCVideoUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E054E39AC7D1244EEF14261 /* Pods_SCVideo_SCVideoUITests.framework */; };
+		1BCE00AC49EC1DA915FAB2A5 /* SeparatorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BCE0304025AFB4A84319979 /* SeparatorCell.swift */; };
 		1BCE00B487F148F09FC29D94 /* EditablePostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BCE09D94A2D6A445C68DE7F /* EditablePostCell.swift */; };
 		1BCE0211326CDFB97A1A3E05 /* FeedHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BCE0E1B645B3A48AFE874B9 /* FeedHeader.swift */; };
 		1BCE049F72991AE7A0BE8F9B /* CommonExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BCE007066848E27210E8034 /* CommonExtensions.swift */; };
@@ -105,6 +106,7 @@
 		063B2C28337D2B208087EF5B /* Pods-SCVideo-SCVideoUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SCVideo-SCVideoUITests.debug.xcconfig"; path = "Target Support Files/Pods-SCVideo-SCVideoUITests/Pods-SCVideo-SCVideoUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		081C4F1C21E37384C582B8D1 /* Pods_SCVideo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SCVideo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1BCE007066848E27210E8034 /* CommonExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommonExtensions.swift; sourceTree = "<group>"; };
+		1BCE0304025AFB4A84319979 /* SeparatorCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeparatorCell.swift; sourceTree = "<group>"; };
 		1BCE036D76ED4977E647B1A9 /* RecordedClipCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordedClipCell.swift; sourceTree = "<group>"; };
 		1BCE03C8AAC6A09A7EEBDE8E /* DateHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateHelper.swift; sourceTree = "<group>"; };
 		1BCE07668822A3437646AA5C /* PostCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostCell.swift; sourceTree = "<group>"; };
@@ -384,6 +386,7 @@
 			isa = PBXGroup;
 			children = (
 				1BCE00110FD0ED498F9B74FB /* Cells */,
+				1BCE0304025AFB4A84319979 /* SeparatorCell.swift */,
 			);
 			path = "Table Controls";
 			sourceTree = "<group>";
@@ -806,6 +809,7 @@
 				1BCE0B642ED185295E462029 /* DateHelper.swift in Sources */,
 				1BCE0211326CDFB97A1A3E05 /* FeedHeader.swift in Sources */,
 				1BCE088045A0FADB9F0D10C2 /* FeedVideoNode.swift in Sources */,
+				1BCE00AC49EC1DA915FAB2A5 /* SeparatorCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

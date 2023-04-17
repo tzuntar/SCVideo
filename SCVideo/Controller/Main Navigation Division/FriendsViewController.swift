@@ -105,16 +105,12 @@ extension FriendsViewController: UITableViewDataSource {
         if friends != nil && friends?.count ?? 0 > 0 {
             if indexPath.row < friends!.count {
                 cell.loadData(forUser: friends![indexPath.row])
-                if indexPath.row == friends!.count - 1 { // add a separator between friends and strangers
-                    let borderBottom = CALayer()
-                    borderBottom.backgroundColor = UIColor(named: "DescriptionTextLabel")?.cgColor
-                    borderBottom.opacity = 0.5
-                    borderBottom.frame = CGRect(x: 15,
-                                                y: cell.frame.height - 20,
-                                                width: tableView.frame.width - 30,
-                                                height: 2)
-                    cell.layer.addSublayer(borderBottom)
-                }
+                #if ENABLE_FRIENDS_LIST_SEPARATOR
+                    if indexPath.row == friends!.count - 1 {    // add a separator cell after the last friend cell
+                        let separatorCell = SeparatorCell(style: .default, reuseIdentifier: "SeparatorCell")
+                        tableView.insertSubview(separatorCell, at: indexPath.row)
+                    }
+                #endif
                 return cell
             }
         }
@@ -127,6 +123,7 @@ extension FriendsViewController: UITableViewDataSource {
         return cell
     }
 
+
 }
 
 // MARK: - Search Field Delegate
@@ -134,10 +131,32 @@ extension FriendsViewController: UITableViewDataSource {
 extension FriendsViewController: UITextFieldDelegate {
 
     public func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        let searchTerm: String? = (textField.text as? NSString)?.replacingCharacters(in: range, with: string)
-        guard searchTerm != nil && searchTerm != "" else { return true }
-        friends = allFriends?.filter { $0.username.lowercased().contains(searchTerm!.lowercased()) }
-        strangers = allStrangers?.filter { $0.username.lowercased().contains(searchTerm!.lowercased()) }
+        var searchTerm = textField.text ?? ""
+        if let stringRange = Range(range, in: searchTerm) {
+            searchTerm = searchTerm.replacingCharacters(in: stringRange, with: string)
+        }
+
+        if searchTerm.isEmpty {
+            friends = allFriends
+            strangers = allStrangers
+        } else {
+            friends = allFriends?.filter { $0.username.lowercased().contains(searchTerm.lowercased()) }
+            strangers = allStrangers?.filter { $0.username.lowercased().contains(searchTerm.lowercased()) }
+        }
+
+        friendsTableView.reloadData()
+        return true
+    }
+
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        let searchTerm = textField.text?.lowercased()
+        if searchTerm?.isEmpty == false {
+            friends = allFriends?.filter { $0.username.lowercased().contains(searchTerm!) }
+            strangers = allStrangers?.filter { $0.username.lowercased().contains(searchTerm!) }
+        } else {
+            friends = allFriends
+            strangers = allStrangers
+        }
         friendsTableView.reloadData()
         return true
     }
