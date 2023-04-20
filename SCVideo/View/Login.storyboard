@@ -31,16 +31,16 @@
                                 <rect key="frame" x="40" y="79" width="334" height="763"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo" translatesAutoresizingMaskIntoConstraints="NO" id="Wvi-XD-Ks0">
-                                        <rect key="frame" x="0.0" y="0.0" width="334" height="50"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="334" height="41"/>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Prijavi se s svojim šolskim računom" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1TQ-zt-a0B">
-                                        <rect key="frame" x="0.0" y="247" width="334" height="56"/>
+                                        <rect key="frame" x="0.0" y="241" width="334" height="56"/>
                                         <fontDescription key="fontDescription" name="NunitoSans-Bold" family="Nunito Sans" pointSize="24"/>
                                         <color key="textColor" name="HeadingTextLabel"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FpO-JZ-ugj" userLabel="LoginButtonView">
-                                        <rect key="frame" x="0.0" y="500" width="334" height="66"/>
+                                        <rect key="frame" x="0.0" y="497" width="334" height="66"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ButtonForward" translatesAutoresizingMaskIntoConstraints="NO" id="mX8-Y7-IX3">
                                                 <rect key="frame" x="0.0" y="0.0" width="334" height="66"/>
@@ -106,7 +106,7 @@
     <resources>
         <image name="BackgroundBuildingPhoto" width="1800" height="3620"/>
         <image name="ButtonForward" width="154" height="62"/>
-        <image name="Logo" width="178" height="50"/>
+        <image name="Logo" width="192" height="41"/>
         <namedColor name="Background">
             <color red="0.059000000357627869" green="0.082000002264976501" blue="0.10999999940395355" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
