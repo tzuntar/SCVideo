@@ -66,16 +66,20 @@ class FriendsViewController: UIViewController {
 extension FriendsViewController: FriendListDelegate {
     
     func didFetchFriends(_ friends: [User]) {
-        self.friends = friends
         allFriends = friends
+        self.friends = friends
         DispatchQueue.main.async {
             self.friendsTableView.reloadData()
         }
     }
 
     func didFetchStrangers(_ strangers: [User]) {
-        self.strangers = strangers
         allStrangers = strangers
+        #if SHOW_EVERYONE_IN_LIST
+            self.strangers = strangers
+        #else
+            self.strangers = []
+        #endif
         DispatchQueue.main.async {
             self.friendsTableView.reloadData()
         }
@@ -138,9 +142,17 @@ extension FriendsViewController: UITextFieldDelegate {
 
         if searchTerm.isEmpty {
             friends = allFriends
-            strangers = allStrangers
+            #if SHOW_EVERYONE_IN_LIST
+                strangers = allStrangers
+            #else
+                strangers = []
+            #endif
         } else {
-            friends = allFriends?.filter { $0.username.lowercased().contains(searchTerm.lowercased()) }
+            #if SHOW_EVERYONE_IN_LIST
+                friends = allFriends?.filter { $0.username.lowercased().contains(searchTerm.lowercased()) }
+            #else
+                friends = []
+            #endif
             strangers = allStrangers?.filter { $0.username.lowercased().contains(searchTerm.lowercased()) }
         }
 
@@ -151,11 +163,19 @@ extension FriendsViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         let searchTerm = textField.text?.lowercased()
         if searchTerm?.isEmpty == false {
-            friends = allFriends?.filter { $0.username.lowercased().contains(searchTerm!) }
+            #if SHOW_EVERYONE_IN_LIST
+                friends = allFriends?.filter { $0.username.lowercased().contains(searchTerm!) }
+            #else
+                friends = []
+            #endif
             strangers = allStrangers?.filter { $0.username.lowercased().contains(searchTerm!) }
         } else {
             friends = allFriends
-            strangers = allStrangers
+            #if SHOW_EVERYONE_IN_LIST
+                strangers = allStrangers
+            #else
+                strangers = []
+            #endif
         }
         friendsTableView.reloadData()
         return true
