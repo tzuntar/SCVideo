@@ -72,18 +72,14 @@ class RecordViewController: UIViewController {
 
         captureSession.beginConfiguration()
         // remove the inputs if they're already present
-        if captureSession.isRunning {
-            if let inputs = captureSession.inputs as? [AVCaptureDeviceInput] {
-                for input in inputs {
-                    captureSession.removeInput(input)
-                }
+        if let inputs = captureSession.inputs as? [AVCaptureDeviceInput] {
+            for input in inputs {
+                captureSession.removeInput(input)
             }
         }
 
         // make sure the rear camera and microphone are available
-        guard let rearCamera = AVCaptureDevice.default(for: AVMediaType.video),
-              let microphone = AVCaptureDevice.default(for: AVMediaType.audio)
-        else {
+        guard let microphone = AVCaptureDevice.default(for: AVMediaType.audio) else {
             print("Unable to access capture devices")
             return
         }
@@ -96,17 +92,20 @@ class RecordViewController: UIViewController {
                     deviceTypes: [.builtInWideAngleCamera],
                     mediaType: .video,
                     position: .front)
-                if deviceDiscoverySession.devices.count > 0 {
-                    let frontCamera = deviceDiscoverySession.devices[0]
+                if let frontCamera = deviceDiscoverySession.devices.first {
                     cameraInput = try AVCaptureDeviceInput(device: frontCamera)
                 }
             } else {
+                guard let rearCamera = AVCaptureDevice.default(for: .video) else {
+                    print("Unable to access rear camera")
+                    return
+                }
                 cameraInput = try AVCaptureDeviceInput(device: rearCamera)
             }
 
             let audioInput = try AVCaptureDeviceInput(device: microphone)
             let output = AVCaptureVideoDataOutput()
-
+            
             if captureSession.canAddInput(cameraInput!),
                captureSession.canAddInput(audioInput),
                captureSession.canAddOutput(output) {
