@@ -15,12 +15,11 @@
 
 <!-- TOC -->
 
-* [📝 Kazalo](#-kazalo)
-* [📹 O projektu <a name = "about"></a>](#-o-projektu-a-name--about-a)
-* [💎 Funkcije <a name = "features"></a>](#-funkcije-a-name--features-a)
-* [🚀 Namestitev aplikacije <a name = "deployment"></a>](#-namestitev-aplikacije-a-name--deployment-a)
-    * [✅ Zahteve <a name = "prerequisites"></a>](#-zahteve-a-name--prerequisites-a)
-    * [⏳ Postopek izgradnje](#postopek-izgradnje)
+* [📹 O projektu](#about)
+* [💎 Funkcije](#features)
+* [🚀 Namestitev aplikacije](#deployment)
+    * [✅ Zahteve](#prerequisites)
+    * [⏳ Postopek izgradnje](#compiling)
 
 <!-- TOC -->
 
@@ -32,9 +31,9 @@ na Šolskem centru Velenje.
 
 ## 💎 Funkcije <a name = "features"></a>
 
-| Video zid | Posnemi & objavi | Uporabniški profili | Pregled objav | Komentarji |
-|-----------|------------------|---------------------|---------------|------------|
-|           |                  |                     |               |            |
+| Video zid                                                                                                                     | Posnemi & objavi                                                                                                              | Uporabniški profili                                                                                                           | Komentarji                                                                                                                    |
+|-------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------|
+| <img src="https://user-images.githubusercontent.com/35228139/233382967-d725a1bd-0c26-4324-bc5a-394b3f09b447.PNG" width=120px> | <img src="https://user-images.githubusercontent.com/35228139/233382977-5fabeae9-ac51-44cd-a652-a4e1d5ab21ec.PNG" width=120px> | <img src="https://user-images.githubusercontent.com/35228139/233382944-96ea335d-f88a-4fd3-b18e-3684052fdc9c.PNG" width=120px> | <img src="https://user-images.githubusercontent.com/35228139/233382955-aad7942b-2781-442d-8414-5b55dace1803.PNG" width=120px> |
 
 ## 🚀 Namestitev aplikacije <a name = "deployment"></a>
 
@@ -50,7 +49,7 @@ Za izgradnjo in delovanje aplikacije potrebujete naslednje:
 - računalnik za zagon zalednega dela aplikacije (
   glej [repozitorij zalednega dela](https://github.com/tzuntar/SCVideo-Backend)).
 
-### ⏳ Postopek izgradnje
+### ⏳ Postopek izgradnje <a name = "compiling"></a>
 
 1. Prenesite kodo obeh, čelnega in zalednega dela, vsakega v svoj imenik.
 2. Aplikacijo registrirajte na storitvi Azure Active Directory, pri tem pazite, da se bo vaš *Bundle ID* ujemal.
