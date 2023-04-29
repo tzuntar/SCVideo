@@ -23,6 +23,7 @@
 
 <!-- TOC -->
 
+
 ## 📹 O projektu <a name = "about"></a>
 
 V tem repozitoriju se nahaja koda čelnega dela mobilne aplikacije *ŠCVideo*.

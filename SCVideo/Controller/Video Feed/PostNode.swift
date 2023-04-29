@@ -19,7 +19,7 @@ class PostNode: ASCellNode {
         self.post = post
         self.nodeActionsDelegate = nodeActionsDelegate
         thumbnailNode = ASNetworkImageNode()
-        videoNode = FeedVideoNode()
+        videoNode = ASVideoNode()//FeedVideoNode()
         gradientNode = GradientNode()
         super.init()
 
@@ -41,6 +41,7 @@ class PostNode: ASCellNode {
         gradientNode.isOpaque = false
         
         //videoNode.url = post.thumbnail_url
+        videoNode.delegate = self
         videoNode.muted = true  // ToDo: properly autoplay sound
         videoNode.shouldAutoplay = true
         videoNode.shouldAutorepeat = false
@@ -69,6 +70,14 @@ class PostNode: ASCellNode {
         postDetailsView.setPost(post: post)
         postDetailsView.setDelegate(delegate: nodeActionsDelegate)
         view.addSubview(postDetailsView)
+        
+        // necessary for the sound to work as playback sound instead of
+        // the OS treating it as notification sound
+        do {
+            try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default, options: [])
+        } catch {
+            print("Setting sound to 'playback' failed, video sound will be treated as notification sound!")
+        }
     }
     
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
@@ -80,4 +89,14 @@ class PostNode: ASCellNode {
         return gradientOverlaySpec
     }
 
+}
+
+// MARK: - Video Node Delegate
+
+extension PostNode: ASVideoNodeDelegate {
+
+    func didTap(_ videoNode: ASVideoNode) {
+        videoNode.muted = !videoNode.muted
+    }
+    
 }
